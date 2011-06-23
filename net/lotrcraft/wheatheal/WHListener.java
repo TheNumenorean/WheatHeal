@@ -11,7 +11,7 @@ public class WHListener extends EntityListener implements Listener {
 	public void onEntityDamage(EntityDamageEvent event) {
 		if (event instanceof EntityDamageByEntityEvent){
 			EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
-			if (event.getEntity() instanceof Player && e.getDamager() instanceof Player){
+			if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
 		        Player puncher = (Player)e.getDamager();
 		        Player punchee = (Player)e.getEntity();
 				if (puncher.getItemInHand().equals(Material.WHEAT)){
