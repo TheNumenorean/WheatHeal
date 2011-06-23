@@ -15,7 +15,7 @@ public class WHListener extends EntityListener implements Listener {
 		        Player puncher = (Player)e.getDamager();
 		        Player punchee = (Player)e.getEntity();
 				if (puncher.getItemInHand().equals(Material.WHEAT)){
-					e.setCancelled(true);
+					event.setCancelled(true);
 					puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount()-1);
 					punchee.setHealth(punchee.getHealth()+WHMain.heal);
 				}
