@@ -17,7 +17,7 @@ public class WHMain extends JavaPlugin {
 
 	public void onEnable() {
 		config = this.getConfiguration();
-		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHPlayerListener(), Event.Priority.High, this);
+		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new EntityListener(), Event.Priority.High, this);
 		log.info("WheatHeal Enabled");
 		if (config.getInt("healAmt", 1) <= 0 || config.getInt("healAmt", 1) > 10){
 			config.setProperty("healAmt", 1);

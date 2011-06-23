@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public class WHPlayerListener implements Listener {
+public class EntityListener implements Listener {
 	public void onEntityDamage(EntityDamageEvent event) {
 		if (event instanceof EntityDamageByEntityEvent){
 			EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
