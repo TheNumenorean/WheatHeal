@@ -14,10 +14,16 @@ public class WHListener extends EntityListener{
 			if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
 		        Player puncher = (Player)e.getDamager();
 		        Player punchee = (Player)e.getEntity();
-				if (puncher.getItemInHand().equals(Material.WHEAT)){
+				if (puncher.getItemInHand().getType().equals(Material.WHEAT)){
 					event.setCancelled(true);
-					puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount()-1);
-					punchee.setHealth(punchee.getHealth()+WHMain.heal);
+					if (punchee.getHealth() < 20){
+						if (puncher.getItemInHand().getAmount() == 1){
+							puncher.getItemInHand().setType(Material.AIR);
+						}else {
+							puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount()-1);
+						}
+						punchee.setHealth(punchee.getHealth()+WHMain.heal);
+					}
 				}
 				
 			}
