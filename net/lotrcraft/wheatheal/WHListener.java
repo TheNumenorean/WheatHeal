@@ -2,7 +2,6 @@ package net.lotrcraft.wheatheal;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
@@ -18,7 +17,7 @@ public class WHListener extends EntityListener{
 					event.setCancelled(true);
 					if (punchee.getHealth() < 20){
 						if (puncher.getItemInHand().getAmount() == 1){
-							puncher.getItemInHand().setType(Material.AIR);
+							puncher.setItemInHand(null);
 						}else {
 							puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount()-1);
 						}
