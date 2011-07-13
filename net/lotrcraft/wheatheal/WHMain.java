@@ -29,8 +29,8 @@ public class WHMain extends JavaPlugin {
 			if (args[0].equalsIgnoreCase("reload")) {
 				config.loadConfig();
 				sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
-				String debugMsg = config.prop.stringPropertyNames().toString();
-				log.info(debugMsg);
+				// DEBUG LINE
+				//config.prop.list(System.out);
 				return true;
 			}			
 			return false;
