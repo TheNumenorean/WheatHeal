@@ -23,7 +23,6 @@ public class WHMain extends JavaPlugin {
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
 	}
 	
-	@SuppressWarnings("static-access")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("wheatheal")) {
 			if (args[0].equalsIgnoreCase("reload")) {
