@@ -1,6 +1,10 @@
 package net.lotrcraft.wheatheal;
 
 import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +21,21 @@ public class WHMain extends JavaPlugin {
 	public void onEnable() {
 		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHListener(), Event.Priority.High, this);
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
+	}
+	
+	@SuppressWarnings("static-access")
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("wheatheal")) {
+			if (args[0].equalsIgnoreCase("reload")) {
+				config.loadConfig();
+				sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
+				String debugMsg = config.prop.stringPropertyNames().toString();
+				log.info(debugMsg);
+				return true;
+			}			
+			return false;
+		}
+		return false;		
 	}
 
 }
