@@ -14,7 +14,7 @@ public class ConfigHandler {
 	static Properties prop = new Properties();
 
 	// Default properties
-	public int[] amounts;
+	public int[] amounts = null;
 
 	// CONSTRUCTOR
 	public ConfigHandler() {		
@@ -36,11 +36,11 @@ public class ConfigHandler {
 
 	// Check to see if config exists, returns true or false
 	public boolean checkConfig() {
-		if (!config.exists())
+		if (config.exists())
 		{
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
