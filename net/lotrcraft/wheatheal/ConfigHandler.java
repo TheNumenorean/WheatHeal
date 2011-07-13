@@ -50,14 +50,14 @@ public class ConfigHandler {
 			new File(pluginDir).mkdir();
 			config.createNewFile();
 			FileOutputStream out = new FileOutputStream(config);
-			//prop.put("propertyName", defaultValue);
-			prop.put("wheat",amounts[0]);
-			prop.put("raw_porkchop", amounts[1]);
-			prop.put("cooked_porkchop", amounts[2]);
-			prop.put("raw_fish", amounts[3]);
-			prop.put("cooked_fish", amounts[4]);
-			prop.put("bread", amounts[5]);
-			prop.store(out, "Configuration File");
+			//prop.setProperty("propertyName", defaultValue);
+			prop.setProperty("wheat",Integer.toString(amounts[0]));
+			prop.setProperty("raw_porkchop", Integer.toString(amounts[1]));
+			prop.setProperty("cooked_porkchop", Integer.toString(amounts[2]));
+			prop.setProperty("raw_fish", Integer.toString(amounts[3]));
+			prop.setProperty("cooked_fish", Integer.toString(amounts[4]));
+			prop.setProperty("bread", Integer.toString(amounts[5]));
+			prop.store(out, "Configuration File. Change values to how many half hearts you want each item to heal");
 			out.flush();
 			out.close();
 		} catch (IOException e) {
