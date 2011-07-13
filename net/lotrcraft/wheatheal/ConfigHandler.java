@@ -14,7 +14,7 @@ public class ConfigHandler {
 	static Properties prop = new Properties();
 
 	// Default properties
-	public int[] amounts = null;
+	public int[] amounts = new int[6];
 
 	// CONSTRUCTOR
 	public ConfigHandler() {		
@@ -57,6 +57,7 @@ public class ConfigHandler {
 			prop.put("raw_fish", amounts[3]);
 			prop.put("cooked_fish", amounts[4]);
 			prop.put("bread", amounts[5]);
+			prop.store(out, "Configuration File");
 			out.flush();
 			out.close();
 		} catch (IOException e) {
