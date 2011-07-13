@@ -3,7 +3,6 @@ package net.lotrcraft.wheatheal;
 import java.util.logging.Logger;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.config.Configuration;
 
 public class WHMain extends JavaPlugin {
 
