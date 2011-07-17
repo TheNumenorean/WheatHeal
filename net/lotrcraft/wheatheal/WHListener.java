@@ -28,6 +28,7 @@ public class WHListener extends EntityListener{
 					event.setCancelled(true);
 					// Finally call healPlayer in our healer class and pass in the punchee and the itemID
 					healer.healPlayer(punchee, itemID);
+					//Once again, need to check if Wanted
 				}
 			}
 

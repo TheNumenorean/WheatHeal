@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ConfigHandler {
 
 	// Configuration file properties 
-	/ all are unneccessary
+	// all are unneccessary
 	static String pluginDir = "plugins/WheatHeal";
 	static File config = new File(pluginDir + File.separator + "config.cfg");
 	static Properties prop = new Properties();
