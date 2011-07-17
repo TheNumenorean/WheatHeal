@@ -8,7 +8,8 @@ import java.util.Properties;
 
 public class ConfigHandler {
 
-	// Configuration file properties
+	// Configuration file properties 
+	/ all are unneccessary
 	static String pluginDir = "plugins/WheatHeal";
 	static File config = new File(pluginDir + File.separator + "config.cfg");
 	static Properties prop = new Properties();
@@ -19,7 +20,7 @@ public class ConfigHandler {
 	// CONSTRUCTOR
 	public ConfigHandler() {		
 
-		if (checkConfig()) {
+		if (config.exists()) {
 			loadConfig();
 		} else {
 			// Initialise variables
@@ -35,6 +36,7 @@ public class ConfigHandler {
 	}
 
 	// Check to see if config exists, returns true or false
+	//unneccessary, easier in first 'if'
 	public boolean checkConfig() {
 		if (config.exists())
 		{
@@ -63,6 +65,15 @@ public class ConfigHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//prop.setProperty("propertyName", defaultValue);
+		prop.setProperty("wheat",Integer.toString(amounts[0]));
+		prop.setProperty("raw_porkchop", Integer.toString(amounts[1]));
+		prop.setProperty("cooked_porkchop", Integer.toString(amounts[2]));
+		prop.setProperty("raw_fish", Integer.toString(amounts[3]));
+		prop.setProperty("cooked_fish", Integer.toString(amounts[4]));
+		prop.setProperty("bread", Integer.toString(amounts[5]));
+		prop.store(out, "Configuration File. Change values to how many half hearts you want each item to heal");
 	}
 
 	// Load configuration file

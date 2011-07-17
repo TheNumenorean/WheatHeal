@@ -24,7 +24,6 @@ public class WHMain extends JavaPlugin {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("wheatheal")) {
 			if (args[0].equalsIgnoreCase("reload")) {
 				config.loadConfig();
 				sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
@@ -32,9 +31,7 @@ public class WHMain extends JavaPlugin {
 				//config.prop.list(System.out);
 				return true;
 			}			
-			return false;
-		}
-		return false;		
+			return false;		
 	}
 
 }
