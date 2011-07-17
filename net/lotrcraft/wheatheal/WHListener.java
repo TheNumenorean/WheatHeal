@@ -20,7 +20,8 @@ public class WHListener extends EntityListener{
 				int itemID = punchee.getItemInHand().getTypeId();
 				
 				if (itemID == 296 || itemID == 297 || itemID == 319 || itemID == 320 || itemID == 349 || itemID == 350) {
-					WHMain.log.info("ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
+					WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
+					event.setCancelled(true);
 					healer.healPlayer(punchee, itemID);
 				}
 			}

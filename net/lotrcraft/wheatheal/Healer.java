@@ -12,7 +12,6 @@ public class Healer {
 	}
 
 	public void healPlayer(Player player, int itemID) {
-		
 		switch (itemID) {
 		// Use the itemID passed to determine what the heal amount is
 		case 296: player.setHealth(player.getHealth() + config.amounts[0]); break;  // WHEAT
