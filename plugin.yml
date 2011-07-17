@@ -1,4 +1,10 @@
 main: net.lotrcraft.wheatheal.WHMain
-author: numenorean95
+author: numenorean95 (Some updates by EdTheLoon)
 name: WheatHeal
-version: 0.1
+version: 0.2
+
+commands:
+    wheatheal:
+        description: Reload the configuration file
+        usage: |
+            /wheatheal reload - Reload the configuration file
