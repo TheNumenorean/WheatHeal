@@ -23,7 +23,7 @@ public class WHListener extends EntityListener{
 
 					// Only perform the code if one of the itemID's is detected in the puncher's hand
 					if (itemID == 296 || itemID == 297 || itemID == 319 || itemID == 320 || itemID == 349 || itemID == 350
-							|| itemID == 357 || itemID == 360 || itemID == 322) {
+							|| itemID == 357 || itemID == 260 || itemID == 322) {
 						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
 						WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
 						// Cancel the event to prevent any damage being caused to the player being punched
@@ -39,6 +39,27 @@ public class WHListener extends EntityListener{
 						// Finally call healPlayer in our healer class and pass in the punchee and the itemID
 						healer.healPlayer(punchee, itemID);
 					}
+					
+					// If block for punching with mushroom stew in hand
+					if (itemID == 282) {
+						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
+						WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
+						event.setCancelled(true);
+						
+						// Remove 1 mushroom stew and add an empty bowl to inventory if more than 1 mushroom stew is in hand
+						if (punchee.getItemInHand().getAmount() > 1) {
+							punchee.setItemInHand(new ItemStack(itemID, punchee.getItemInHand().getAmount() - 1));
+							punchee.getInventory().addItem(new ItemStack(281, 1));
+						} // Remove mushroom stew and add an empty bowl to inventory if only 1 mushroom stew is in hand
+						else if (punchee.getItemInHand().getAmount() == 1) {
+							punchee.setItemInHand(null);
+							punchee.getInventory().addItem(new ItemStack(281, 1));
+						}
+						
+						// Finally call healPlayer in our healer class and pass in the punchee and the itemID
+						healer.healPlayer(punchee, itemID);
+					}
+					
 				}
 			}
 
