@@ -47,10 +47,10 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		if (config.getHeader() != "#Version 0.2"){
+		if (config.getHeader() != "#Version 0.1"){
 			confInit();
 		}
-		
+		config.load();
 		
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
@@ -58,6 +58,10 @@ public class WHMain extends JavaPlugin {
 		amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
 		amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
 		amounts[5] = config.getInt("Foods.Bread.healValue", 3);
+		amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
+		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
+		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
+		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
 		
 		use[0] = config.getBoolean("Foods.Wheat.enable", true);
 		use[1] = config.getBoolean("Foods.RawPork.enable", true);
@@ -65,6 +69,10 @@ public class WHMain extends JavaPlugin {
 		use[3] = config.getBoolean("Foods.RawFish.enable", true);
 		use[4] = config.getBoolean("Foods.CookedFish.enable", true);
 		use[5] = config.getBoolean("Foods.Bread.enable", true);
+		use[6] = config.getBoolean("Foods.Cookie.enable", true);
+		use[7] = config.getBoolean("Foods.Apple.enable", true);
+		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
+		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
 		config.save();
 		
 	}
@@ -87,6 +95,18 @@ public class WHMain extends JavaPlugin {
 		
 		config.setProperty("Foods.Bread.enable", true);
 		config.setProperty("Foods.Bread.healValue", 3);
+		
+		config.setProperty("Foods.Cookie.enable", true);
+		config.setProperty("Foods.Cookie.healValue", 7);
+		
+		config.setProperty("Foods.Apple.enable", true);
+		config.setProperty("Foods.Apple.healValue", 5);
+		
+		config.setProperty("Foods.GoldenApple.enable", true);
+		config.setProperty("Foods.GoldenApple.healValue", 20);
+		
+		config.setProperty("Foods.MushroomStew.enable", true);
+		config.setProperty("Foods.MushroomStew.healValue", 10);
 		
 		
 		config.setHeader("#Version 0.2");
