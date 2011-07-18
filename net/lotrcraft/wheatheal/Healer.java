@@ -12,7 +12,11 @@ public class Healer {
 		case 320: player.setHealth(player.getHealth() + WHMain.amounts[2]); break;  // COOKED_PORKCHOP
 		case 349: player.setHealth(player.getHealth() + WHMain.amounts[3]); break;  // RAW_FISH
 		case 350: player.setHealth(player.getHealth() + WHMain.amounts[4]); break;  // COOKED_FISH
-		case 297: player.setHealth(player.getHealth() + WHMain.amounts[5]); break;  // BREAD		
+		case 297: player.setHealth(player.getHealth() + WHMain.amounts[5]); break;  // BREAD
+		case 357: player.setHealth(player.getHealth() + WHMain.amounts[6]); break;  // COOKIE
+		case 260: player.setHealth(player.getHealth() + WHMain.amounts[7]); break;  // APPLE
+		case 322: player.setHealth(player.getHealth() + WHMain.amounts[8]); break;  // GOLDEN APPLE
+		case 282: player.setHealth(player.getHealth() + WHMain.amounts[9]); break;  // MUSHROOM SOUP/STEW
 		}
 
 	}
