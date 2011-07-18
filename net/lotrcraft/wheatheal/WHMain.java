@@ -15,7 +15,7 @@ public class WHMain extends JavaPlugin {
 	public static Healer healer = new Healer();
 	public static Logger log = Logger.getLogger("minecraft");
 	public static int[] amounts;
-	public static boolean use;
+	public static boolean[] use;
 	Configuration config;
 
 	public void onDisable() {
@@ -39,34 +39,58 @@ public class WHMain extends JavaPlugin {
 				return true;
 			}			
 			return false;
+		} else {
+			
 		}
 		return true;
 	}
 
 	private void loadConf() {
 		config = this.getConfiguration();
-
-		if (config.getInt("minimum", 60) <= 0) {
-			config.setProperty("minimum", 60);
-		}
-		if (config.getInt("maximum", 120) <= 0) {
-			config.setProperty("maximum", 120);
-		}
-		if (config.getInt("maximum", 120) < config.getInt("minimum", 60)) {;
-		config.setProperty("maximum", config.getInt("minimum", 60));
-		}
-		if (config.getProperty("useList") == null){
-			config.setProperty("useList", false);
-		}
-		if (config.getProperty("Players") == null){
-			config.setProperty("Players", null);
+		if (config.getHeader() != "#Version 0.2"){
+			confInit();
 		}
 		
-		// TODO: Load the amount of hearts to heal for each food
+		
+		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
+		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
+		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
+		amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
+		amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
+		amounts[5] = config.getInt("Foods.Bread.healValue", 3);
+		
+		use[0] = config.getBoolean("Foods.Wheat.enable", true);
+		use[1] = config.getBoolean("Foods.RawPork.enable", true);
+		use[2] = config.getBoolean("Foods.CookedPork.enable", true);
+		use[3] = config.getBoolean("Foods.RawFish.enable", true);
+		use[4] = config.getBoolean("Foods.CookedFish.enable", true);
+		use[5] = config.getBoolean("Foods.Bread.enable", true);
+		config.save();
+		
+	}
 
+	private void confInit() {
+		config.setProperty("Foods.Wheat.enable", true);
+		config.setProperty("Foods.Wheat.healValue", 1);
+		
+		config.setProperty("Foods.RawPork.enable", true);
+		config.setProperty("Foods.RawPork.healValue", 3);
+		
+		config.setProperty("Foods.CookedPork.enable", true);
+		config.setProperty("Foods.CookedPork.healValue", 8);
+		
+		config.setProperty("Foods.RawFish.enable", true);
+		config.setProperty("Foods.RawFish.healValue", 4);
+		
+		config.setProperty("Foods.CookedFish.enable", true);
+		config.setProperty("Foods.CookedFish.healValue", 8);
+		
+		config.setProperty("Foods.Bread.enable", true);
+		config.setProperty("Foods.Bread.healValue", 3);
+		
+		
 		config.setHeader("#Version 0.2");
 		config.save();
-
 	}
 
 }
