@@ -3,13 +3,6 @@ package net.lotrcraft.wheatheal;
 import org.bukkit.entity.Player;
 
 public class Healer {
-	
-	//private ConfigHandler config = WHMain.config;
-	
-	// CONSTRUCTOR - Not in use
-	public void ConfigHandler() {
-		
-	}
 
 	public void healPlayer(Player player, int itemID) {
 		switch (itemID) {
@@ -20,9 +13,8 @@ public class Healer {
 		case 349: player.setHealth(player.getHealth() + WHMain.amounts[3]); break;  // RAW_FISH
 		case 350: player.setHealth(player.getHealth() + WHMain.amounts[4]); break;  // COOKED_FISH
 		case 297: player.setHealth(player.getHealth() + WHMain.amounts[5]); break;  // BREAD		
-		}//Need to add check whether should use.
-		//if WHMain.use[0]
-		
+		}
+
 	}
-	
+
 }

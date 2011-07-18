@@ -5,13 +5,13 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 
 public class WHMain extends JavaPlugin {
 
-	//public static ConfigHandler config = new ConfigHandler();
 	public static Healer healer = new Healer();
 	public static Logger log = Logger.getLogger("minecraft");
 	public static int[] amounts;
@@ -27,9 +27,10 @@ public class WHMain extends JavaPlugin {
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
 		loadConf();
 	}
-	
+
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+		if (sender instanceof ConsoleCommandSender) {
 			if (args[0].equalsIgnoreCase("reload")) {
 				loadConf();
 				sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
@@ -37,12 +38,14 @@ public class WHMain extends JavaPlugin {
 				//config.prop.list(System.out);
 				return true;
 			}			
-			return false;		//This needs a ConsoleCommandSender check
+			return false;
+		}
+		return true;
 	}
-	
+
 	private void loadConf() {
 		config = this.getConfiguration();
-		
+
 		if (config.getInt("minimum", 60) <= 0) {
 			config.setProperty("minimum", 60);
 		}
@@ -50,7 +53,7 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("maximum", 120);
 		}
 		if (config.getInt("maximum", 120) < config.getInt("minimum", 60)) {;
-			config.setProperty("maximum", config.getInt("minimum", 60));
+		config.setProperty("maximum", config.getInt("minimum", 60));
 		}
 		if (config.getProperty("useList") == null){
 			config.setProperty("useList", false);
@@ -59,9 +62,11 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("Players", null);
 		}
 		
+		// TODO: Load the amount of hearts to heal for each food
+
 		config.setHeader("#Version 0.2");
 		config.save();
-		
+
 	}
 
 }
