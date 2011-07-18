@@ -12,7 +12,7 @@ public class WHListener extends EntityListener{
 	private Healer healer = WHMain.healer;;
 
 	public void onEntityDamage(EntityDamageEvent event) {
-		if (WHMain.use) { 
+		//if (WHMain.use) { 
 			if (event instanceof EntityDamageByEntityEvent){
 				EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
 
@@ -61,7 +61,7 @@ public class WHListener extends EntityListener{
 					}
 					
 				}
-			}
+			//}
 
 		}
 	}
