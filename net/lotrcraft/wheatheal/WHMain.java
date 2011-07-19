@@ -51,7 +51,7 @@ public class WHMain extends JavaPlugin {
 			} else if (sender instanceof Player) {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
-						if (sender.hasPermission("WheatHeal.commands.reload")) { // You can change the node this looks for if you want
+						if (sender.hasPermission("wheatheal.commands.reload")) { // You can change the node this looks for if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
@@ -92,8 +92,9 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		if (config.getHeader() != "#Version 0.2"){ //check version
+		if (config.getHeader() != "#Version " + this.getDescription().getVersion()){ //check version
 			confInit();
+			log.severe("loadConf has called initConf. Header = " + config.getHeader());
 		}
 		config.load();
 
@@ -123,10 +124,10 @@ public class WHMain extends JavaPlugin {
 		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
 		
 
-		// Get which Permissions plugin to use
+		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
-
-		config.save();
+		// DEBUG LINE
+		log.info("[WheatHeal] useBukkit = " + useBukkitPerms);
 
 	}
 
@@ -164,9 +165,8 @@ public class WHMain extends JavaPlugin {
 		config.setProperty("Foods.MushroomStew.healValue", 10);
 
 		config.setProperty("Permissions.useBukkit", false);
-
-
-		config.setHeader("#Version 0.2");
+		
+		config.setHeader("#Version " + this.getDescription().getVersion());
 		config.save();
 	}
 
