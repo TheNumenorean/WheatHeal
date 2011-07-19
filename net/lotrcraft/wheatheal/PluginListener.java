@@ -3,7 +3,6 @@ package net.lotrcraft.wheatheal;
 import org.bukkit.event.server.ServerListener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.permissions.Permission;
 import com.nijiko.permissions.PermissionHandler;
 
 public class PluginListener extends ServerListener {
@@ -21,7 +20,7 @@ public class PluginListener extends ServerListener {
 		} else {
 			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit")) {
 				WHMain.log.info("[WheatHeal] PermissionsBukkit was disabled. Falling back to OP only");
-				WHMain.bukkitPermissions = null;
+				WHMain.bukkitPermissions = false;
 			}
 		}
 	}
@@ -34,7 +33,7 @@ public class PluginListener extends ServerListener {
 			}
 		} else {
 			if(event.getPlugin().getDescription().equals("PermissionsBukkit")) {
-				WHMain.bukkitPermissions = (Permission)event.getPlugin();
+				WHMain.bukkitPermissions = true;
 				WHMain.log.info("[Wheatheal] PermissionsBukkit was enabled. Hooked in");
 			}
 		}
