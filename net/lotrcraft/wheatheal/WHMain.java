@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Event;
 import org.bukkit.event.Event.Type;
-import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 import com.nijiko.permissions.PermissionHandler;
@@ -22,7 +21,7 @@ public class WHMain extends JavaPlugin {
 	public static boolean[] use; // Config variable
 	public static boolean useBukkitPerms; // Config variable
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
-	public static Permission bukkitPermissions; // Bukkit's Official Permissions Plugin
+	public static boolean bukkitPermissions; // Bukkit's Official Permissions Plugin
 	Configuration config;
 
 	public void onDisable() {
@@ -49,7 +48,7 @@ public class WHMain extends JavaPlugin {
 				return true;
 			} else if (sender instanceof Player) {
 				if (useBukkitPerms) { // If using PermissionsBukkit
-					if (bukkitPermissions != null) { // Check that PermissionsBukkit is enabled first.
+					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
 						if (sender.hasPermission("WheatHeal.commands.reload") || sender.isOp()) { // You can change the node this looks for if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
@@ -86,83 +85,84 @@ public class WHMain extends JavaPlugin {
 		} else {
 			return false;
 		}
-	return true;
-}
-
-private void loadConf() {
-	config = this.getConfiguration();
-	if (config.getHeader() != "#Version 0.2"){ //check version
-		confInit();
+		return true;
 	}
-	config.load();
 
-	//Get heal amounts for each item
-	amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
-	amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
-	amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
-	amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
-	amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
-	amounts[5] = config.getInt("Foods.Bread.healValue", 3);
-	amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
-	amounts[7] = config.getInt("Foods.Apple.healValue", 5);
-	amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
-	amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
+	private void loadConf() {
+		config = this.getConfiguration();
+		if (config.getHeader() != "#Version 0.2"){ //check version
+			confInit();
+		}
+		config.load();
 
-	//Whether each should be used
-	use[0] = config.getBoolean("Foods.Wheat.enable", true);
-	use[1] = config.getBoolean("Foods.RawPork.enable", true);
-	use[2] = config.getBoolean("Foods.CookedPork.enable", true);
-	use[3] = config.getBoolean("Foods.RawFish.enable", true);
-	use[4] = config.getBoolean("Foods.CookedFish.enable", true);
-	use[5] = config.getBoolean("Foods.Bread.enable", true);
-	use[6] = config.getBoolean("Foods.Cookie.enable", true);
-	use[7] = config.getBoolean("Foods.Apple.enable", true);
-	use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
-	use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
+		//Get heal amounts for each item
+		// TODO: Fix NullPointerException when loading config
+		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
+		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
+		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
+		amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
+		amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
+		amounts[5] = config.getInt("Foods.Bread.healValue", 3);
+		amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
+		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
+		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
+		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
 
-	// Get which Permissions plugin to use
-	useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
+		//Whether each should be used
+		use[0] = config.getBoolean("Foods.Wheat.enable", true);
+		use[1] = config.getBoolean("Foods.RawPork.enable", true);
+		use[2] = config.getBoolean("Foods.CookedPork.enable", true);
+		use[3] = config.getBoolean("Foods.RawFish.enable", true);
+		use[4] = config.getBoolean("Foods.CookedFish.enable", true);
+		use[5] = config.getBoolean("Foods.Bread.enable", true);
+		use[6] = config.getBoolean("Foods.Cookie.enable", true);
+		use[7] = config.getBoolean("Foods.Apple.enable", true);
+		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
+		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
 
-	config.save();
+		// Get which Permissions plugin to use
+		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
 
-}
+		config.save();
 
-private void confInit() {
-	config.setProperty("Foods.Wheat.enable", true);
-	config.setProperty("Foods.Wheat.healValue", 1);
+	}
 
-	config.setProperty("Foods.RawPork.enable", true);
-	config.setProperty("Foods.RawPork.healValue", 3);
+	private void confInit() {
+		config.setProperty("Foods.Wheat.enable", true);
+		config.setProperty("Foods.Wheat.healValue", 1);
 
-	config.setProperty("Foods.CookedPork.enable", true);
-	config.setProperty("Foods.CookedPork.healValue", 8);
+		config.setProperty("Foods.RawPork.enable", true);
+		config.setProperty("Foods.RawPork.healValue", 3);
 
-	config.setProperty("Foods.RawFish.enable", true);
-	config.setProperty("Foods.RawFish.healValue", 4);
+		config.setProperty("Foods.CookedPork.enable", true);
+		config.setProperty("Foods.CookedPork.healValue", 8);
 
-	config.setProperty("Foods.CookedFish.enable", true);
-	config.setProperty("Foods.CookedFish.healValue", 8);
+		config.setProperty("Foods.RawFish.enable", true);
+		config.setProperty("Foods.RawFish.healValue", 4);
 
-	config.setProperty("Foods.Bread.enable", true);
-	config.setProperty("Foods.Bread.healValue", 3);
+		config.setProperty("Foods.CookedFish.enable", true);
+		config.setProperty("Foods.CookedFish.healValue", 8);
 
-	config.setProperty("Foods.Cookie.enable", true);
-	config.setProperty("Foods.Cookie.healValue", 7);
+		config.setProperty("Foods.Bread.enable", true);
+		config.setProperty("Foods.Bread.healValue", 3);
 
-	config.setProperty("Foods.Apple.enable", true);
-	config.setProperty("Foods.Apple.healValue", 5);
+		config.setProperty("Foods.Cookie.enable", true);
+		config.setProperty("Foods.Cookie.healValue", 7);
 
-	config.setProperty("Foods.GoldenApple.enable", true);
-	config.setProperty("Foods.GoldenApple.healValue", 20);
+		config.setProperty("Foods.Apple.enable", true);
+		config.setProperty("Foods.Apple.healValue", 5);
 
-	config.setProperty("Foods.MushroomStew.enable", true);
-	config.setProperty("Foods.MushroomStew.healValue", 10);
-	
-	config.setProperty("Permissions.useBukkit", false);
+		config.setProperty("Foods.GoldenApple.enable", true);
+		config.setProperty("Foods.GoldenApple.healValue", 20);
+
+		config.setProperty("Foods.MushroomStew.enable", true);
+		config.setProperty("Foods.MushroomStew.healValue", 10);
+
+		config.setProperty("Permissions.useBukkit", false);
 
 
-	config.setHeader("#Version 0.2");
-	config.save();
-}
+		config.setHeader("#Version 0.2");
+		config.save();
+	}
 
 }
