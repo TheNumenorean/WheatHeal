@@ -17,8 +17,8 @@ public class WHMain extends JavaPlugin {
 
 	public static Healer healer = new Healer();
 	public static Logger log = Logger.getLogger("minecraft");
-	public static int[] amounts; // Config variable
-	public static boolean[] use; // Config variable
+	public static int[] amounts = new int[10]; // Config variable
+	public static boolean[] use = new boolean[10]; // Config variable
 	public static boolean useBukkitPerms; // Config variable
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
 	public static boolean bukkitPermissions; // Bukkit's Official Permissions Plugin
@@ -94,11 +94,8 @@ public class WHMain extends JavaPlugin {
 			confInit();
 		}
 		config.load();
-		log.info("" + config.getInt("Foods.Wheat.healValue", 1));
 
 		//Get heal amounts for each item
-		// TODO: Fix NullPointerException when loading config
-		/*
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
 		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
@@ -109,7 +106,7 @@ public class WHMain extends JavaPlugin {
 		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
 		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
 		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
-		*/
+		
 
 		//Whether each should be used
 		use[0] = config.getBoolean("Foods.Wheat.enable", true);
