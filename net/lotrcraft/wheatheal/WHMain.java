@@ -94,6 +94,7 @@ public class WHMain extends JavaPlugin {
 			confInit();
 		}
 		config.load();
+		log.info("" + config.getInt("Foods.Wheat.healValue", 1));
 
 		//Get heal amounts for each item
 		// TODO: Fix NullPointerException when loading config
