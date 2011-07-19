@@ -11,7 +11,7 @@ public class PluginListener extends ServerListener {
 
 	}
 
-	public void onDisable(PluginDisableEvent event) {
+	public void onPluginDisable(PluginDisableEvent event) {
 		if (!WHMain.useBukkitPerms) {
 			if(event.getPlugin().getDescription().getName().equals("Permissions")) {
 				WHMain.log.info("[WheatHeal] Permissions was disabled. Falling back to OP only");
@@ -25,7 +25,7 @@ public class PluginListener extends ServerListener {
 		}
 	}
 
-	public void onEnable(PluginEnableEvent event) {
+	public void onPluginEnable(PluginEnableEvent event) {
 		if (!WHMain.useBukkitPerms) {
 			if(event.getPlugin().getDescription().getName().equals("Permissions")) {
 				WHMain.nijikoPermissions = (PermissionHandler)event.getPlugin();
