@@ -121,7 +121,7 @@ private void loadConf() {
 	use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
 
 	// Get which Permissions plugin to use
-	useBukkitPerms = config.getBoolean("Permissions.Plugin", false);
+	useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
 
 	config.save();
 
@@ -157,6 +157,8 @@ private void confInit() {
 
 	config.setProperty("Foods.MushroomStew.enable", true);
 	config.setProperty("Foods.MushroomStew.healValue", 10);
+	
+	config.setProperty("Permissions.useBukkit", false);
 
 
 	config.setHeader("#Version 0.2");
