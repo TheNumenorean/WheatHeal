@@ -27,12 +27,12 @@ public class PluginListener extends ServerListener {
 
 	public void onEnable(PluginEnableEvent event) {
 		if (!WHMain.useBukkitPerms) {
-			if(event.getPlugin().getDescription().equals("Permissions")) {
+			if(event.getPlugin().getDescription().getName().equals("Permissions")) {
 				WHMain.nijikoPermissions = (PermissionHandler)event.getPlugin();
 				WHMain.log.info("[WheatHeal] Permissions was enabled. Hooked in");
 			}
 		} else {
-			if(event.getPlugin().getDescription().equals("PermissionsBukkit")) {
+			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit")) {
 				WHMain.bukkitPermissions = true;
 				WHMain.log.info("[Wheatheal] PermissionsBukkit was enabled. Hooked in");
 			}
