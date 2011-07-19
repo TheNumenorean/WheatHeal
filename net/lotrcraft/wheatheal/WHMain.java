@@ -11,6 +11,7 @@ import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 import com.nijiko.permissions.PermissionHandler;
+
 import org.bukkit.entity.Player;
 
 public class WHMain extends JavaPlugin {
@@ -32,6 +33,7 @@ public class WHMain extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHListener(), Event.Priority.High, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Event.Priority.Monitor, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Event.Priority.Monitor, this);
+		PluginListener.hookInit(this.getServer().getPluginManager());
 		loadConf();
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
 	}
