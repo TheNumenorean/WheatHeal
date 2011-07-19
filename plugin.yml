@@ -10,10 +10,11 @@ commands:
             /wheatheal reload - Reload the configuration file
 
 permissions:
-    WheathHeal.*:
+    wheatheal.*:
         description: Gives access to all WheatHeal permissions
+        default: false
         children:
             WheatHeal.commands.reload: true
-    WheatHeal.commands.reload:
+    wheatheal.commands.reload:
         description: Allows user to reload the configuration file
         default: op

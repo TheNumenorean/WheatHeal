@@ -1,5 +1,6 @@
 package net.lotrcraft.wheatheal;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
@@ -11,7 +12,6 @@ import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 import com.nijiko.permissions.PermissionHandler;
-
 import org.bukkit.entity.Player;
 
 public class WHMain extends JavaPlugin {
@@ -92,9 +92,12 @@ public class WHMain extends JavaPlugin {
 	}
 
 	private void loadConf() {
-		config = this.getConfiguration();
+		//config = this.getConfiguration();
+		File file = new File("WheatHeal/config.yml");
+		config = new Configuration(file);
 		config.load();
-		if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
+		//if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
+		if (config.getHeader() == null) {
 			log.severe("loadConf has called initConf. Header = " + config.getHeader());
 			confInit();
 		}
