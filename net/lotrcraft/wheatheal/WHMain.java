@@ -30,11 +30,11 @@ public class WHMain extends JavaPlugin {
 	}
 
 	public void onEnable() {
+		loadConf();
 		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHListener(), Event.Priority.High, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Event.Priority.Monitor, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Event.Priority.Monitor, this);
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
-		loadConf();
 	}
 
 
@@ -68,7 +68,7 @@ public class WHMain extends JavaPlugin {
 					}
 				} else { // If using Nijikokun's Permissions
 					if (nijikoPermissions != null) { // Check that Permissions is enabled
-						if (nijikoPermissions.has((Player)sender, "WheatHeal.commands.reload")) { // Again you can change this node if you want
+						if (nijikoPermissions.has((Player)sender, "WheatHeal.commands.reload") || sender.isOp()) { // Again you can change this node if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
@@ -91,7 +91,7 @@ public class WHMain extends JavaPlugin {
 
 private void loadConf() {
 	config = this.getConfiguration();
-	if (config.getHeader() != "#Version 0.1"){ //check version
+	if (config.getHeader() != "#Version 0.2"){ //check version
 		confInit();
 	}
 	config.load();
