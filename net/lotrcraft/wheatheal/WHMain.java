@@ -29,10 +29,10 @@ public class WHMain extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		loadConf();
 		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHListener(), Event.Priority.High, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Event.Priority.Monitor, this);
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Event.Priority.Monitor, this);
+		loadConf();
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
 	}
 
