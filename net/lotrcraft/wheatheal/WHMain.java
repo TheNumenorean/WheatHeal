@@ -109,6 +109,7 @@ public class WHMain extends JavaPlugin {
 		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
 		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
 		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
+		*/
 
 		//Whether each should be used
 		use[0] = config.getBoolean("Foods.Wheat.enable", true);
@@ -121,7 +122,7 @@ public class WHMain extends JavaPlugin {
 		use[7] = config.getBoolean("Foods.Apple.enable", true);
 		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
 		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
-		*/
+		
 
 		// Get which Permissions plugin to use
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
