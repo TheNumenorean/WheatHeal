@@ -97,6 +97,7 @@ public class WHMain extends JavaPlugin {
 
 		//Get heal amounts for each item
 		// TODO: Fix NullPointerException when loading config
+		/*
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
 		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
@@ -119,6 +120,7 @@ public class WHMain extends JavaPlugin {
 		use[7] = config.getBoolean("Foods.Apple.enable", true);
 		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
 		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
+		*/
 
 		// Get which Permissions plugin to use
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
