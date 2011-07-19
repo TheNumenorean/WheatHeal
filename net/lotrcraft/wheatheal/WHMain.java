@@ -93,7 +93,7 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		//config = this.getConfiguration();
-		File file = new File("WheatHeal/config.yml");
+		File file = new File("plugins/WheatHeal/config.yml");
 		config = new Configuration(file);
 		config.load();
 		//if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
