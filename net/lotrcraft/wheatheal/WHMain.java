@@ -92,10 +92,10 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		/*if (config.getHeader() != "#Version " + this.getDescription().getVersion() + "\r\n"){ //check version
+		if (!config.getHeader().equals("#Version " + this.getDescription().getVersion())){ //check version
 			confInit();
 			log.severe("loadConf has called initConf. Header = " + config.getHeader());
-		}*/
+		}
 		config.load();
 
 		//Get heal amounts for each item
