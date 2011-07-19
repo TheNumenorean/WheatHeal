@@ -92,16 +92,22 @@ public class WHMain extends JavaPlugin {
 	}
 
 	private void loadConf() {
-		//config = this.getConfiguration();
-		File file = new File("plugins/WheatHeal/config.yml");
-		config = new Configuration(file);
+		config = this.getConfiguration();
 		config.load();
-		//if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
-		if (config.getHeader() == null) {
+		
+		// JUST an idea
+		try {
+			wait(20L*5L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
 			log.severe("loadConf has called initConf. Header = " + config.getHeader());
 			confInit();
+			config.load();
 		}
-		config.load();
 
 		//Get heal amounts for each item
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
