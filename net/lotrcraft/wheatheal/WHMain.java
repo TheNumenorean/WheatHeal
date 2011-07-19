@@ -51,7 +51,7 @@ public class WHMain extends JavaPlugin {
 			} else if (sender instanceof Player) {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
-						if (sender.hasPermission("wheatheal.commands.reload")) { // You can change the node this looks for if you want
+						if (sender.isPermissionSet("wheatheal.commands.reload")) { // You can change the node this looks for if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
@@ -69,7 +69,7 @@ public class WHMain extends JavaPlugin {
 					}
 				} else { // If using Nijikokun's Permissions
 					if (nijikoPermissions != null) { // Check that Permissions is enabled
-						if (nijikoPermissions.has((Player)sender, "WheatHeal.commands.reload") || sender.isOp()) { // Again you can change this node if you want
+						if (nijikoPermissions.has((Player)sender, "wheatheal.commands.reload") || sender.isOp()) { // Again you can change this node if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
