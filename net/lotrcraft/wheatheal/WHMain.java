@@ -49,7 +49,7 @@ public class WHMain extends JavaPlugin {
 			} else if (sender instanceof Player) {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
-						if (sender.hasPermission("WheatHeal.commands.reload") || sender.isOp()) { // You can change the node this looks for if you want
+						if (sender.hasPermission("WheatHeal.commands.reload")) { // You can change the node this looks for if you want
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
