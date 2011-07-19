@@ -1,6 +1,4 @@
 package net.lotrcraft.wheatheal;
-
-import java.io.File;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
@@ -94,14 +92,6 @@ public class WHMain extends JavaPlugin {
 	private void loadConf() {
 		config = this.getConfiguration();
 		config.load();
-		
-		// JUST an idea
-		try {
-			wait(20L*5L);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
 			log.severe("loadConf has called initConf. Header = " + config.getHeader());
