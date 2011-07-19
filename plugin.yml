@@ -8,3 +8,12 @@ commands:
         description: Reload the configuration file
         usage: |
             /wheatheal reload - Reload the configuration file
+
+permissions:
+    WheathHeal.*:
+        description: Gives access to all WheatHeal permissions
+        children:
+            WheatHeal.commands.reload: true
+    WheatHeal.commands.reload:
+        description: Allows user to reload the configuration file
+        default: op
