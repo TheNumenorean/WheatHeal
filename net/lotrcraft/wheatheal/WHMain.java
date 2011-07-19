@@ -129,6 +129,8 @@ public class WHMain extends JavaPlugin {
 	}
 
 	private void confInit() {
+		config.getAll().clear();
+		
 		config.setProperty("Foods.Wheat.enable", true);
 		config.setProperty("Foods.Wheat.healValue", 1);
 
