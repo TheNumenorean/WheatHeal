@@ -27,6 +27,7 @@ public class WHMain extends JavaPlugin {
 
 	public void onDisable() {
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin disabled");
+		config.save();
 	}
 
 	public void onEnable() {
@@ -92,9 +93,10 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		if (!config.getHeader().equals("#Version " + this.getDescription().getVersion())){ //check version
-			confInit();
+		config.load();
+		if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
 			log.severe("loadConf has called initConf. Header = " + config.getHeader());
+			confInit();
 		}
 		config.load();
 
