@@ -47,11 +47,12 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		if (config.getHeader() != "#Version 0.1"){
+		if (config.getHeader() != "#Version 0.1"){ //check version
 			confInit();
 		}
 		config.load();
 		
+		//Get heal amounts for each item
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
 		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
@@ -63,6 +64,7 @@ public class WHMain extends JavaPlugin {
 		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
 		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
 		
+		//Whether each should be used
 		use[0] = config.getBoolean("Foods.Wheat.enable", true);
 		use[1] = config.getBoolean("Foods.RawPork.enable", true);
 		use[2] = config.getBoolean("Foods.CookedPork.enable", true);
