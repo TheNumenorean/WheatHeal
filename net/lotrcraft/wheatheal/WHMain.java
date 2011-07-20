@@ -91,13 +91,14 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		config.load();
-		
-		if (config.getHeader() == null || !config.getHeader().equals("#Version 0.2"/* + this.getDescription().getVersion()*/)){ //check version
-			log.severe("loadConf has called initConf. Header = " + config.getHeader());
+		log.info("" + config.getDouble("Version", 0.1));
+		//if (config.getHeader() == null || !config.getHeader().equals("Version m"/* + this.getDescription().getVersion()*/)){ //check version
+		if (config.getDouble("Version", 0.1) != 0.2){
+			log.severe("loadConf has called initConf.");
 			confInit();
-			config.load();
 		}
+		
+		config.load();
 
 		//Get heal amounts for each item
 		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
@@ -135,6 +136,8 @@ public class WHMain extends JavaPlugin {
 	private void confInit() {
 		config.removeProperty("healAmt");
 		
+		config.setProperty("Version", this.getDescription().getVersion());
+		
 		config.setProperty("Foods.Wheat.enable", true);
 		config.setProperty("Foods.Wheat.healValue", 1);
 
@@ -167,7 +170,8 @@ public class WHMain extends JavaPlugin {
 
 		config.setProperty("Permissions.useBukkit", false);
 		
-		config.setHeader("#Version " + this.getDescription().getVersion());
+		//config.setHeader("Version " + this.getDescription().getVersion());
+		
 		config.save();
 	}
 
