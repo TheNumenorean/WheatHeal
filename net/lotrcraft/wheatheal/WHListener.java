@@ -21,6 +21,7 @@ public class WHListener extends EntityListener{
 					Player punchee = (Player)e.getEntity();
 					int itemID = punchee.getItemInHand().getTypeId();
 
+
 					// Only perform the code if one of the itemID's is detected in the puncher's hand
 					if (itemID == 296 || itemID == 297 || itemID == 319 || itemID == 320 || itemID == 349 || itemID == 350
 							|| itemID == 357 || itemID == 260 || itemID == 322) {
@@ -28,6 +29,8 @@ public class WHListener extends EntityListener{
 						WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
 						// Cancel the event to prevent any damage being caused to the player being punched
 						event.setCancelled(true);
+						
+						if (punchee.getHealth() == 20) return;//If punchee health is 20 you cant heal them
 						
 						// Decrease itemInHand amount by 1 or remove if the player only had 1 of the item
 						if (punchee.getItemInHand().getAmount() > 1) {
