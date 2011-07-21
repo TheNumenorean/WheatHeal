@@ -18,6 +18,9 @@ public class Healer {
 		case 322: player.setHealth(player.getHealth() + WHMain.amounts[8]); break;  // GOLDEN APPLE
 		case 282: player.setHealth(player.getHealth() + WHMain.amounts[9]); break;  // MUSHROOM SOUP/STEW
 		}
+		if (player.getHealth() > 20){
+			player.setHealth(20);
+		}
 
 	}
 
