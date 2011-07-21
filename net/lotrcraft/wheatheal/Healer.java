@@ -25,3 +25,10 @@ public class Healer {
 	}
 
 }
+/**************************
+*Foods still to be added:
+*Cake
+*Mushrooms(?)
+*
+*
+***************************/
