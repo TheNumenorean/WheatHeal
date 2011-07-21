@@ -1,3 +1,15 @@
+/*************************
+ * WheatHeal Version 2.0
+ * 
+ * Writen by Numenorean95 and EdTheLoon
+ * 
+ * Todo list:
+ * 	Add customisable tools
+ * 	Add all foods
+ * 
+ * 
+ *************************/
+
 package net.lotrcraft.wheatheal;
 import java.util.logging.Logger;
 
