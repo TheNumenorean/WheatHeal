@@ -1,6 +1,5 @@
 package net.lotrcraft.wheatheal;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -21,7 +20,6 @@ public class WHListener extends EntityListener{
 					Player puncher = (Player)e.getDamager();
 					Player punchee = (Player)e.getEntity();
 					int itemID = puncher.getItemInHand().getTypeId();
-					Material item = puncher.getItemInHand().getType();
 
 
 					// Only perform the code if one of the itemID's is detected in the puncher's hand
