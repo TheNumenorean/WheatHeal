@@ -27,6 +27,7 @@ import org.bukkit.entity.Player;
 public class WHMain extends JavaPlugin {
 
 	public static Healer healer = new Healer();
+	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("minecraft");
 	public static int[] amounts = new int[10]; // Config variable
 	public static boolean[] use = new boolean[10]; // Config variable

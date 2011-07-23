@@ -10,9 +10,9 @@ public class WHListener extends EntityListener{
 
 	// Create a new instance of our Healer class
 	private Healer healer = WHMain.healer;
+	private UseChecker checker = WHMain.checker;
 
 	public void onEntityDamage(EntityDamageEvent event) {
-		//if (WHMain.use) { 
 			if (event instanceof EntityDamageByEntityEvent){
 				EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
 
@@ -23,7 +23,7 @@ public class WHListener extends EntityListener{
 
 
 					// Only perform the code if one of the itemID's is detected in the puncher's hand
-					if (itemID == (296 | 297 | 319 |  320 | 349 | 350 | 357 | 260 | 322) && UseChecker.useChecker(itemID)) {
+					if (itemID == (296 | 297 | 319 |  320 | 349 | 350 | 357 | 260 | 322) && checker.useChecker(itemID)) {
 						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
 						WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
 						// Cancel the event to prevent any damage being caused to the player being punched

@@ -1,7 +1,7 @@
 package net.lotrcraft.wheatheal;
 
 public class UseChecker {
-	public static boolean useChecker(int itemVal){
+	public boolean useChecker(int itemVal){
 		switch (itemVal) {
 		// Use the itemID passed to determine what the heal amount is
 		case 296: 
