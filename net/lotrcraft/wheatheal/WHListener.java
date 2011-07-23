@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 public class WHListener extends EntityListener{
 
 	// Create a new instance of our Healer class
-	private Healer healer = WHMain.healer;;
+	private Healer healer = WHMain.healer;
 
 	public void onEntityDamage(EntityDamageEvent event) {
 		//if (WHMain.use) { 
