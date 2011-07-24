@@ -28,7 +28,7 @@ public class PluginListener extends ServerListener {
 				WHMain.nijikoPermissions = null;
 			}
 		} else {
-			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit") && WHMain.bukkitPermissions != false) {
+			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit") && WHMain.bukkitPermissions) {
 				WHMain.log.info("[WheatHeal] PermissionsBukkit was disabled. Falling back to OP only");
 				WHMain.bukkitPermissions = false;
 			}
