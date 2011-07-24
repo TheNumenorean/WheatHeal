@@ -22,8 +22,8 @@ public class WHListener extends EntityListener{
 					int itemID = puncher.getItemInHand().getTypeId();
 
 
-					// Only perform the code if one of the itemID's is detected in the puncher's hand
-					if (itemID == (296 | 297 | 319 |  320 | 349 | 350 | 357 | 260 | 322) && checker.useChecker(itemID)) {
+					// Only perform the code if one of the itemID's is detected in the puncher's hand and is set to be used
+					if (checker.useChecker(itemID)) {
 						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
 						WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
 						// Cancel the event to prevent any damage being caused to the player being punched
