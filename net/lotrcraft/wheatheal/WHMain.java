@@ -104,12 +104,13 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		log.info("" + config.getDouble("Version", 0.1));
+		
+		//log.info("" + config.getProperty("Version"));
 		//if (config.getHeader() == null || !config.getHeader().equals("Version m"/* + this.getDescription().getVersion()*/)){ //check version
-		if (config.getDouble("Version", 0.1) != 0.2){
-			log.severe("loadConf has called initConf.");
+		//if (config.getProperty("Version") != "0.2"){
+		//	log.severe("loadConf has called initConf.");
 			confInit();
-		}
+		//}
 		
 		config.load();
 
@@ -149,13 +150,22 @@ public class WHMain extends JavaPlugin {
 	private void confInit() {
 		config.removeProperty("healAmt");
 		
-		config.setProperty("Version", this.getDescription().getVersion());
-		
-		config.setProperty("Foods.Wheat.enable", true);
-		config.setProperty("Foods.Wheat.healValue", 1);
 
-		config.setProperty("Foods.RawPork.enable", true);
-		config.setProperty("Foods.RawPork.healValue", 3);
+		//config.setProperty("Version", this.getDescription().getVersion());
+		
+		if (config.getProperty("Foods.Wheat.enable") == null){
+			config.setProperty("Foods.Wheat.enable", true);
+		}
+		if (config.getProperty("Foods.Wheat.healValue") == null){
+			config.setProperty("Foods.Wheat.healValue", 1);
+		}
+
+		if (config.getProperty("Foods.RawPork.enable") == null){
+			config.setProperty("Foods.RawPork.enable", true);
+		}
+		if (config.getProperty("Foods.RawPork.healValue") ==  null){
+			config.setProperty("Foods.RawPork.healValue", 3);
+		}
 
 		config.setProperty("Foods.CookedPork.enable", true);
 		config.setProperty("Foods.CookedPork.healValue", 8);
