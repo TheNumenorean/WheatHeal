@@ -39,7 +39,7 @@ public class WHListener extends EntityListener{
 							
 							// Remove 1 mushroom stew and add an empty bowl to inventory if more than 1 mushroom stew is in hand
 							if (puncher.getItemInHand().getAmount() > 1) {
-								puncher.setItemInHand(new ItemStack(itemID, punchee.getItemInHand().getAmount() - 1));
+								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
 								puncher.getInventory().addItem(new ItemStack(281, 1));
 							} // Remove mushroom stew and add an empty bowl to inventory if only 1 mushroom stew is in hand
 							else if (puncher.getItemInHand().getAmount() == 1) {
