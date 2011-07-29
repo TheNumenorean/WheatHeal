@@ -38,7 +38,6 @@ public class WHMain extends JavaPlugin {
 
 	public void onDisable() {
 		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin disabled");
-		config.save();
 	}
 
 	public void onEnable() {
@@ -148,8 +147,8 @@ public class WHMain extends JavaPlugin {
 	}
 
 	private void confInit() {
-		config.removeProperty("healAmt");
-		
+		//config.removeProperty("healAmt");
+		log.info("" + config.getProperty("Foods.Wheat.healValue"));
 
 		//config.setProperty("Version", this.getDescription().getVersion());
 		
@@ -167,31 +166,65 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("Foods.RawPork.healValue", 3);
 		}
 
-		config.setProperty("Foods.CookedPork.enable", true);
-		config.setProperty("Foods.CookedPork.healValue", 8);
+		if (config.getProperty("Foods.CookedPork.enable") == null){
+			config.setProperty("Foods.CookedPork.enable", true);
+		}
+		if (config.getProperty("Foods.CookedPork.healValue") == null){
+			config.setProperty("Foods.CookedPork.healValue", 8);
+		}
 
-		config.setProperty("Foods.RawFish.enable", true);
-		config.setProperty("Foods.RawFish.healValue", 4);
+		if (config.getProperty("Foods.RawFish.enable") == null){
+			config.setProperty("Foods.RawFish.enable", true);
+		}
+		if (config.getProperty("Foods.RawFish.healValue") == null){
+			config.setProperty("Foods.RawFish.healValue", 4);
+		}
 
-		config.setProperty("Foods.CookedFish.enable", true);
-		config.setProperty("Foods.CookedFish.healValue", 8);
+		if (config.getProperty("Foods.CookedFish.enable") == null){
+			config.setProperty("Foods.CookedFish.enable", true);
+		}
+		if (config.getProperty("Foods.CookedFish.healValue") == null){
+			config.setProperty("Foods.CookedFish.healValue", 8);
+		}
 
-		config.setProperty("Foods.Bread.enable", true);
-		config.setProperty("Foods.Bread.healValue", 3);
+		if (config.getProperty("Foods.Bread.enable") == null){
+			config.setProperty("Foods.Bread.enable", true);
+		}
+		if (config.getProperty("Foods.Bread.healValue") == null){
+			config.setProperty("Foods.Bread.healValue", 3);
+		}
 
-		config.setProperty("Foods.Cookie.enable", true);
-		config.setProperty("Foods.Cookie.healValue", 7);
+		if (config.getProperty("Foods.Cookie.enable") == null){
+			config.setProperty("Foods.Cookie.enable", true);
+		}
+		if (config.getProperty("Foods.Cookie.healValue") == null){
+			config.setProperty("Foods.Cookie.healValue", 7);
+		}
 
-		config.setProperty("Foods.Apple.enable", true);
-		config.setProperty("Foods.Apple.healValue", 5);
+		if (config.getProperty("Foods.Apple.enable") == null){
+			config.setProperty("Foods.Apple.enable", true);
+		}
+		if (config.getProperty("Foods.Apple.healValue") == null){
+			config.setProperty("Foods.Apple.healValue", 5);
+		}
 
-		config.setProperty("Foods.GoldenApple.enable", true);
-		config.setProperty("Foods.GoldenApple.healValue", 20);
+		if (config.getProperty("Foods.GoldenApple.enable") == null){
+			config.setProperty("Foods.GoldenApple.enable", true);
+		}
+		if (config.getProperty("Foods.GoldenApple.healValue") == null){
+			config.setProperty("Foods.GoldenApple.healValue", 20);
+		}
 
-		config.setProperty("Foods.MushroomStew.enable", true);
-		config.setProperty("Foods.MushroomStew.healValue", 10);
+		if (config.getProperty("Foods.MushroomStew.enable") == null){
+			config.setProperty("Foods.MushroomStew.enable", true);
+		}
+		if (config.getProperty("Foods.MushroomStew.healValue") == null){
+			config.setProperty("Foods.MushroomStew.healValue", 10);
+		}
 
-		config.setProperty("Permissions.useBukkit", false);
+		if(config.getProperty("Permissions.useBukkit") == null){
+			config.setProperty("Permissions.useBukkit", false);
+		}
 		
 		//config.setHeader("Version " + this.getDescription().getVersion());
 		
