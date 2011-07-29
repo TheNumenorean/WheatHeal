@@ -1,5 +1,6 @@
 package net.lotrcraft.wheatheal;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -48,9 +49,9 @@ public class WHListener extends EntityListener{
 						} else {
 							// Decrease itemInHand amount by 1 or remove if the player only had 1 of the item
 							if (puncher.getItemInHand().getAmount() > 1) {
-								puncher.setItemInHand(new ItemStack(itemID, punchee.getItemInHand().getAmount() -1));
-							} else if (puncher.getItemInHand().getAmount() == 1) {
-								puncher.setItemInHand(null); // Unsure if this should be 'null' or 'new ItemStack(null)'
+								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
+							} else {
+								puncher.getItemInHand().setType(Material.AIR);
 							}
 						}
 											
