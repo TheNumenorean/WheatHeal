@@ -43,7 +43,7 @@ public class WHListener extends EntityListener{
 								puncher.getInventory().addItem(new ItemStack(281, 1));
 							} // Remove mushroom stew and add an empty bowl to inventory if only 1 mushroom stew is in hand
 							else if (puncher.getItemInHand().getAmount() == 1) {
-								puncher.setItemInHand(null);
+								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
 								puncher.getInventory().addItem(new ItemStack(281, 1));
 							}
 						} else {
