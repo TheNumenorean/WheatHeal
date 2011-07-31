@@ -62,7 +62,7 @@ public class WHMain extends JavaPlugin {
 			} else if (sender instanceof Player) {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
-						if (sender.isPermissionSet("wheatheal.commands.reload")) { // You can change the node this looks for if you want
+						if (sender.isPermissionSet("wheatheal.commands.reload")) { // Its good
 							loadConf();
 							sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 							return true;
@@ -103,7 +103,7 @@ public class WHMain extends JavaPlugin {
 
 	private void loadConf() {
 		config = this.getConfiguration();
-		
+		config.load();
 		//log.info("" + config.getProperty("Version"));
 		//if (config.getHeader() == null || !config.getHeader().equals("Version m"/* + this.getDescription().getVersion()*/)){ //check version
 		//if (config.getProperty("Version") != "0.2"){
@@ -154,6 +154,7 @@ public class WHMain extends JavaPlugin {
 		
 		if (config.getProperty("Foods.Wheat.enable") == null){
 			config.setProperty("Foods.Wheat.enable", true);
+			//log.info("A " + config.getProperty("Foods.Wheat.healValue"));
 		}
 		if (config.getProperty("Foods.Wheat.healValue") == null){
 			config.setProperty("Foods.Wheat.healValue", 1);
@@ -225,10 +226,11 @@ public class WHMain extends JavaPlugin {
 		if(config.getProperty("Permissions.useBukkit") == null){
 			config.setProperty("Permissions.useBukkit", false);
 		}
-		
+		//log.info("B " + config.getProperty("Foods.Wheat.healValue"));
 		//config.setHeader("Version " + this.getDescription().getVersion());
 		
 		config.save();
+		//log.info("C " + config.getProperty("Foods.Wheat.healValue"));
 	}
 
 }
