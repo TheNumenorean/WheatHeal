@@ -37,7 +37,7 @@ public class WHMain extends JavaPlugin {
 	Configuration config;
 
 	public void onDisable() {
-		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin disabled");
+		log.info("WheatHeal " + this.getDescription().getVersion() + " disabled");
 	}
 
 	public void onEnable() {
@@ -46,7 +46,7 @@ public class WHMain extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Event.Priority.Monitor, this);
 		PluginListener.hookInit(this.getServer().getPluginManager());
 		loadConf();
-		log.info("[WheatHeal V" + this.getDescription().getVersion() + "] Plugin enabled");
+		log.info("WheatHeal " + this.getDescription().getVersion() + " enabled");
 	}
 
 
@@ -141,14 +141,12 @@ public class WHMain extends JavaPlugin {
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
-		// DEBUG LINE
-		log.info("[WheatHeal] useBukkit = " + useBukkitPerms);
 
 	}
 
 	private void confInit() {
-		//config.removeProperty("healAmt");
-		log.info("" + config.getProperty("Foods.Wheat.healValue"));
+		config.removeProperty("healAmt");
+		//log.info("" + config.getProperty("Foods.Wheat.healValue"));
 
 		//config.setProperty("Version", this.getDescription().getVersion());
 		
