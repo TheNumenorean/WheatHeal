@@ -124,6 +124,9 @@ public class WHMain extends JavaPlugin {
 		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
 		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
 		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
+		amounts[10] = config.getInt("Foods.Cake.healValue", 10);
+		amounts[11] = config.getInt("Foods.BrownMushroom.healValue", 10);
+		amounts[12] = config.getInt("Foods.RedMushroom.healValue", 10);
 		
 
 		//Whether each should be used
@@ -137,6 +140,9 @@ public class WHMain extends JavaPlugin {
 		use[7] = config.getBoolean("Foods.Apple.enable", true);
 		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
 		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
+		use[10] = config.getBoolean("Foods.Cake.enable", true);
+		use[11] = config.getBoolean("Foods.BrownMushroom.enable", true);
+		use[12] = config.getBoolean("Foods.RedMushroom.enable", true);
 		
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
@@ -219,6 +225,27 @@ public class WHMain extends JavaPlugin {
 		}
 		if (config.getProperty("Foods.MushroomStew.healValue") == null){
 			config.setProperty("Foods.MushroomStew.healValue", 10);
+		}
+		
+		if (config.getProperty("Foods.Cake.enable") == null){
+			config.setProperty("Foods.Cake.enable", true);
+		}
+		if (config.getProperty("Foods.Cake.healValue") == null){
+			config.setProperty("Foods.Cake.healValue", 10);
+		}
+		
+		if (config.getProperty("Foods.BrownMushroomStew.enable") == null){
+			config.setProperty("Foods.BrownMushroomStew.enable", true);
+		}
+		if (config.getProperty("Foods.BrownMushroomStew.healValue") == null){
+			config.setProperty("Foods.BrownMushroomStew.healValue", 6);
+		}
+		
+		if (config.getProperty("Foods.RedMushroomStew.enable") == null){
+			config.setProperty("Foods.RedMushroomStew.enable", true);
+		}
+		if (config.getProperty("Foods.RedMushroomStew.healValue") == null){
+			config.setProperty("Foods.RedMushroomStew.healValue", 7);
 		}
 
 		if(config.getProperty("Permissions.useBukkit") == null){
