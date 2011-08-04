@@ -17,6 +17,10 @@ permissions:
         default: false
         children:
             WheatHeal.commands.reload: true
+            WheatHeal.heal
     wheatheal.commands.reload:
         description: Allows user to reload the configuration file
         default: op
+    wheatheal.heal:
+        description: Allows user to heal another player
+        default: all
