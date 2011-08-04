@@ -127,6 +127,10 @@ public class WHMain extends JavaPlugin {
 		amounts[10] = config.getInt("Foods.Cake.healValue", 10);
 		amounts[11] = config.getInt("Foods.BrownMushroom.healValue", 10);
 		amounts[12] = config.getInt("Foods.RedMushroom.healValue", 10);
+		amounts[13] = config.getInt("Foods.Milk.healValue", 10);
+		amounts[14] = config.getInt("Foods.Egg.healValue", 10);
+		amounts[15] = config.getInt("Foods.Sugar.healValue", 10);
+		amounts[16] = config.getInt("Foods.Sugarcane.healValue", 10);
 		
 
 		//Whether each should be used
@@ -253,6 +257,27 @@ public class WHMain extends JavaPlugin {
 		}
 		if (config.getProperty("Foods.Milk.healValue") == null){
 			config.setProperty("Foods.Milk.healValue", 7);
+		}
+		
+		if (config.getProperty("Foods.Egg.enable") == null){
+			config.setProperty("Foods.Egg.enable", true);
+		}
+		if (config.getProperty("Foods.Egg.healValue") == null){
+			config.setProperty("Foods.Egg.healValue", 7);
+		}
+		
+		if (config.getProperty("Foods.Sugar.enable") == null){
+			config.setProperty("Foods.Sugar.enable", true);
+		}
+		if (config.getProperty("Foods.Sugar.healValue") == null){
+			config.setProperty("Foods.Sugar.healValue", 7);
+		}
+		
+		if (config.getProperty("Foods.Sugarcane.enable") == null){
+			config.setProperty("Foods.Sugarcane.enable", true);
+		}
+		if (config.getProperty("Foods.Sugarcane.healValue") == null){
+			config.setProperty("Foods.Sugarcane.healValue", 7);
 		}
 
 		if(config.getProperty("Permissions.useBukkit") == null){

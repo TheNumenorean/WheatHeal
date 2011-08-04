@@ -18,8 +18,8 @@ public class Healer {
 		case 322: player.setHealth(player.getHealth() + WHMain.amounts[8]); break;  // GOLDEN APPLE
 		case 282: player.setHealth(player.getHealth() + WHMain.amounts[9]); break;  // MUSHROOM SOUP/STEW
 		case 354: player.setHealth(player.getHealth() + WHMain.amounts[10]); break; // Cake
-		case 39: player.setHealth(player.getHealth() + WHMain.amounts[11]); break;  // MUSHROOM (Brown)
-		case 40: player.setHealth(player.getHealth() + WHMain.amounts[12]); break;  // MUSHROOM (Red)
+		case 39:  player.setHealth(player.getHealth() + WHMain.amounts[11]); break; // MUSHROOM (Brown)
+		case 40:  player.setHealth(player.getHealth() + WHMain.amounts[12]); break; // MUSHROOM (Red)
 		case 335: player.setHealth(player.getHealth() + WHMain.amounts[13]); break; // Milk
 		case 344: player.setHealth(player.getHealth() + WHMain.amounts[14]); break; // Egg
 		case 353: player.setHealth(player.getHealth() + WHMain.amounts[15]); break; // Sugar
@@ -34,8 +34,6 @@ public class Healer {
 }
 /**************************
 *Foods still to be added:
-*Milk
-*Egg
-*Sugar
+*
 *
 ***************************/
