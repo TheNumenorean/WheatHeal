@@ -44,7 +44,7 @@ public class PluginListener extends ServerListener {
 			}
 		} else {
 			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit") && WHMain.bukkitPermissions == false) {
-				WHMain.bukkitPermissions = true; //TODO: This overides the user's choice, we need to store in a different variable
+				WHMain.bukkitPermissions = true;
 				WHMain.log.info("[Wheatheal] PermissionsBukkit was enabled. Hooked in");
 			}
 		}

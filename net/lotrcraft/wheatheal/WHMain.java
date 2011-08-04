@@ -55,11 +55,9 @@ public class WHMain extends JavaPlugin {
 		if (args[0].equalsIgnoreCase("reload")) { // More efficient to check if the command send was reload first.
 			if (sender instanceof ConsoleCommandSender) {
 				loadConf();
-				sender.sendMessage(ChatColor.GREEN + "[WheatHeal] Config reloaded");
-				// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
-				//config.prop.list(System.out);
+				log.info(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 				return true;
-			} else if (sender instanceof Player) {
+			} else {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
 						if (sender.isPermissionSet("wheatheal.commands.reload")) { // Its good
