@@ -57,7 +57,7 @@ public class WHMain extends JavaPlugin {
 				loadConf();
 				log.info(ChatColor.GREEN + "[WheatHeal] Config reloaded");
 				return true;
-			} else {
+			} else  {
 				if (useBukkitPerms) { // If using PermissionsBukkit
 					if (bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
 						if (sender.isPermissionSet("wheatheal.commands.reload")) { // Its good
@@ -93,10 +93,8 @@ public class WHMain extends JavaPlugin {
 					}
 				}
 			}
-		} else {
-			return false;
-		}
-		return true;
+		} 
+		return false;
 	}
 
 	private void loadConf() {
