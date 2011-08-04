@@ -29,8 +29,8 @@ public class WHMain extends JavaPlugin {
 	public static Healer healer = new Healer();
 	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("minecraft");
-	public static int[] amounts = new int[13]; // Config variable
-	public static boolean[] use = new boolean[13]; // Config variable
+	public static int[] amounts = new int[17]; // Config variable
+	public static boolean[] use = new boolean[17]; // Config variable
 	public static boolean useBukkitPerms; // Config variable
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
 	public static boolean bukkitPermissions; // Bukkit's Official Permissions Plugin
@@ -147,6 +147,10 @@ public class WHMain extends JavaPlugin {
 		use[10] = config.getBoolean("Foods.Cake.enable", true);
 		use[11] = config.getBoolean("Foods.BrownMushroom.enable", true);
 		use[12] = config.getBoolean("Foods.RedMushroom.enable", true);
+		use[13] = config.getBoolean("Foods.Milk.enable", true);
+		use[14] = config.getBoolean("Foods.Egg.enable", true);
+		use[15] = config.getBoolean("Foods.Sugar.enable", true);
+		use[16] = config.getBoolean("Foods.Sugarcane.enable", true);
 		
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
@@ -238,18 +242,18 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("Foods.Cake.healValue", 20);
 		}
 		
-		if (config.getProperty("Foods.BrownMushroomStew.enable") == null){
-			config.setProperty("Foods.BrownMushroomStew.enable", true);
+		if (config.getProperty("Foods.BrownMushroom.enable") == null){
+			config.setProperty("Foods.BrownMushroom.enable", true);
 		}
-		if (config.getProperty("Foods.BrownMushroomStew.healValue") == null){
-			config.setProperty("Foods.BrownMushroomStew.healValue", 6);
+		if (config.getProperty("Foods.BrownMushroom.healValue") == null){
+			config.setProperty("Foods.BrownMushroom.healValue", 6);
 		}
 		
-		if (config.getProperty("Foods.RedMushroomStew.enable") == null){
-			config.setProperty("Foods.RedMushroomStew.enable", true);
+		if (config.getProperty("Foods.RedMushroom.enable") == null){
+			config.setProperty("Foods.RedMushroom.enable", true);
 		}
-		if (config.getProperty("Foods.RedMushroomStew.healValue") == null){
-			config.setProperty("Foods.RedMushroomStew.healValue", 7);
+		if (config.getProperty("Foods.RedMushroom.healValue") == null){
+			config.setProperty("Foods.RedMushroom.healValue", 7);
 		}
 		
 		if (config.getProperty("Foods.Milk.enable") == null){
@@ -263,21 +267,21 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("Foods.Egg.enable", true);
 		}
 		if (config.getProperty("Foods.Egg.healValue") == null){
-			config.setProperty("Foods.Egg.healValue", 7);
+			config.setProperty("Foods.Egg.healValue", 4);
 		}
 		
 		if (config.getProperty("Foods.Sugar.enable") == null){
 			config.setProperty("Foods.Sugar.enable", true);
 		}
 		if (config.getProperty("Foods.Sugar.healValue") == null){
-			config.setProperty("Foods.Sugar.healValue", 7);
+			config.setProperty("Foods.Sugar.healValue", 3);
 		}
 		
 		if (config.getProperty("Foods.Sugarcane.enable") == null){
 			config.setProperty("Foods.Sugarcane.enable", true);
 		}
 		if (config.getProperty("Foods.Sugarcane.healValue") == null){
-			config.setProperty("Foods.Sugarcane.healValue", 7);
+			config.setProperty("Foods.Sugarcane.healValue", 2);
 		}
 
 		if(config.getProperty("Permissions.useBukkit") == null){
