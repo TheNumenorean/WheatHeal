@@ -20,6 +20,10 @@ public class Healer {
 		case 354: player.setHealth(player.getHealth() + WHMain.amounts[10]); break; // Cake
 		case 39: player.setHealth(player.getHealth() + WHMain.amounts[11]); break;  // MUSHROOM (Brown)
 		case 40: player.setHealth(player.getHealth() + WHMain.amounts[12]); break;  // MUSHROOM (Red)
+		case 335: player.setHealth(player.getHealth() + WHMain.amounts[13]); break; // Milk
+		case 344: player.setHealth(player.getHealth() + WHMain.amounts[14]); break; // Egg
+		case 353: player.setHealth(player.getHealth() + WHMain.amounts[15]); break; // Sugar
+		case 338: player.setHealth(player.getHealth() + WHMain.amounts[16]); break; // Sugar Cane
 		}
 		if (player.getHealth() > 20){
 			player.setHealth(20);

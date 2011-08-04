@@ -34,6 +34,27 @@ public class UseChecker {
 		case 282: 
 			if (WHMain.use[9]) return true;
 			break;  // MUSHROOM SOUP/STEW
+		case 354:
+			if (WHMain.use[10]) return true;
+			break;  // Cake
+		case 39: 
+			if (WHMain.use[11]) return true;
+			break;  // MUSHROOM (Brown)
+		case 40: 
+			if (WHMain.use[12]) return true;
+			break;  // MUSHROOM (Red)
+		case 335: 
+			if (WHMain.use[13]) return true;
+			break; // Milk
+		case 344: 
+			if (WHMain.use[14]) return true;
+			break; // Egg
+		case 353: 
+			if (WHMain.use[15]) return true;
+			break; // Sugar
+		case 338: 
+			if (WHMain.use[16]) return true;
+			break; // Sugar Cane
 		}
 		return false;
 	}
