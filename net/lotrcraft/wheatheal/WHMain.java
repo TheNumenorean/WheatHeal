@@ -247,6 +247,13 @@ public class WHMain extends JavaPlugin {
 		if (config.getProperty("Foods.RedMushroomStew.healValue") == null){
 			config.setProperty("Foods.RedMushroomStew.healValue", 7);
 		}
+		
+		if (config.getProperty("Foods.Milk.enable") == null){
+			config.setProperty("Foods.Milk.enable", true);
+		}
+		if (config.getProperty("Foods.Milk.healValue") == null){
+			config.setProperty("Foods.Milk.healValue", 7);
+		}
 
 		if(config.getProperty("Permissions.useBukkit") == null){
 			config.setProperty("Permissions.useBukkit", false);
