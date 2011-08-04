@@ -29,8 +29,8 @@ public class WHMain extends JavaPlugin {
 	public static Healer healer = new Healer();
 	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("minecraft");
-	public static int[] amounts = new int[10]; // Config variable
-	public static boolean[] use = new boolean[10]; // Config variable
+	public static int[] amounts = new int[13]; // Config variable
+	public static boolean[] use = new boolean[13]; // Config variable
 	public static boolean useBukkitPerms; // Config variable
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
 	public static boolean bukkitPermissions; // Bukkit's Official Permissions Plugin
@@ -231,7 +231,7 @@ public class WHMain extends JavaPlugin {
 			config.setProperty("Foods.Cake.enable", true);
 		}
 		if (config.getProperty("Foods.Cake.healValue") == null){
-			config.setProperty("Foods.Cake.healValue", 10);
+			config.setProperty("Foods.Cake.healValue", 20);
 		}
 		
 		if (config.getProperty("Foods.BrownMushroomStew.enable") == null){
