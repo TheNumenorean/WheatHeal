@@ -1,5 +1,6 @@
 package net.lotrcraft.wheatheal;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -33,6 +34,23 @@ public class WHListener extends EntityListener{
 						
 						if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
 						
+						if (WHMain.useBukkitPerms) { // If using PermissionsBukkit
+							if (WHMain.bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
+								if (!puncher.isPermissionSet("wheatheal.heal")) { // Its good
+									return;
+								}
+							} else if (!puncher.isOp()) { // If PermissionsBukkit is disabled check if sender is an op
+								return;
+							}
+						} else { // If using Nijikokun's Permissions
+							if (WHMain.nijikoPermissions != null) { // Check that Permissions is enabled
+								if (!WHMain.nijikoPermissions.has(puncher, "wheatheal.heal") && !puncher.isOp()) { // Again you can change this node if you want
+									return;
+								}
+							} else if (!puncher.isOp()) { // If player doesn't have the permission but is an op
+								return;
+							}
+						}
 						
 						if (itemID == 282) { 					// If block for punching with mushroom stew in hand
 							
