@@ -50,7 +50,7 @@ public class WHListener extends EntityListener{
 							if (puncher.getItemInHand().getAmount() > 1) {
 								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
 							} else {
-								puncher.getItemInHand().setType(Material.AIR);
+								puncher.setItemInHand(null);
 							}
 						}
 											
