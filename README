@@ -6,7 +6,7 @@ Refactored the code(Config and Command part) a little bit to make it easier to r
 Added files:
 - WHCommand.java
 - Config.java
-- Realod.java
+- Reload.java
 
 Original author: numenorean95
 Some updates by: EdTheLoon
