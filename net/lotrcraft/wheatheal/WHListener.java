@@ -1,6 +1,5 @@
 package net.lotrcraft.wheatheal;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -27,15 +26,14 @@ public class WHListener extends EntityListener{
 					if (checker.useChecker(itemID)) {
 						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
 						//WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
-						
+
 						// Cancel the event to prevent any damage being caused to the player being punched
 						event.setCancelled(true);
-						
+
 						if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
-						
-						
+
 						if (itemID == 282) { 					// If block for punching with mushroom stew in hand
-							
+
 							// Remove 1 mushroom stew and add an empty bowl to inventory if more than 1 mushroom stew is in hand
 							if (puncher.getItemInHand().getAmount() > 1) {
 								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
@@ -45,24 +43,29 @@ public class WHListener extends EntityListener{
 								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
 								puncher.getInventory().addItem(new ItemStack(281, 1));
 							}
-						} else {
+						}
+						else {
 							// Decrease itemInHand amount by 1 or remove if the player only had 1 of the item
 							if (puncher.getItemInHand().getAmount() > 1) {
 								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
-							} else {
+							}
+							else {
 								puncher.setItemInHand(null);
 							}
 						}
-											
+
 						// Finally call healPlayer in our healer class and pass in the punchee and the itemID
 						healer.healPlayer(punchee, itemID);
+
+						//else {
+						//	  puncher.sendMessage(ChatColor.RED + "You do not have permission to do this");
+						//}
 					}
-					
 
 
-					
 				}
 
-		}
+			}
+
 	}
 }
