@@ -1,5 +1,5 @@
 /*************************
- * WheatHeal Version 2.0
+ * WheatHeal Version 1.0
  *
  * Writen by Numenorean95 and EdTheLoon
  *
