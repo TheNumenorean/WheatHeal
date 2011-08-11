@@ -2,7 +2,7 @@ main: net.lotrcraft.wheatheal.WHMain
 author: Numenorean95
 authors: [EdTheLoon, Lathanael]
 name: WheatHeal
-version: 0.4
+version: 1.0
 website: http://lotrcraft.net/plugins/wheatheal
 
 commands:
