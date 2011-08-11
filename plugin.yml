@@ -15,7 +15,7 @@ commands:
 permissions:
     wheatheal.*:
         description: Gives access to all WheatHeal permissions
-        default: false
+        default: op
         children:
             WheatHeal.commands.reload: true
             WheatHeal.heal: true
@@ -24,4 +24,4 @@ permissions:
         default: op
     wheatheal.heal:
         description: Allows user to heal another player
-        default: op
+        default: true
