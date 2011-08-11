@@ -13,6 +13,9 @@
 package net.lotrcraft.wheatheal;
 import java.util.logging.Logger;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Event;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,7 +42,30 @@ public class WHMain extends JavaPlugin {
 		PluginListener.hookInit(this.getServer().getPluginManager());
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
-		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
+		//getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		log.info("[WheatHeal] " + this.getDescription().getVersion() + " enabled");
+	}
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+		
+		if (!args[0].equalsIgnoreCase("reload")){
+			return false;
+		}
+		if (sender instanceof ConsoleCommandSender){
+			Config.loadConf(config);
+			WHMain.log.info("[WheatHeal] Config reloaded");
+			return true;
+		}
+		if (permissionsCheck.check(sender, "wheatheal.commands.reload")){
+			Config.loadConf(config);
+			sender.sendMessage("[WheatHeal] Config reloaded");
+			return true;
+		} else {
+			sender.sendMessage("You don't have permission to do this!");
+		}
+		
+		
+		
+		return false;
 	}
 }
