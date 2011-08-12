@@ -2,11 +2,5 @@
 
 This plugin allows you to heal other players by left clicking (attacking) them with food.
 
-Refactored the code(Config and Command part) a little bit to make it easier to read and add new content.
-Added files:
-- WHCommand.java
-- Config.java
-- Reload.java
-
 Original author: numenorean95
 Collaborators: EdTheLoon & Lathanael
