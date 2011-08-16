@@ -35,8 +35,9 @@ public class WHListener extends EntityListener{
 
 						if (!permissionsCheck.check(puncher, "wheatheal.heal")){
 							// DEBUG LINES. COMMENT OUT IF NOT WANTED IN MAIN RELEASES
-							puncher.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + "You don't have permission to heal players");
-							punchee.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + puncher.getName() + " tried to heal you but doesn't have permission");
+							puncher.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + "You don't have permission to heal players!");
+							punchee.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.AQUA + puncher.getName() +
+									ChatColor.RED + " tried to heal you but doesn't have permission!");
 							return;
 						}
 
