@@ -43,7 +43,7 @@ public class WHMain extends JavaPlugin {
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
 		//getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
-		log.info("[WheatHeal] " + this.getDescription().getVersion() + " enabled");
+		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
