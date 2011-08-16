@@ -1,5 +1,6 @@
 package net.lotrcraft.wheatheal;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -33,6 +34,9 @@ public class WHListener extends EntityListener{
 						if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
 
 						if (!permissionsCheck.check(puncher, "wheatheal.heal")){
+							// DEBUG LINES. COMMENT OUT IF NOT WANTED IN MAIN RELEASES
+							puncher.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + "You don't have permission to heal players");
+							punchee.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + puncher.getName() + " tried to heal you but doesn't have permission");
 							return;
 						}
 
