@@ -29,7 +29,6 @@ public class WHMain extends JavaPlugin {
 	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("Minecraft");
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
-	public static boolean bukkitPermissions; // Bukkit's Official Permissions Plugin
 
 	public void onDisable() {
 		log.info("WheatHeal " + this.getDescription().getVersion() + " disabled");
