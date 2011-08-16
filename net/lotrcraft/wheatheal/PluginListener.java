@@ -14,9 +14,6 @@ public class PluginListener extends ServerListener {
 			Plugin plugin = _pm.getPlugin("Permissions");
 			WHMain.nijikoPermissions = ((Permissions) plugin).getHandler();
 			WHMain.log.info("[WheatHeal] Permissions detected. Hooked in");
-		} else if (Config.useBukkitPerms && _pm.isPluginEnabled("PermissionsBukkit")){
-			WHMain.bukkitPermissions = true;
-			WHMain.log.info("[WheatHeal] PermissionsBukkit detected. Hooked in");
 		}
 	}
 
@@ -26,11 +23,6 @@ public class PluginListener extends ServerListener {
 			if(event.getPlugin().getDescription().getName().equals("Permissions") && WHMain.nijikoPermissions != null) {
 				WHMain.log.info("[WheatHeal] Permissions was disabled. Falling back to OP only");
 				WHMain.nijikoPermissions = null;
-			}
-		} else {
-			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit") && WHMain.bukkitPermissions) {
-				WHMain.log.info("[WheatHeal] PermissionsBukkit was disabled. Falling back to OP only");
-				WHMain.bukkitPermissions = false;
 			}
 		}
 	}
@@ -42,12 +34,7 @@ public class PluginListener extends ServerListener {
 				WHMain.nijikoPermissions = ((Permissions)plugin).getHandler();
 				WHMain.log.info("[WheatHeal] Permissions was enabled. Hooked in");
 			}
-		} else {
-			if(event.getPlugin().getDescription().getName().equals("PermissionsBukkit") && WHMain.bukkitPermissions == false) {
-				WHMain.bukkitPermissions = true;
-				WHMain.log.info("[Wheatheal] PermissionsBukkit was enabled. Hooked in");
-			}
-		}
+		} 
 	}
 
 }
