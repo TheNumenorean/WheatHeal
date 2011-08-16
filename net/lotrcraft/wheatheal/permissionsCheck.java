@@ -8,10 +8,8 @@ public class permissionsCheck {
 	public static boolean check(CommandSender sender, String permission) {
 		
 		if (Config.useBukkitPerms) { // If using PermissionsBukkit
-			if (WHMain.bukkitPermissions) { // Check that PermissionsBukkit is enabled first.
-				if (sender.isPermissionSet(permission)) { // Its good
-					return true;
-				}
+			if (sender.hasPermission(permission)) { // Its good
+				return true;
 			}
 			else if (sender.isOp()) { // If PermissionsBukkit is disabled check if sender is an op
 				return true;
