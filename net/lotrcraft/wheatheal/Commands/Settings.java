@@ -26,7 +26,7 @@ public class Settings extends WHCommand{
 			}
 			if (use){
 				amount = Config.confGetHealValue(item);
-				WHMain.log.info("[WheatHeal] Healing set to ture and " + item + " heals for: " + String.valueOf(amount));
+				WHMain.log.info("[WheatHeal] Healing set to true and " + item + " heals for: " + String.valueOf(amount));
 			}
 			else {
 				WHMain.log.info("[WheatHeal] Healing with " + item + " is disabled.");
@@ -41,7 +41,7 @@ public class Settings extends WHCommand{
 			}
 			if (use){
 				amount = Config.confGetHealValue(item);
-				sender.sendMessage(ChatColor.GREEN + "Healing set to ture and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
+				sender.sendMessage(ChatColor.GREEN + "Healing set to true and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
 			}
 			else {
 				sender.sendMessage(ChatColor.GREEN + "Healing with " + ChatColor.RED + item + ChatColor.GREEN + " is disabled.");
@@ -57,12 +57,12 @@ public class Settings extends WHCommand{
 	public static void editAmount (CommandSender sender, String item, int value){
 		if (sender instanceof ConsoleCommandSender){
 			Config.confEditAmount(item, value);
-			WHMain.log.info("[WheatHeal] Healingamount of " + item + " changed to " + value + ".");
+			WHMain.log.info("[WheatHeal] Healingamount of " + item + " changed to: " + value);
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
 			Config.confEditAmount(item, value);
-			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to " + value + ".");
+			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to: " + value);
 			return;
 		}
 		else {
