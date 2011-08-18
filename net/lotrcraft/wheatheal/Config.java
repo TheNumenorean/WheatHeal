@@ -8,12 +8,16 @@
 
 package net.lotrcraft.wheatheal;
 
+import java.util.HashMap;
+
 import org.bukkit.util.config.Configuration;
 
 public class Config {
 
-	public static int[] amounts = new int[17];
-	public static boolean[] use = new boolean[17];
+	public static HashMap<String,Integer> amounts = new HashMap<String,Integer>();
+	public static HashMap<String,Boolean> use = new HashMap<String,Boolean>();
+	//public static int[] amounts = new int[17];
+	//public static boolean[] use = new boolean[17];
 	public static boolean useBukkitPerms;
 
 	@SuppressWarnings("unused")
@@ -35,47 +39,83 @@ public class Config {
 		config.load();
 
 		//Get heal amounts for each item
-		amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
-		amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
-		amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
-		amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
-		amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
-		amounts[5] = config.getInt("Foods.Bread.healValue", 3);
-		amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
-		amounts[7] = config.getInt("Foods.Apple.healValue", 5);
-		amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
-		amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
-		amounts[10] = config.getInt("Foods.Cake.healValue", 10);
-		amounts[11] = config.getInt("Foods.BrownMushroom.healValue", 10);
-		amounts[12] = config.getInt("Foods.RedMushroom.healValue", 10);
-		amounts[13] = config.getInt("Foods.Milk.healValue", 10);
-		amounts[14] = config.getInt("Foods.Egg.healValue", 10);
-		amounts[15] = config.getInt("Foods.Sugar.healValue", 10);
-		amounts[16] = config.getInt("Foods.Sugarcane.healValue", 10);
+		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
+		amounts.put("Wheat",config.getInt("Foods.Wheat.healValue", 1));
+		//amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
+		amounts.put("RawPork",config.getInt("Foods.RawPork.healValue", 3));
+		//amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
+		amounts.put("CookedPork",config.getInt("Foods.CookedPork.healValue", 8));
+		//amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
+		amounts.put("RawFish",config.getInt("Foods.RawFish.healValue", 4));
+		//amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
+		amounts.put("CookedFish",config.getInt("Foods.CookedFish.healValue", 8));
+		//amounts[5] = config.getInt("Foods.Bread.healValue", 3);
+		amounts.put("Bread",config.getInt("Foods.Bread.healValue", 3));
+		//amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
+		amounts.put("Cookie",config.getInt("Foods.Cookie.healValue", 7));
+		//amounts[7] = config.getInt("Foods.Apple.healValue", 5);
+		amounts.put("Apple",config.getInt("Foods.Apple.healValue", 5));
+		//amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
+		amounts.put("GoldenApple",config.getInt("Foods.GoldenApple.healValue", 20));
+		//amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
+		amounts.put("MushroomStew",config.getInt("Foods.MushroomStew.healValue", 10));
+		//amounts[10] = config.getInt("Foods.Cake.healValue", 10);
+		amounts.put("Cake",config.getInt("Foods.Cake.healValue", 10));
+		//amounts[11] = config.getInt("Foods.BrownMushroom.healValue", 10);
+		amounts.put("BrownMushroom",config.getInt("Foods.BrownMushroom.healValue", 6));
+		//amounts[12] = config.getInt("Foods.RedMushroom.healValue", 10);
+		amounts.put("RedMushroom",config.getInt("Foods.RedMushroom.healValue", 7));
+		//amounts[13] = config.getInt("Foods.Milk.healValue", 10);
+		amounts.put("Milk",config.getInt("Foods.Milk.healValue", 7));
+		//amounts[14] = config.getInt("Foods.Egg.healValue", 10);
+		amounts.put("Egg", config.getInt("Foods.Egg.healValue", 4));
+		//amounts[15] = config.getInt("Foods.Sugar.healValue", 10);
+		amounts.put("Sugar",config.getInt("Foods.Sugar.healValue", 3));
+		//amounts[16] = config.getInt("Foods.Sugarcane.healValue", 10);
+		amounts.put("Sugarcane",config.getInt("Foods.Sugarcane.healValue", 2));
 
 
 		//Whether each should be used
-		use[0] = config.getBoolean("Foods.Wheat.enable", true);
-		use[1] = config.getBoolean("Foods.RawPork.enable", true);
-		use[2] = config.getBoolean("Foods.CookedPork.enable", true);
-		use[3] = config.getBoolean("Foods.RawFish.enable", true);
-		use[4] = config.getBoolean("Foods.CookedFish.enable", true);
-		use[5] = config.getBoolean("Foods.Bread.enable", true);
-		use[6] = config.getBoolean("Foods.Cookie.enable", true);
-		use[7] = config.getBoolean("Foods.Apple.enable", true);
-		use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
-		use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
-		use[10] = config.getBoolean("Foods.Cake.enable", true);
-		use[11] = config.getBoolean("Foods.BrownMushroom.enable", true);
-		use[12] = config.getBoolean("Foods.RedMushroom.enable", true);
-		use[13] = config.getBoolean("Foods.Milk.enable", true);
-		use[14] = config.getBoolean("Foods.Egg.enable", true);
-		use[15] = config.getBoolean("Foods.Sugar.enable", true);
-		use[16] = config.getBoolean("Foods.Sugarcane.enable", true);
+		//use[0] = config.getBoolean("Foods.Wheat.enable", true);
+		use.put("Wheat",config.getBoolean("Foods.Wheat.enable", true));
+		//use[1] = config.getBoolean("Foods.RawPork.enable", true);
+		use.put("RawPork",config.getBoolean("Foods.RawPork.enable", true));
+		//use[2] = config.getBoolean("Foods.CookedPork.enable", true);
+		use.put("CookedPork",config.getBoolean("Foods.CookedPork.enable", true));
+		//use[3] = config.getBoolean("Foods.RawFish.enable", true);
+		use.put("RawFish",config.getBoolean("Foods.RawFish.enable", true));
+		//use[4] = config.getBoolean("Foods.CookedFish.enable", true);
+		use.put("CookedFish",config.getBoolean("Foods.CookedFish.enable", true));
+		//use[5] = config.getBoolean("Foods.Bread.enable", true);
+		use.put("Bread",config.getBoolean("Foods.Bread.enable", true));
+		//use[6] = config.getBoolean("Foods.Cookie.enable", true);
+		use.put("Cookie",config.getBoolean("Foods.Cookie.enable", true));
+		//use[7] = config.getBoolean("Foods.Apple.enable", true);
+		use.put("Apple",config.getBoolean("Foods.Apple.enable", true));
+		//use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
+		use.put("GoldenApple",config.getBoolean("Foods.GoldenApple.enable", true));
+		//use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
+		use.put("MushroomStew",config.getBoolean("Foods.MushroomStew.enable", true));
+		//use[10] = config.getBoolean("Foods.Cake.enable", true);
+		use.put("Cake",config.getBoolean("Foods.Cake.enable", true));
+		//use[11] = config.getBoolean("Foods.BrownMushroom.enable", true);
+		use.put("BrownMushroom",config.getBoolean("Foods.BrownMushroom.enable", true));
+		//use[12] = config.getBoolean("Foods.RedMushroom.enable", true);
+		use.put("RedMushroom",config.getBoolean("Foods.RedMushroom.enable", true));
+		//use[13] = config.getBoolean("Foods.Milk.enable", true);
+		use.put("Milk",config.getBoolean("Foods.Milk.enable", true));
+		//use[14] = config.getBoolean("Foods.Egg.enable", true);
+		use.put("Egg",config.getBoolean("Foods.Egg.enable", true));
+		//use[15] = config.getBoolean("Foods.Sugar.enable", true);
+		use.put("Sugar",config.getBoolean("Foods.Sugar.enable", true));
+		//use[16] = config.getBoolean("Foods.Sugarcane.enable", true);
+		use.put("Sugarcane",config.getBoolean("Foods.Sugarcane.enable", true));
 
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
+		use.put("useBukkit",config.getBoolean("Permissions.useBukkit", false));
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
+		WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 	}
 
 	public static void confInit(Configuration config) {
@@ -212,5 +252,67 @@ public class Config {
 
 		config.save();
 		//log.info("C " + config.getProperty("Foods.Wheat.healValue"));
+	}
+
+	public static void confSave(Configuration config){
+		config.save();
+	}
+
+	public static void confEditAmount (String item, int amount){
+		amounts.put(item, amount);
+	}
+
+	public static void confEditUse (String item, Boolean allowed){
+		use.put(item, allowed);
+	}
+
+	public static void confRestore(Configuration config){
+		config.setProperty("Foods.Wheat.enable", true);
+		config.setProperty("Foods.Wheat.healValue", 1);
+		config.setProperty("Foods.RawPork.enable", true);
+		config.setProperty("Foods.RawPork.healValue", 3);
+		config.setProperty("Foods.CookedPork.enable", true);
+		config.setProperty("Foods.CookedPork.healValue", 8);
+		config.setProperty("Foods.RawFish.enable", true);
+		config.setProperty("Foods.RawFish.healValue", 4);
+		config.setProperty("Foods.CookedFish.enable", true);
+		config.setProperty("Foods.CookedFish.healValue", 8);
+		config.setProperty("Foods.Bread.enable", true);
+		config.setProperty("Foods.Bread.healValue", 3);
+		config.setProperty("Foods.Cookie.enable", true);
+		config.setProperty("Foods.Cookie.healValue", 7);
+		config.setProperty("Foods.Apple.enable", true);
+		config.setProperty("Foods.Apple.healValue", 5);
+		config.setProperty("Foods.GoldenApple.enable", true);
+		config.setProperty("Foods.GoldenApple.healValue", 20);
+		config.setProperty("Foods.MushroomStew.enable", true);
+		config.setProperty("Foods.MushroomStew.healValue", 10);
+		config.setProperty("Foods.Cake.enable", true);
+		config.setProperty("Foods.Cake.healValue", 20);
+		config.setProperty("Foods.BrownMushroom.enable", true);
+		config.setProperty("Foods.BrownMushroom.healValue", 6);
+		config.setProperty("Foods.RedMushroom.enable", true);
+		config.setProperty("Foods.RedMushroom.healValue", 7);
+		config.setProperty("Foods.Milk.enable", true);
+		config.setProperty("Foods.Milk.healValue", 7);
+		config.setProperty("Foods.Egg.enable", true);
+		config.setProperty("Foods.Egg.healValue", 4);
+		config.setProperty("Foods.Sugar.enable", true);
+		config.setProperty("Foods.Sugar.healValue", 3);
+		config.setProperty("Foods.Sugarcane.enable", true);
+		config.setProperty("Foods.Sugarcane.healValue", 2);
+		config.setProperty("Permissions.useBukkit", false);
+	}
+
+	public static int confGetHealValue (String value){
+		int amount = 0;
+		amount = amounts.get(value);
+		return amount;
+	}
+
+	public static boolean confGetEnabled (String value){
+		boolean allowed = false;
+		allowed = use.get(value);
+		return allowed;
 	}
 }

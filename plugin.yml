@@ -2,7 +2,7 @@ main: net.lotrcraft.wheatheal.WHMain
 author: Numenorean95
 authors: [EdTheLoon, Lathanael]
 name: WheatHeal
-version: 1.0
+version: 1.1
 website: http://lotrcraft.net/plugins/wheatheal
 
 commands:
@@ -10,7 +10,13 @@ commands:
         description: Reload the configuration file
         aliases: wh
         usage: |
-            /wheatheal reload - Reload the configuration file
+            /<command> reload - Reload the configuration file
+            /<command> restore - Restore the default Config.yml
+            /<command> save - Save the changes made to the configuration file
+            /<command> get [item] - Shows the amount an item heals and if it is enabled
+            /<command> version - Display the current version of WheatHeal
+            /<command> edit [item] [true|false] - Dis- or Enables the given item
+            /<command> edit [item] [amount] - Sets the amount an item heals
 
 permissions:
     wheatheal.*:
@@ -18,9 +24,25 @@ permissions:
         default: op
         children:
             WheatHeal.commands.reload: true
+            WheatHeal.commands.restore: true
+            WheatHeal.commands.save: true
+            WheatHeal.commands.edit: true
+            WheatHeal.commands.get: true
             WheatHeal.heal: true
     wheatheal.commands.reload:
         description: Allows user to reload the configuration file
+        default: op
+    wheatheal.commands.restore:
+        description: Allows user to restore the default configuration file
+        default: op
+    wheatheal.commands.save:
+        description: Allows user to save the current values into the configuration file
+        default: op
+    wheatheal.commands.edit:
+        description: Allows user to edit the current values of the configuration file
+        default: op
+    wheatheal.commands.get:
+        description: Allows user to read the current values into the configuration file
         default: op
     wheatheal.heal:
         description: Allows user to heal another player

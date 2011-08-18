@@ -7,23 +7,23 @@ public class Healer {
 	public void healPlayer(Player player, int itemID) {
 		switch (itemID) {
 		// Use the itemID passed to determine what the heal amount is
-		case 296: player.setHealth(player.getHealth() + Config.amounts[0]); break;  // WHEAT
-		case 319: player.setHealth(player.getHealth() + Config.amounts[1]); break;  // RAW_PORKCHOP
-		case 320: player.setHealth(player.getHealth() + Config.amounts[2]); break;  // COOKED_PORKCHOP
-		case 349: player.setHealth(player.getHealth() + Config.amounts[3]); break;  // RAW_FISH
-		case 350: player.setHealth(player.getHealth() + Config.amounts[4]); break;  // COOKED_FISH
-		case 297: player.setHealth(player.getHealth() + Config.amounts[5]); break;  // BREAD
-		case 357: player.setHealth(player.getHealth() + Config.amounts[6]); break;  // COOKIE
-		case 260: player.setHealth(player.getHealth() + Config.amounts[7]); break;  // APPLE
-		case 322: player.setHealth(player.getHealth() + Config.amounts[8]); break;  // GOLDEN APPLE
-		case 282: player.setHealth(player.getHealth() + Config.amounts[9]); break;  // MUSHROOM SOUP/STEW
-		case 354: player.setHealth(player.getHealth() + Config.amounts[10]); break; // Cake
-		case 39:  player.setHealth(player.getHealth() + Config.amounts[11]); break; // MUSHROOM (Brown)
-		case 40:  player.setHealth(player.getHealth() + Config.amounts[12]); break; // MUSHROOM (Red)
-		case 335: player.setHealth(player.getHealth() + Config.amounts[13]); break; // Milk
-		case 344: player.setHealth(player.getHealth() + Config.amounts[14]); break; // Egg
-		case 353: player.setHealth(player.getHealth() + Config.amounts[15]); break; // Sugar
-		case 338: player.setHealth(player.getHealth() + Config.amounts[16]); break; // Sugar Cane
+		case 296: player.setHealth(player.getHealth() + Config.amounts.get("Wheat")); break;  // WHEAT
+		case 319: player.setHealth(player.getHealth() + Config.amounts.get("RawPork")); break;  // RAW_PORKCHOP
+		case 320: player.setHealth(player.getHealth() + Config.amounts.get("CookedPork")); break;  // COOKED_PORKCHOP
+		case 349: player.setHealth(player.getHealth() + Config.amounts.get("RawFish")); break;  // RAW_FISH
+		case 350: player.setHealth(player.getHealth() + Config.amounts.get("CookedFish")); break;  // COOKED_FISH
+		case 297: player.setHealth(player.getHealth() + Config.amounts.get("Bread")); break;  // BREAD
+		case 357: player.setHealth(player.getHealth() + Config.amounts.get("Cookie")); break;  // COOKIE
+		case 260: player.setHealth(player.getHealth() + Config.amounts.get("Apple")); break;  // APPLE
+		case 322: player.setHealth(player.getHealth() + Config.amounts.get("GoldenApple")); break;  // GOLDEN APPLE
+		case 282: player.setHealth(player.getHealth() + Config.amounts.get("MushroomStew")); break;  // MUSHROOM SOUP/STEW
+		case 354: player.setHealth(player.getHealth() + Config.amounts.get("Cake")); break; // Cake
+		case 39:  player.setHealth(player.getHealth() + Config.amounts.get("BrownMushroom")); break; // MUSHROOM (Brown)
+		case 40:  player.setHealth(player.getHealth() + Config.amounts.get("RedMushroom")); break; // MUSHROOM (Red)
+		case 335: player.setHealth(player.getHealth() + Config.amounts.get("Milk")); break; // Milk
+		case 344: player.setHealth(player.getHealth() + Config.amounts.get("Egg")); break; // Egg
+		case 353: player.setHealth(player.getHealth() + Config.amounts.get("Sugar")); break; // Sugar
+		case 338: player.setHealth(player.getHealth() + Config.amounts.get("Sugarcane")); break; // Sugar Cane
 		}
 		if (player.getHealth() > 20){
 			player.setHealth(20);

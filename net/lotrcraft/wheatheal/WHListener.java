@@ -26,7 +26,7 @@ public class WHListener extends EntityListener{
 					// Only perform the code if one of the itemID's is detected in the puncher's hand and is set to be used
 					if (checker.useChecker(itemID)) {
 						// DEBUG LINE BELOW - REMOVE ONCE TESTING IS COMPLETE
-						//WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getName()+ " Puncher:" + puncher.getName());
+						//WHMain.log.info("Healer - ItemID:" + itemID + " Punchee:" + punchee.getEntityId()+ " Puncher:" + puncher.getName());
 
 						// Cancel the event to prevent any damage being caused to the player being punched
 						event.setCancelled(true);
@@ -35,9 +35,9 @@ public class WHListener extends EntityListener{
 
 						if (!permissionsCheck.check(puncher, "wheatheal.heal")){
 							// DEBUG LINES. COMMENT OUT IF NOT WANTED IN MAIN RELEASES
-							puncher.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + "You don't have permission to heal players!");
-							punchee.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.AQUA + puncher.getName() +
-									ChatColor.RED + " tried to heal you but doesn't have permission!");
+							//puncher.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.RED + "You don't have permission to heal players!");
+							//punchee.sendMessage(ChatColor.GREEN + "[WheatHeal] " + ChatColor.AQUA + puncher.getName() +
+							//		ChatColor.RED + " tried to heal you but doesn't have permission!");
 							return;
 						}
 

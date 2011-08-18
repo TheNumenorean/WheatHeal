@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 public class permissionsCheck {
 
 	public static boolean check(CommandSender sender, String permission) {
-		
+
 		if (Config.useBukkitPerms) { // If using PermissionsBukkit
 			if (sender.hasPermission(permission)) { // Its good
 				return true;
@@ -25,7 +25,7 @@ public class permissionsCheck {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
