@@ -21,7 +21,10 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
-		if (args[0].equalsIgnoreCase("reload")){
+		if ((label.equalsIgnoreCase("wh") || label.equalsIgnoreCase("wheatheal")) && args.length == 0){
+			return false;
+		}
+		else if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
 			return true;
 		}
@@ -33,7 +36,7 @@ public class WHCommand implements CommandExecutor {
 			Restore.restore(WHMain.config, sender);
 			return true;
 		}
-		else if (args[0].equalsIgnoreCase("get")){
+		else if (args[0].equalsIgnoreCase("get") && args.length > 1){
 			Settings.get(args[1], sender);
 			return true;
 		}
@@ -41,11 +44,14 @@ public class WHCommand implements CommandExecutor {
 			Version.getVer(sender);
 			return true;
 		}
-		else if (args[0].equalsIgnoreCase("edit")){
-			boolean use = Boolean.valueOf(args[2]);
+		else if (args[0].equalsIgnoreCase("edit") && args.length > 1){
+			boolean use = false;
+			if (args[2].equalsIgnoreCase("true") || args[2].equalsIgnoreCase("false")){
+				use = true;
+			}
 			if (args.length >= 3){
-				if ((use || !use)){
-					Settings.editUse(sender, args[1], use);
+				if ((use)){
+					Settings.editUse(sender, args[1], Boolean.parseBoolean(args[2]));
 					return true;
 				}
 				else{

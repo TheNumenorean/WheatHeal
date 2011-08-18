@@ -20,9 +20,13 @@ public class Settings extends WHCommand{
 		Boolean use = false;
 		if (sender instanceof ConsoleCommandSender){
 			use = Config.confGetEnabled(item);
+			if (item.equalsIgnoreCase("usebukkit")){
+				WHMain.log.info("[WheatHeal] Using BukkitPermissions is set to: " + String.valueOf(use));
+				return;
+			}
 			if (use){
 				amount = Config.confGetHealValue(item);
-				WHMain.log.info("[WheatHeal] " + item + " heals for: " + String.valueOf(amount));
+				WHMain.log.info("[WheatHeal] Healing set to ture and " + item + " heals for: " + String.valueOf(amount));
 			}
 			else {
 				WHMain.log.info("[WheatHeal] Healing with " + item + " is disabled.");
@@ -31,9 +35,13 @@ public class Settings extends WHCommand{
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.get")){
 			use = Config.confGetEnabled(item);
+			if (item.equalsIgnoreCase("usebukkit")){
+				sender.sendMessage(ChatColor.GREEN+ "Using BukkitPermissions is set to: " + String.valueOf(use));
+				return;
+			}
 			if (use){
 				amount = Config.confGetHealValue(item);
-				sender.sendMessage(ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
+				sender.sendMessage(ChatColor.GREEN + "Healing set to ture and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
 			}
 			else {
 				sender.sendMessage(ChatColor.GREEN + "Healing with " + ChatColor.RED + item + ChatColor.GREEN + " is disabled.");
@@ -49,12 +57,12 @@ public class Settings extends WHCommand{
 	public static void editAmount (CommandSender sender, String item, int value){
 		if (sender instanceof ConsoleCommandSender){
 			Config.confEditAmount(item, value);
-			WHMain.log.info("[WheatHeal] Healingamount of " + item + " changed.");
+			WHMain.log.info("[WheatHeal] Healingamount of " + item + " changed to " + value + ".");
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
 			Config.confEditAmount(item, value);
-			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + item + " changed.");
+			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to " + value + ".");
 			return;
 		}
 		else {
@@ -67,11 +75,21 @@ public class Settings extends WHCommand{
 		if (sender instanceof ConsoleCommandSender){
 			if (use){
 				Config.confEditUse(item, use);
-				WHMain.log.info("[WheatHeal] Enabled healing with " + item + ".");
+				if (item.equalsIgnoreCase("usebukkit")){
+					WHMain.log.info("[WheatHeal] Enabled the use of BukkitPermissions.");
+				}
+				else{
+					WHMain.log.info("[WheatHeal] Enabled healing with " + item + ".");
+				}
 			}
 			else{
 				Config.confEditUse(item, use);
-				WHMain.log.info("[WheatHeal] Disabled healing with " + item + ".");
+				if (item.equalsIgnoreCase("usebukkit")){
+					WHMain.log.info("[WheatHeal] Disabled the use of BukkitPermissions.");
+				}
+				else{
+					WHMain.log.info("[WheatHeal] Disabled healing with " + item + ".");
+				}
 			}
 			return;
 		}
@@ -82,7 +100,12 @@ public class Settings extends WHCommand{
 			}
 			else{
 				Config.confEditUse(item, use);
-				sender.sendMessage(ChatColor.RED + "Disabled healing with " + item + ".");
+				if (item.equalsIgnoreCase("usebukkit")){
+					sender.sendMessage(ChatColor.RED + "Disabled the use of BukkitPermissions.");
+				}
+				else{
+					sender.sendMessage(ChatColor.RED + "Disabled healing with " + item + ".");;
+				}
 			}
 			return;
 		}

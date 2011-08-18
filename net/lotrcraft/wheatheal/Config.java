@@ -9,6 +9,7 @@
 package net.lotrcraft.wheatheal;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.util.config.Configuration;
 
@@ -115,7 +116,7 @@ public class Config {
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		use.put("useBukkit",config.getBoolean("Permissions.useBukkit", false));
 		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
-		WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
+		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 	}
 
 	public static void confInit(Configuration config) {
@@ -255,6 +256,17 @@ public class Config {
 	}
 
 	public static void confSave(Configuration config){
+		for (Map.Entry<String, Integer> entry : amounts.entrySet()){
+			config.setProperty("Foods." + entry.getKey() + ".healValue", entry.getValue());
+		}
+		for (Map.Entry<String, Boolean> entry : use.entrySet()){
+			if (!entry.getKey().equalsIgnoreCase("usebukkit")){
+				config.setProperty("Foods." + entry.getKey() + ".enable", entry.getValue().booleanValue());
+			}
+			else {
+				config.setProperty("Permissions.useBukkit", entry.getValue().booleanValue());
+			}
+		}
 		config.save();
 	}
 
@@ -288,7 +300,7 @@ public class Config {
 		config.setProperty("Foods.MushroomStew.enable", true);
 		config.setProperty("Foods.MushroomStew.healValue", 10);
 		config.setProperty("Foods.Cake.enable", true);
-		config.setProperty("Foods.Cake.healValue", 20);
+		config.setProperty("Foods.Cake.healValue", 10);
 		config.setProperty("Foods.BrownMushroom.enable", true);
 		config.setProperty("Foods.BrownMushroom.healValue", 6);
 		config.setProperty("Foods.RedMushroom.enable", true);
@@ -312,7 +324,7 @@ public class Config {
 
 	public static boolean confGetEnabled (String value){
 		boolean allowed = false;
-		allowed = use.get(value);
+		allowed = use.get(value).booleanValue();
 		return allowed;
 	}
 }
