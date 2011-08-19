@@ -33,8 +33,14 @@ public class WHCommand implements CommandExecutor {
 			return true;
 		}
 		else if (args[0].equalsIgnoreCase("restore")){
-			Restore.restore(WHMain.config, sender);
-			return true;
+			if (args.length >= 2){
+				Restore.restore(WHMain.config, sender, args[1]);
+				return true;
+			}
+			else {
+				Restore.confirm(label, sender);
+				return true;
+			}
 		}
 		else if (args[0].equalsIgnoreCase("get") && args.length > 1){
 			Settings.get(args[1], sender);

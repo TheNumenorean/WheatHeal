@@ -2,7 +2,7 @@ main: net.lotrcraft.wheatheal.WHMain
 author: Numenorean95
 authors: [EdTheLoon, Lathanael]
 name: WheatHeal
-version: 1.1
+version: 1.1.1
 website: http://lotrcraft.net/plugins/wheatheal
 
 commands:
@@ -12,6 +12,7 @@ commands:
         usage: |
             /<command> reload - Reload the configuration file
             /<command> restore - Restore the default Config.yml
+            /<command> restore [yes|no] - Confirm restoring Config.yml
             /<command> save - Save the changes made to the configuration file
             /<command> get [item] - Shows the amount an item heals and if it is enabled
             /<command> version - Display the current version of WheatHeal
