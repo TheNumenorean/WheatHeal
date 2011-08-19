@@ -317,14 +317,10 @@ public class Config {
 	}
 
 	public static int confGetHealValue (String value){
-		int amount = 0;
-		amount = amounts.get(value);
-		return amount;
+		return amounts.get(value);
 	}
 
 	public static boolean confGetEnabled (String value){
-		boolean allowed = false;
-		allowed = use.get(value).booleanValue();
-		return allowed;
+		return use.get(value).booleanValue();
 	}
 }
