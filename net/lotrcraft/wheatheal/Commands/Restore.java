@@ -23,6 +23,7 @@ public class Restore extends WHCommand {
 		if (confirmed && confirm.equalsIgnoreCase("yes")){
 			if (sender instanceof ConsoleCommandSender){
 				Config.confRestore(config);
+				
 				WHMain.log.info("[WheatHeal] Config restored.");
 				confirmed = false;
 				return;

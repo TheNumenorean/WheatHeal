@@ -327,6 +327,7 @@ public class Config {
 		config.setProperty("Foods.Sugarcane.enable", true);
 		config.setProperty("Foods.Sugarcane.healValue", 2);
 		config.setProperty("Permissions.useBukkit", false);
+		config.save();
 	}
 
 	public static int confGetHealValue (String value){
@@ -344,24 +345,25 @@ public class Config {
 		return WHMain.config.getProperty(path);
 	}
 
-	public static Integer getInt(String path, Integer def) {
+	public static int getInt(String path, Integer def) {
 		if(isNull(path))
 			return (Integer) addProperty(path, def);
 		return WHMain.config.getInt(path, def);
 	}
 
-	public static Boolean getBoolean(String path, Boolean def) {
+	public static boolean getBoolean(String path, boolean def) {
 		if(isNull(path))
-			return (Boolean) addProperty(path, def);
+			return (boolean) addProperty(path, def);
 		return WHMain.config.getBoolean(path, def);
 	}
 
 	private static Object addProperty(String path, Object val) {
 		WHMain.config.setProperty(path, val);
+		config.save();
 		return val;
 	}
 
-	private static Boolean isNull(String path) {
+	private static boolean isNull(String path) {
 		return WHMain.config.getProperty(path) == null;
 	}
 }

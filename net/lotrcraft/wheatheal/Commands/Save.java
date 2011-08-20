@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.util.config.Configuration;
 
+//TODO Delete this
+
 public class Save extends WHCommand {
 
 	public Save(WHMain whMain) {
