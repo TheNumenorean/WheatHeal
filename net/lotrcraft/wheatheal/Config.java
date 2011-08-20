@@ -116,7 +116,6 @@ public class Config {
 
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
-		use.put("useBukkit",getBoolean("Permissions.useBukkit", false));
 		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
 		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 		config.save();
