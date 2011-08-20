@@ -21,6 +21,7 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
+		if (args.length) return false;
 		if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
 			return true;
