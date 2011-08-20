@@ -1,7 +1,7 @@
 /*************************
- * WheatHeal Version 1.0
+ * WheatHeal Version 1.1
  *
- * Writen by Numenorean95 and EdTheLoon
+ * Writen by Numenorean95 , EdTheLoon and Lathanael
  *
  * Todo list:
  * 	Add customisable tools
@@ -46,6 +46,10 @@ public class WHMain extends JavaPlugin {
 		PluginListener.hookInit(this.getServer().getPluginManager());
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
+		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
+		if(Config.use.get("Foods.Wheat.selfHeal")){
+			this.getServer().getPluginManager().registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Event.Priority.Highest, this);
+		}
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
 	}

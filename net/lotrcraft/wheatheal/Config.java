@@ -79,6 +79,7 @@ public class Config {
 		//Whether each should be used
 		//use[0] = config.getBoolean("Foods.Wheat.enable", true);
 		use.put("Wheat",getBoolean("Foods.Wheat.enable", true));
+		use.put("WheatSelf", getBoolean("Foods.Wheat.selfHeal", true));
 		//use[1] = config.getBoolean("Foods.RawPork.enable", true);
 		use.put("RawPork",getBoolean("Foods.RawPork.enable", true));
 		//use[2] = config.getBoolean("Foods.CookedPork.enable", true);

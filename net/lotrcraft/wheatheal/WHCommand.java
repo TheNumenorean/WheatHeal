@@ -21,7 +21,11 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
-		if (args[0].equalsIgnoreCase("reload")){
+		// This is to prevent ArrayOutOfBound error's while calling the command.
+		if ((label.equalsIgnoreCase("wh") || label.equalsIgnoreCase("wheatheal")) && args.length == 0){
+			return false;
+		}
+		else if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
 			return true;
 		}
