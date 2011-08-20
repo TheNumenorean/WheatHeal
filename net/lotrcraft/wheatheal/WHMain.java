@@ -47,7 +47,7 @@ public class WHMain extends JavaPlugin {
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
 		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
-		if(Config.use.get("Foods.Wheat.selfHeal")){
+		if(Config.useSelfHeal){
 			this.getServer().getPluginManager().registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Event.Priority.Highest, this);
 		}
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class

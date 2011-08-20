@@ -20,6 +20,7 @@ public class Config {
 	//public static int[] amounts = new int[17];
 	//public static boolean[] use = new boolean[17];
 	public static boolean useBukkitPerms;
+	public static boolean useSelfHeal;
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -79,7 +80,7 @@ public class Config {
 		//Whether each should be used
 		//use[0] = config.getBoolean("Foods.Wheat.enable", true);
 		use.put("Wheat",getBoolean("Foods.Wheat.enable", true));
-		use.put("WheatSelf", getBoolean("Foods.Wheat.selfHeal", true));
+		useSelfHeal = getBoolean("Foods.Wheat.selfHeal", true);
 		//use[1] = config.getBoolean("Foods.RawPork.enable", true);
 		use.put("RawPork",getBoolean("Foods.RawPork.enable", true));
 		//use[2] = config.getBoolean("Foods.CookedPork.enable", true);
@@ -353,7 +354,7 @@ public class Config {
 		return WHMain.config.getInt(path, def);
 	}
 
-	public static boolean getBoolean(String path, Boolean def) {
+	public static Boolean getBoolean(String path, Boolean def) {
 		if(isNull(path))
 			return (Boolean) addProperty(path, def);
 		return WHMain.config.getBoolean(path, def);
