@@ -13,7 +13,6 @@ commands:
             /<command> reload - Reload the configuration file
             /<command> restore - Restore the default Config.yml
             /<command> restore [yes|no] - Confirm restoring Config.yml
-            /<command> save - Save the changes made to the configuration file
             /<command> get [item] - Shows the amount an item heals and if it is enabled
             /<command> version - Display the current version of WheatHeal
             /<command> edit [item] [true|false] - Dis- or Enables the given item
@@ -26,7 +25,6 @@ permissions:
         children:
             WheatHeal.commands.reload: true
             WheatHeal.commands.restore: true
-            WheatHeal.commands.save: true
             WheatHeal.commands.edit: true
             WheatHeal.commands.get: true
             WheatHeal.heal: true
@@ -35,9 +33,6 @@ permissions:
         default: op
     wheatheal.commands.restore:
         description: Allows user to restore the default configuration file
-        default: op
-    wheatheal.commands.save:
-        description: Allows user to save the current values into the configuration file
         default: op
     wheatheal.commands.edit:
         description: Allows user to edit the current values of the configuration file
