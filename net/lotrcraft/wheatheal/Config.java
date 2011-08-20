@@ -29,93 +29,93 @@ public class Config {
 		}
 
 	public static void loadConf(Configuration config) {
-		config.load();
+		//config.load();
 		//log.info("" + config.getProperty("Version"));
 		//if (config.getHeader() == null || !config.getHeader().equals("Version m"/* + this.getDescription().getVersion()*/)){ //check version
 		//if (config.getProperty("Version") != "0.2"){
 		//	log.severe("loadConf has called initConf.");
-		confInit(config);
+		//confInit(config);
 		//}
 
 		config.load();
 
 		//Get heal amounts for each item
 		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
-		amounts.put("Wheat",config.getInt("Foods.Wheat.healValue", 1));
+		amounts.put("Wheat",getInt("Foods.Wheat.healValue", 1));
 		//amounts[1] = config.getInt("Foods.RawPork.healValue", 3);
-		amounts.put("RawPork",config.getInt("Foods.RawPork.healValue", 3));
+		amounts.put("RawPork",getInt("Foods.RawPork.healValue", 3));
 		//amounts[2] = config.getInt("Foods.CookedPork.healValue", 8);
-		amounts.put("CookedPork",config.getInt("Foods.CookedPork.healValue", 8));
+		amounts.put("CookedPork",getInt("Foods.CookedPork.healValue", 8));
 		//amounts[3] = config.getInt("Foods.RawFish.healValue", 4);
-		amounts.put("RawFish",config.getInt("Foods.RawFish.healValue", 4));
+		amounts.put("RawFish",getInt("Foods.RawFish.healValue", 4));
 		//amounts[4] = config.getInt("Foods.CookedFish.healValue", 8);
-		amounts.put("CookedFish",config.getInt("Foods.CookedFish.healValue", 8));
+		amounts.put("CookedFish",getInt("Foods.CookedFish.healValue", 8));
 		//amounts[5] = config.getInt("Foods.Bread.healValue", 3);
-		amounts.put("Bread",config.getInt("Foods.Bread.healValue", 3));
+		amounts.put("Bread",getInt("Foods.Bread.healValue", 3));
 		//amounts[6] = config.getInt("Foods.Cookie.healValue", 7);
-		amounts.put("Cookie",config.getInt("Foods.Cookie.healValue", 7));
+		amounts.put("Cookie",getInt("Foods.Cookie.healValue", 7));
 		//amounts[7] = config.getInt("Foods.Apple.healValue", 5);
-		amounts.put("Apple",config.getInt("Foods.Apple.healValue", 5));
+		amounts.put("Apple",getInt("Foods.Apple.healValue", 5));
 		//amounts[8] = config.getInt("Foods.GoldenApple.healValue", 20);
-		amounts.put("GoldenApple",config.getInt("Foods.GoldenApple.healValue", 20));
+		amounts.put("GoldenApple",getInt("Foods.GoldenApple.healValue", 20));
 		//amounts[9] = config.getInt("Foods.MushroomStew.healValue", 10);
-		amounts.put("MushroomStew",config.getInt("Foods.MushroomStew.healValue", 10));
+		amounts.put("MushroomStew",getInt("Foods.MushroomStew.healValue", 10));
 		//amounts[10] = config.getInt("Foods.Cake.healValue", 10);
-		amounts.put("Cake",config.getInt("Foods.Cake.healValue", 10));
+		amounts.put("Cake",getInt("Foods.Cake.healValue", 10));
 		//amounts[11] = config.getInt("Foods.BrownMushroom.healValue", 10);
-		amounts.put("BrownMushroom",config.getInt("Foods.BrownMushroom.healValue", 6));
+		amounts.put("BrownMushroom",getInt("Foods.BrownMushroom.healValue", 6));
 		//amounts[12] = config.getInt("Foods.RedMushroom.healValue", 10);
-		amounts.put("RedMushroom",config.getInt("Foods.RedMushroom.healValue", 7));
+		amounts.put("RedMushroom",getInt("Foods.RedMushroom.healValue", 7));
 		//amounts[13] = config.getInt("Foods.Milk.healValue", 10);
-		amounts.put("Milk",config.getInt("Foods.Milk.healValue", 7));
+		amounts.put("Milk",getInt("Foods.Milk.healValue", 7));
 		//amounts[14] = config.getInt("Foods.Egg.healValue", 10);
-		amounts.put("Egg", config.getInt("Foods.Egg.healValue", 4));
+		amounts.put("Egg", getInt("Foods.Egg.healValue", 4));
 		//amounts[15] = config.getInt("Foods.Sugar.healValue", 10);
-		amounts.put("Sugar",config.getInt("Foods.Sugar.healValue", 3));
+		amounts.put("Sugar",getInt("Foods.Sugar.healValue", 3));
 		//amounts[16] = config.getInt("Foods.Sugarcane.healValue", 10);
-		amounts.put("Sugarcane",config.getInt("Foods.Sugarcane.healValue", 2));
+		amounts.put("Sugarcane",getInt("Foods.Sugarcane.healValue", 2));
 
 
 		//Whether each should be used
 		//use[0] = config.getBoolean("Foods.Wheat.enable", true);
-		use.put("Wheat",config.getBoolean("Foods.Wheat.enable", true));
+		use.put("Wheat",getBoolean("Foods.Wheat.enable", true));
 		//use[1] = config.getBoolean("Foods.RawPork.enable", true);
-		use.put("RawPork",config.getBoolean("Foods.RawPork.enable", true));
+		use.put("RawPork",getBoolean("Foods.RawPork.enable", true));
 		//use[2] = config.getBoolean("Foods.CookedPork.enable", true);
-		use.put("CookedPork",config.getBoolean("Foods.CookedPork.enable", true));
+		use.put("CookedPork",getBoolean("Foods.CookedPork.enable", true));
 		//use[3] = config.getBoolean("Foods.RawFish.enable", true);
-		use.put("RawFish",config.getBoolean("Foods.RawFish.enable", true));
+		use.put("RawFish",getBoolean("Foods.RawFish.enable", true));
 		//use[4] = config.getBoolean("Foods.CookedFish.enable", true);
-		use.put("CookedFish",config.getBoolean("Foods.CookedFish.enable", true));
+		use.put("CookedFish",getBoolean("Foods.CookedFish.enable", true));
 		//use[5] = config.getBoolean("Foods.Bread.enable", true);
-		use.put("Bread",config.getBoolean("Foods.Bread.enable", true));
+		use.put("Bread",getBoolean("Foods.Bread.enable", true));
 		//use[6] = config.getBoolean("Foods.Cookie.enable", true);
-		use.put("Cookie",config.getBoolean("Foods.Cookie.enable", true));
+		use.put("Cookie",getBoolean("Foods.Cookie.enable", true));
 		//use[7] = config.getBoolean("Foods.Apple.enable", true);
-		use.put("Apple",config.getBoolean("Foods.Apple.enable", true));
+		use.put("Apple",getBoolean("Foods.Apple.enable", true));
 		//use[8] = config.getBoolean("Foods.GoldenApple.enable", true);
-		use.put("GoldenApple",config.getBoolean("Foods.GoldenApple.enable", true));
+		use.put("GoldenApple",getBoolean("Foods.GoldenApple.enable", true));
 		//use[9] = config.getBoolean("Foods.MushroomStew.enable", true);
-		use.put("MushroomStew",config.getBoolean("Foods.MushroomStew.enable", true));
+		use.put("MushroomStew",getBoolean("Foods.MushroomStew.enable", true));
 		//use[10] = config.getBoolean("Foods.Cake.enable", true);
-		use.put("Cake",config.getBoolean("Foods.Cake.enable", true));
+		use.put("Cake",getBoolean("Foods.Cake.enable", true));
 		//use[11] = config.getBoolean("Foods.BrownMushroom.enable", true);
-		use.put("BrownMushroom",config.getBoolean("Foods.BrownMushroom.enable", true));
+		use.put("BrownMushroom",getBoolean("Foods.BrownMushroom.enable", true));
 		//use[12] = config.getBoolean("Foods.RedMushroom.enable", true);
-		use.put("RedMushroom",config.getBoolean("Foods.RedMushroom.enable", true));
+		use.put("RedMushroom",getBoolean("Foods.RedMushroom.enable", true));
 		//use[13] = config.getBoolean("Foods.Milk.enable", true);
-		use.put("Milk",config.getBoolean("Foods.Milk.enable", true));
+		use.put("Milk",getBoolean("Foods.Milk.enable", true));
 		//use[14] = config.getBoolean("Foods.Egg.enable", true);
-		use.put("Egg",config.getBoolean("Foods.Egg.enable", true));
+		use.put("Egg",getBoolean("Foods.Egg.enable", true));
 		//use[15] = config.getBoolean("Foods.Sugar.enable", true);
-		use.put("Sugar",config.getBoolean("Foods.Sugar.enable", true));
+		use.put("Sugar",getBoolean("Foods.Sugar.enable", true));
 		//use[16] = config.getBoolean("Foods.Sugarcane.enable", true);
-		use.put("Sugarcane",config.getBoolean("Foods.Sugarcane.enable", true));
+		use.put("Sugarcane",getBoolean("Foods.Sugarcane.enable", true));
 
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
-		use.put("useBukkit",config.getBoolean("Permissions.useBukkit", false));
-		useBukkitPerms = config.getBoolean("Permissions.useBukkit", false);
+		use.put("useBukkit",getBoolean("Permissions.useBukkit", false));
+		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
 		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 	}
 
@@ -343,24 +343,24 @@ public class Config {
 		return WHMain.config.getProperty(path);
 	}
 
-	public Integer getInt(String path, Integer def) {
+	public static Integer getInt(String path, Integer def) {
 		if(isNull(path))
 			return (Integer) addProperty(path, def);
 		return WHMain.config.getInt(path, def);
 	}
 
-	public Boolean getBoolean(String path, Boolean def) {
+	public static Boolean getBoolean(String path, Boolean def) {
 		if(isNull(path))
 			return (Boolean) addProperty(path, def);
 		return WHMain.config.getBoolean(path, def);
 	}
 
-	private Object addProperty(String path, Object val) {
+	private static Object addProperty(String path, Object val) {
 		WHMain.config.setProperty(path, val);
 		return val;
 	}
 
-	private Boolean isNull(String path) {
+	private static Boolean isNull(String path) {
 		return WHMain.config.getProperty(path) == null;
 	}
 }

@@ -15,9 +15,14 @@ public class permissionsCheck {
 				return true;
 			}
 		}
-		else { // If using Nijikokun's Permissions
+		else { // If using Nijikokun's Permissions or t3hk0d3's PermissionsEx
 			if (WHMain.nijikoPermissions != null) { // Check that Permissions is enabled
 				if (WHMain.nijikoPermissions.has((Player)sender, permission) || sender.isOp()) { // Again you can change this node if you want
+					return true;
+				}
+			}
+			else if (WHMain.permissionsEx != null) { // Check that Permissions is enabled
+				if (WHMain.permissionsEx.has((Player)sender, permission) || sender.isOp()) { // Again you can change this node if you want
 					return true;
 				}
 			}

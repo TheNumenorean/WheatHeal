@@ -18,6 +18,9 @@ import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
+
+import ru.tehkode.permissions.PermissionManager;
+
 import com.nijiko.permissions.PermissionHandler;
 
 public class WHMain extends JavaPlugin {
@@ -27,6 +30,7 @@ public class WHMain extends JavaPlugin {
 	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("Minecraft");
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
+	public static PermissionManager permissionsEx; // t3hk0d3's PermissionsEx Plugin
 	public static PluginManager pm;
 
 	public void onDisable() {
