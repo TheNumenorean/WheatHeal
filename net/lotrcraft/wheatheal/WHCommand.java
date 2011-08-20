@@ -2,7 +2,6 @@ package net.lotrcraft.wheatheal;
 
 import net.lotrcraft.wheatheal.Commands.Reload;
 import net.lotrcraft.wheatheal.Commands.Restore;
-import net.lotrcraft.wheatheal.Commands.Save;
 import net.lotrcraft.wheatheal.Commands.Settings;
 import net.lotrcraft.wheatheal.Commands.Version;
 
@@ -21,13 +20,11 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
-		if (args.length) return false;
+		// To prevent ArrayOutOfBounds error
+		if (args.length == 0) return false;
+
 		if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
-			return true;
-		}
-		else if (args[0].equalsIgnoreCase("save")){
-			Save.save(WHMain.config, sender);
 			return true;
 		}
 		else if (args[0].equalsIgnoreCase("restore")){

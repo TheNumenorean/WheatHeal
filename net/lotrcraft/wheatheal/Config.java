@@ -118,6 +118,8 @@ public class Config {
 		use.put("useBukkit",getBoolean("Permissions.useBukkit", false));
 		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
 		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
+		config.save();
+		config.load();
 	}
 
 	public static void confInit(Configuration config) {
@@ -351,15 +353,14 @@ public class Config {
 		return WHMain.config.getInt(path, def);
 	}
 
-	public static boolean getBoolean(String path, boolean def) {
+	public static boolean getBoolean(String path, Boolean def) {
 		if(isNull(path))
-			return (boolean) addProperty(path, def);
+			return (Boolean) addProperty(path, def);
 		return WHMain.config.getBoolean(path, def);
 	}
 
 	private static Object addProperty(String path, Object val) {
 		WHMain.config.setProperty(path, val);
-		config.save();
 		return val;
 	}
 
