@@ -270,12 +270,24 @@ public class Config {
 		config.save();
 	}
 
+	public static void confSave (String node, Boolean value){
+		WHMain.config.setProperty(node, value);
+		WHMain.config.save();
+	}
+
+	public static void confSave (String node, int value){
+		WHMain.config.setProperty(node, value);
+		WHMain.config.save();
+	}
+
 	public static void confEditAmount (String item, int amount){
 		amounts.put(item, amount);
+		confSave(item, amount);
 	}
 
 	public static void confEditUse (String item, Boolean allowed){
 		use.put(item, allowed);
+		confSave(item, allowed);
 	}
 
 	public static void confRestore(Configuration config){
@@ -322,5 +334,33 @@ public class Config {
 
 	public static boolean confGetEnabled (String value){
 		return use.get(value).booleanValue();
+	}
+
+	// Functions for AutoUpdating the Config.yml
+	public Object getProperty(String path, Object def) {
+		if(isNull(path))
+			return addProperty(path, def);
+		return WHMain.config.getProperty(path);
+	}
+
+	public Integer getInt(String path, Integer def) {
+		if(isNull(path))
+			return (Integer) addProperty(path, def);
+		return WHMain.config.getInt(path, def);
+	}
+
+	public Boolean getBoolean(String path, Boolean def) {
+		if(isNull(path))
+			return (Boolean) addProperty(path, def);
+		return WHMain.config.getBoolean(path, def);
+	}
+
+	private Object addProperty(String path, Object val) {
+		WHMain.config.setProperty(path, val);
+		return val;
+	}
+
+	private Boolean isNull(String path) {
+		return WHMain.config.getProperty(path) == null;
 	}
 }
