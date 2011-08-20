@@ -21,10 +21,7 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
-		if ((label.equalsIgnoreCase("wh") || label.equalsIgnoreCase("wheatheal")) && args.length == 0){
-			return false;
-		}
-		else if (args[0].equalsIgnoreCase("reload")){
+		if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
 			return true;
 		}
@@ -65,13 +62,8 @@ public class WHCommand implements CommandExecutor {
 					return true;
 				}
 			}
-			else{
-				return false;
-			}
 		}
-		else {
-			return false;
-		}
+		return false;
 	}
 
 }
