@@ -20,8 +20,8 @@ public class WHCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
-		// To prevent ArrayOutOfBounds error
-		if (args.length == 0) return false;
+		// To prevent ArrayOutOfBounds error, the null check is just in case Bukkit makes a null Array!
+		if (args.length == 0 || args == null) return false;
 
 		if (args[0].equalsIgnoreCase("reload")){
 			Reload.reload(WHMain.config, sender);
