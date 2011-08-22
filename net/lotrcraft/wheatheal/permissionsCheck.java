@@ -1,13 +1,15 @@
 package net.lotrcraft.wheatheal;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public class permissionsCheck {
 
 	public static boolean check(CommandSender sender, String permission) {
 
-		if (Config.useBukkitPerms) { // If using PermissionsBukkit
+		if (sender instanceof ConsoleCommandSender) return true;
+		else if (Config.useBukkitPerms) { // If using PermissionsBukkit
 			if (sender.hasPermission(permission)) { // Its good
 				return true;
 			}
