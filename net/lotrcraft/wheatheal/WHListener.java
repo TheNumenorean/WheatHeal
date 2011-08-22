@@ -74,6 +74,12 @@ public class WHListener extends EntityListener{
 
 				// Called if someone throws an egg on someoneelse
 				if (e.getEntity() instanceof Player && e.getDamager() instanceof Egg){
+
+					// Check if healing with egg is enabled, return if false
+					if (!Config.use.get("Egg").booleanValue()){
+						return;
+					}
+
 					event.setCancelled(true);
 					Egg egg = (Egg) e.getDamager();
 					Player puncher = (Player) egg.getShooter();
