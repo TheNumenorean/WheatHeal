@@ -29,7 +29,7 @@ public class WHPlayerListener extends PlayerListener {
 				player.setItemInHand(null);
 			}
 		}
-		else if (event.getAction()== Action.RIGHT_CLICK_AIR){ // If Right-Click with Wheat in hand continue
+		else if (event.getAction()== Action.RIGHT_CLICK_AIR && item == 296){ // If Right-Click with Wheat in hand continue
 
 			// Cancel the event, just so nothing bad can happen
 			event.setCancelled(true);

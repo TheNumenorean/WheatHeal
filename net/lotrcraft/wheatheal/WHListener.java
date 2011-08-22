@@ -1,5 +1,6 @@
 package net.lotrcraft.wheatheal;
 
+import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -69,11 +70,28 @@ public class WHListener extends EntityListener{
 						//	  puncher.sendMessage(ChatColor.RED + "You do not have permission to do this");
 						//}
 					}
-
-
 				}
 
-			}
+				// Called if someone throws an egg on someoneelse
+				if (e.getEntity() instanceof Player && e.getDamager() instanceof Egg){
+					event.setCancelled(true);
+					Egg egg = (Egg) e.getDamager();
+					Player puncher = (Player) egg.getShooter();
+					Player punchee = (Player) e.getEntity();
 
+					if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
+
+					// Check if puncher has permission to heal other players
+					if (!permissionsCheck.check(puncher, "wheatheal.heal")){
+						return;
+					}
+
+					// Finally call healPlayer in our healer class and pass in the punchee and the itemID
+					healer.healPlayer(punchee, 344);
+
+					// DEBUG LINE
+					puncher.sendMessage("You did hit and heal with an egg!");
+				}
+			}
 	}
 }

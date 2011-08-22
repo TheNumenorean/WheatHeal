@@ -13,7 +13,7 @@
 package net.lotrcraft.wheatheal;
 import java.util.logging.Logger;
 
-import org.bukkit.event.Event;
+import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,20 +35,20 @@ public class WHMain extends JavaPlugin {
 
 	public void onDisable() {
 		Config.confSave(config);
-		log.info("WheatHeal " + this.getDescription().getVersion() + " disabled");
+		log.info("[WheatHeal] Version" + this.getDescription().getVersion() + " disabled");
 	}
 
 	public void onEnable() {
 		pm = this.getServer().getPluginManager();
-		this.getServer().getPluginManager().registerEvent(Event.Type.ENTITY_DAMAGE, new WHListener(), Event.Priority.Highest, this);
-		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Event.Priority.Monitor, this);
-		this.getServer().getPluginManager().registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Event.Priority.Monitor, this);
-		PluginListener.hookInit(this.getServer().getPluginManager());
+		pm.registerEvent(Type.ENTITY_DAMAGE, new WHListener(), Priority.Highest, this);
+		pm.registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Priority.Monitor, this);
+		pm.registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Priority.Monitor, this);
+		PluginListener.hookInit(pm);
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
 		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
 		if(Config.useSelfHeal){
-			this.getServer().getPluginManager().registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Event.Priority.Highest, this);
+			pm.registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Priority.Highest, this);
 		}
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
