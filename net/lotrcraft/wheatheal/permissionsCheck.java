@@ -10,10 +10,11 @@ public class permissionsCheck {
 
 		if (sender instanceof ConsoleCommandSender) return true;
 		else if (Config.useBukkitPerms) { // If using PermissionsBukkit
-			if (sender.hasPermission(permission)) { // Its good
+			Player player = (Player) sender;
+			if (player.hasPermission(permission)) { // Its good
 				return true;
 			}
-			else if (sender.isOp()) { // If PermissionsBukkit is disabled check if sender is an op
+			else if (player.isOp()) { // If PermissionsBukkit is disabled check if sender is an op
 				return true;
 			}
 		}
