@@ -57,7 +57,7 @@ public class Settings extends WHCommand{
 	public static void editAmount (CommandSender sender, String item, int value){
 		if (sender instanceof ConsoleCommandSender){
 			Config.confEditAmount(item, value);
-			WHMain.log.info("[WheatHeal] Healingamount of " + item + " changed to: " + value);
+			WHMain.log.info("[WheatHeal] Healing amount of " + item + " changed to: " + value);
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
