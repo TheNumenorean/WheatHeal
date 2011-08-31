@@ -35,7 +35,7 @@ public class WHPlayerListener extends PlayerListener {
 			event.setCancelled(true);
 
 			if (player.getHealth() == 20) return; //If your health is 20 you cant heal yourself obviously!
-				healer.healPlayer(player, item); //Now heal the player
+			healer.healPlayer(player, item); //Now heal the player
 
 			// Decrease itemInHand amount by 1 or remove if the player only had 1 of the item
 			if (player.getItemInHand().getAmount() > 1) {
