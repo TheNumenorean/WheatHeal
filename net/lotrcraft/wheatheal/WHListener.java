@@ -31,7 +31,7 @@ public class WHListener extends EntityListener{
 						// Cancel the event to prevent any damage being caused to the player being punched
 						event.setCancelled(true);
 
-						if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
+						if (punchee.getHealth() == Config.maxHealth) return;  //If punchee health is 20 you cant heal them
 
 						if (!permissionsCheck.check(puncher, "wheatheal.heal")){
 							// DEBUG LINES. COMMENT OUT IF NOT WANTED IN MAIN RELEASES
@@ -85,7 +85,7 @@ public class WHListener extends EntityListener{
 					Player puncher = (Player) egg.getShooter();
 					Player punchee = (Player) e.getEntity();
 
-					if (punchee.getHealth() == 20) return;  //If punchee health is 20 you cant heal them
+					if (punchee.getHealth() == Config.maxHealth) return;  //If punchee health is 20 you cant heal them
 
 					// Check if puncher has permission to heal other players
 					if (!permissionsCheck.check(puncher, "wheatheal.heal")){
@@ -96,7 +96,7 @@ public class WHListener extends EntityListener{
 					healer.healPlayer(punchee, 344);
 
 					// DEBUG LINE
-					puncher.sendMessage("You did hit and heal with an egg!");
+					//puncher.sendMessage("You did hit and heal with an egg!");
 				}
 			}
 	}

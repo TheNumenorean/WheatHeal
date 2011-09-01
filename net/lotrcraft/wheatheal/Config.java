@@ -21,6 +21,7 @@ public class Config {
 	//public static boolean[] use = new boolean[17];
 	public static boolean useBukkitPerms;
 	public static boolean useSelfHeal;
+	public static int maxHealth;
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -30,16 +31,10 @@ public class Config {
 		}
 
 	public static void loadConf(Configuration config) {
-		//config.load();
-		//log.info("" + config.getProperty("Version"));
-		//if (config.getHeader() == null || !config.getHeader().equals("Version m"/* + this.getDescription().getVersion()*/)){ //check version
-		//if (config.getProperty("Version") != "0.2"){
-		//	log.severe("loadConf has called initConf.");
-		//confInit(config);
-		//}
-
 		config.load();
 
+		//Get the maximum Helath a player can have.
+		maxHealth = getInt("Player.mxHealth", 20);
 		//Get heal amounts for each item
 		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts.put("Wheat",getInt("Foods.Wheat.healValue", 1));
@@ -120,142 +115,6 @@ public class Config {
 		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 		config.save();
 		config.load();
-	}
-
-	public static void confInit(Configuration config) {
-		config.removeProperty("healAmt");
-		//log.info("" + config.getProperty("Foods.Wheat.healValue"));
-
-		//config.setProperty("Version", this.getDescription().getVersion());
-
-		if (config.getProperty("Foods.Wheat.enable") == null){
-			config.setProperty("Foods.Wheat.enable", true);
-			//log.info("A " + config.getProperty("Foods.Wheat.healValue"));
-		}
-		if (config.getProperty("Foods.Wheat.healValue") == null){
-			config.setProperty("Foods.Wheat.healValue", 1);
-		}
-
-		if (config.getProperty("Foods.RawPork.enable") == null){
-			config.setProperty("Foods.RawPork.enable", true);
-		}
-		if (config.getProperty("Foods.RawPork.healValue") ==  null){
-			config.setProperty("Foods.RawPork.healValue", 3);
-		}
-
-		if (config.getProperty("Foods.CookedPork.enable") == null){
-			config.setProperty("Foods.CookedPork.enable", true);
-		}
-		if (config.getProperty("Foods.CookedPork.healValue") == null){
-			config.setProperty("Foods.CookedPork.healValue", 8);
-		}
-
-		if (config.getProperty("Foods.RawFish.enable") == null){
-			config.setProperty("Foods.RawFish.enable", true);
-		}
-		if (config.getProperty("Foods.RawFish.healValue") == null){
-			config.setProperty("Foods.RawFish.healValue", 4);
-		}
-
-		if (config.getProperty("Foods.CookedFish.enable") == null){
-			config.setProperty("Foods.CookedFish.enable", true);
-		}
-		if (config.getProperty("Foods.CookedFish.healValue") == null){
-			config.setProperty("Foods.CookedFish.healValue", 8);
-		}
-
-		if (config.getProperty("Foods.Bread.enable") == null){
-			config.setProperty("Foods.Bread.enable", true);
-		}
-		if (config.getProperty("Foods.Bread.healValue") == null){
-			config.setProperty("Foods.Bread.healValue", 3);
-		}
-
-		if (config.getProperty("Foods.Cookie.enable") == null){
-			config.setProperty("Foods.Cookie.enable", true);
-		}
-		if (config.getProperty("Foods.Cookie.healValue") == null){
-			config.setProperty("Foods.Cookie.healValue", 7);
-		}
-
-		if (config.getProperty("Foods.Apple.enable") == null){
-			config.setProperty("Foods.Apple.enable", true);
-		}
-		if (config.getProperty("Foods.Apple.healValue") == null){
-			config.setProperty("Foods.Apple.healValue", 5);
-		}
-
-		if (config.getProperty("Foods.GoldenApple.enable") == null){
-			config.setProperty("Foods.GoldenApple.enable", true);
-		}
-		if (config.getProperty("Foods.GoldenApple.healValue") == null){
-			config.setProperty("Foods.GoldenApple.healValue", 20);
-		}
-
-		if (config.getProperty("Foods.MushroomStew.enable") == null){
-			config.setProperty("Foods.MushroomStew.enable", true);
-		}
-		if (config.getProperty("Foods.MushroomStew.healValue") == null){
-			config.setProperty("Foods.MushroomStew.healValue", 10);
-		}
-
-		if (config.getProperty("Foods.Cake.enable") == null){
-			config.setProperty("Foods.Cake.enable", true);
-		}
-		if (config.getProperty("Foods.Cake.healValue") == null){
-			config.setProperty("Foods.Cake.healValue", 20);
-		}
-
-		if (config.getProperty("Foods.BrownMushroom.enable") == null){
-			config.setProperty("Foods.BrownMushroom.enable", true);
-		}
-		if (config.getProperty("Foods.BrownMushroom.healValue") == null){
-			config.setProperty("Foods.BrownMushroom.healValue", 6);
-		}
-
-		if (config.getProperty("Foods.RedMushroom.enable") == null){
-			config.setProperty("Foods.RedMushroom.enable", true);
-		}
-		if (config.getProperty("Foods.RedMushroom.healValue") == null){
-			config.setProperty("Foods.RedMushroom.healValue", 7);
-		}
-
-		if (config.getProperty("Foods.Milk.enable") == null){
-			config.setProperty("Foods.Milk.enable", true);
-		}
-		if (config.getProperty("Foods.Milk.healValue") == null){
-			config.setProperty("Foods.Milk.healValue", 7);
-		}
-
-		if (config.getProperty("Foods.Egg.enable") == null){
-			config.setProperty("Foods.Egg.enable", true);
-		}
-		if (config.getProperty("Foods.Egg.healValue") == null){
-			config.setProperty("Foods.Egg.healValue", 4);
-		}
-
-		if (config.getProperty("Foods.Sugar.enable") == null){
-			config.setProperty("Foods.Sugar.enable", true);
-		}
-		if (config.getProperty("Foods.Sugar.healValue") == null){
-			config.setProperty("Foods.Sugar.healValue", 3);
-		}
-
-		if (config.getProperty("Foods.Sugarcane.enable") == null){
-			config.setProperty("Foods.Sugarcane.enable", true);
-		}
-		if (config.getProperty("Foods.Sugarcane.healValue") == null){
-			config.setProperty("Foods.Sugarcane.healValue", 2);
-		}
-
-		if(config.getProperty("Permissions.useBukkit") == null){
-			config.setProperty("Permissions.useBukkit", false);
-		}
-		//log.info("B " + config.getProperty("Foods.Wheat.healValue"));
-		//config.setHeader("Version " + this.getDescription().getVersion());
-
-		config.save();
-		//log.info("C " + config.getProperty("Foods.Wheat.healValue"));
 	}
 
 	public static void confSave(Configuration config){

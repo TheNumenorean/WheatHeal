@@ -25,10 +25,9 @@ public class Healer {
 		case 353: player.setHealth(player.getHealth() + Config.amounts.get("Sugar")); break; // Sugar
 		case 338: player.setHealth(player.getHealth() + Config.amounts.get("Sugarcane")); break; // Sugar Cane
 		}
-		if (player.getHealth() > 20){
-			player.setHealth(20);
+		if (player.getHealth() > Config.maxHealth){
+			player.setHealth(Config.maxHealth);
 		}
-
 	}
 
 }
