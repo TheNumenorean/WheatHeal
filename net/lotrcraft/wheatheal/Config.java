@@ -33,7 +33,7 @@ public class Config {
 	public static void loadConf(Configuration config) {
 		config.load();
 
-		//Get the maximum Helath a player can have.
+		//Get the maximum Health a player can have.
 		maxHealth = getInt("Player.mxHealth", 20);
 		//Get heal amounts for each item
 		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
