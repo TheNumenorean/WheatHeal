@@ -2,6 +2,8 @@ package net.lotrcraft.wheatheal;
 
 import org.bukkit.entity.Player;
 
+import com.herocraftonline.dev.heroes.persistence.Hero;
+
 public class Healer {
 
 	public void healPlayer(Player player, int itemID) {
@@ -27,6 +29,32 @@ public class Healer {
 		}
 		if (player.getHealth() > Config.maxHealth){
 			player.setHealth(Config.maxHealth);
+		}
+	}
+
+	public void healPlayer(Hero hero, int itemID, double maxHealth){
+		switch (itemID) {
+		// Use the itemID passed to determine what the heal amount is
+		case 296: hero.setHealth(hero.getHealth() + Config.amounts.get("Wheat")); break;  // WHEAT
+		case 319: hero.setHealth(hero.getHealth() + Config.amounts.get("RawPork")); break;  // RAW_PORKCHOP
+		case 320: hero.setHealth(hero.getHealth() + Config.amounts.get("CookedPork")); break;  // COOKED_PORKCHOP
+		case 349: hero.setHealth(hero.getHealth() + Config.amounts.get("RawFish")); break;  // RAW_FISH
+		case 350: hero.setHealth(hero.getHealth() + Config.amounts.get("CookedFish")); break;  // COOKED_FISH
+		case 297: hero.setHealth(hero.getHealth() + Config.amounts.get("Bread")); break;  // BREAD
+		case 357: hero.setHealth(hero.getHealth() + Config.amounts.get("Cookie")); break;  // COOKIE
+		case 260: hero.setHealth(hero.getHealth() + Config.amounts.get("Apple")); break;  // APPLE
+		case 322: hero.setHealth(hero.getHealth() + Config.amounts.get("GoldenApple")); break;  // GOLDEN APPLE
+		case 282: hero.setHealth(hero.getHealth() + Config.amounts.get("MushroomStew")); break;  // MUSHROOM SOUP/STEW
+		case 354: hero.setHealth(hero.getHealth() + Config.amounts.get("Cake")); break; // Cake
+		case 39:  hero.setHealth(hero.getHealth() + Config.amounts.get("BrownMushroom")); break; // MUSHROOM (Brown)
+		case 40:  hero.setHealth(hero.getHealth() + Config.amounts.get("RedMushroom")); break; // MUSHROOM (Red)
+		case 335: hero.setHealth(hero.getHealth() + Config.amounts.get("Milk")); break; // Milk
+		case 344: hero.setHealth(hero.getHealth() + Config.amounts.get("Egg")); break; // Egg
+		case 353: hero.setHealth(hero.getHealth() + Config.amounts.get("Sugar")); break; // Sugar
+		case 338: hero.setHealth(hero.getHealth() + Config.amounts.get("Sugarcane")); break; // Sugar Cane
+		}
+		if (hero.getHealth() > maxHealth){
+			hero.setHealth(maxHealth);
 		}
 	}
 

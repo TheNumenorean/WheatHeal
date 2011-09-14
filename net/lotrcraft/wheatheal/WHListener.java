@@ -7,6 +7,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.inventory.ItemStack;
 
+import com.herocraftonline.dev.heroes.persistence.Hero;
+
 public class WHListener extends EntityListener{
 
 	// Create a new instance of our Healer class
@@ -18,6 +20,10 @@ public class WHListener extends EntityListener{
 				EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
 
 				if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
+					Hero hero = null;
+					if (WHMain.heroes != null){
+						hero = WHMain.heroes.getHeroManager().getHero((Player)e.getEntity());
+					}
 					Player puncher = (Player)e.getDamager();
 					Player punchee = (Player)e.getEntity();
 					int itemID = puncher.getItemInHand().getTypeId();
@@ -31,7 +37,8 @@ public class WHListener extends EntityListener{
 						// Cancel the event to prevent any damage being caused to the player being punched
 						event.setCancelled(true);
 
-						if (punchee.getHealth() == Config.maxHealth) return;  //If punchee health is 20 you cant heal them
+						if (punchee.getHealth() == Config.maxHealth && hero == null) return;  //If punchee health is at max you cant heal them
+						else if (hero != null && hero.getHealth() == hero.getMaxHealth()) return; //If the health of the hero is at max do not heal him
 
 						if (!permissionsCheck.check(puncher, "wheatheal.heal")){
 							// DEBUG LINES. COMMENT OUT IF NOT WANTED IN MAIN RELEASES
@@ -64,7 +71,12 @@ public class WHListener extends EntityListener{
 						}
 
 						// Finally call healPlayer in our healer class and pass in the punchee and the itemID
-						healer.healPlayer(punchee, itemID);
+						if (hero == null){
+							healer.healPlayer(punchee, itemID);
+						}
+						else {
+							healer.healPlayer(hero, itemID, hero.getMaxHealth());
+						}
 
 						//else {
 						//	  puncher.sendMessage(ChatColor.RED + "You do not have permission to do this");

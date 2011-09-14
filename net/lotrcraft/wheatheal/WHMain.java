@@ -21,6 +21,7 @@ import org.bukkit.util.config.Configuration;
 
 import ru.tehkode.permissions.PermissionManager;
 
+import com.herocraftonline.dev.heroes.Heroes;
 import com.nijiko.permissions.PermissionHandler;
 
 public class WHMain extends JavaPlugin {
@@ -32,6 +33,7 @@ public class WHMain extends JavaPlugin {
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
 	public static PermissionManager permissionsEx; // t3hk0d3's PermissionsEx Plugin
 	public static PluginManager pm;
+	public static Heroes heroes = null;
 
 	public void onDisable() {
 		Config.confSave(config);

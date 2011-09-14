@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
 
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
+import com.herocraftonline.dev.heroes.Heroes;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 public class PluginListener extends ServerListener {
@@ -22,6 +23,10 @@ public class PluginListener extends ServerListener {
 			WHMain.permissionsEx = PermissionsEx.getPermissionManager();
 			WHMain.log.info("[WheatHeal] PermissionsEx detected. Hooked in");
 		}
+		if (_pm.isPluginEnabled("Heroes")){
+			WHMain.log.info("[WheatHeal] Heroes detected. Hooked in");
+			WHMain.heroes = (Heroes)_pm.getPlugin("Heroes");
+		}
 	}
 
 	public void onPluginDisable(PluginDisableEvent event) {
@@ -34,6 +39,10 @@ public class PluginListener extends ServerListener {
 				WHMain.log.info("[WheatHeal] PermissionsEx was disabled. Falling back to OP only");
 				WHMain.permissionsEx = null;
 			}
+		}
+		if (event.getPlugin().getDescription().getName().equals("Heroes") && WHMain.heroes != null){
+			WHMain.log.info("[WheatHeal] Heroes was disabled. Disabling support.");
+			WHMain.heroes = null;
 		}
 	}
 
@@ -48,6 +57,10 @@ public class PluginListener extends ServerListener {
 				WHMain.permissionsEx = PermissionsEx.getPermissionManager();
 				WHMain.log.info("[WheatHeal] PermissionsEx was enabled. Hooked in");
 			}
+		}
+		if (event.getPlugin().getDescription().getName().equals("Heroes") && WHMain.heroes != null){
+			WHMain.log.info("[WheatHeal] Heroes enabled, hooking in.");
+			WHMain.heroes = (Heroes) event.getPlugin();
 		}
 	}
 }
