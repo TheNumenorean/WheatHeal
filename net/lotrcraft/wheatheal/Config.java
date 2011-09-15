@@ -147,14 +147,18 @@ public class Config {
 		WHMain.config.save();
 	}
 
-	public static void confEditAmount (String item, int amount){
+	public static boolean confEditAmount (String item, int amount){
+		if(!amounts.containsKey(item)) return false;
 		amounts.put(item, amount);
 		confSave(item, amount);
+		return true;
 	}
 
-	public static void confEditUse (String item, Boolean allowed){
+	public static boolean confEditUse (String item, Boolean allowed){
+		if (!use.containsKey(item)) return false;
 		use.put(item, allowed);
 		confSave(item, allowed);
+		return true;
 	}
 
 	public static void confRestore(Configuration config){
@@ -195,6 +199,7 @@ public class Config {
 		config.setProperty("Permissions.useBukkit", false);
 		config.setProperty("DirectHeal", false);
 		config.save();
+		config.load();
 	}
 
 	public static int confGetHealValue (String value){
