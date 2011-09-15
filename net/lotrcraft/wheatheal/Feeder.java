@@ -4,9 +4,9 @@ import org.bukkit.entity.Player;
 
 import com.herocraftonline.dev.heroes.persistence.Hero;
 
-public class Healer {
+public class Feeder {
 
-	public void healPlayer(Player player, int itemID) {
+	public void feedPlayer(Player player, int itemID) {
 		int health = player.getHealth();
 		switch (itemID) {
 		// Use the itemID passed to determine what the heal amount is
@@ -33,7 +33,7 @@ public class Healer {
 		}
 	}
 
-	public void healPlayer(Hero hero, int itemID, double maxHealth){
+	public void feedPlayer(Hero hero, int itemID, double maxHealth){
 		double health = hero.getHealth();
 		switch (itemID) {
 		// Use the itemID passed to determine what the heal amount is
