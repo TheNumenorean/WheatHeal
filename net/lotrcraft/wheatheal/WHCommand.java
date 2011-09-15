@@ -1,9 +1,9 @@
 package net.lotrcraft.wheatheal;
 
-import net.lotrcraft.wheatheal.Commands.Reload;
-import net.lotrcraft.wheatheal.Commands.Restore;
-import net.lotrcraft.wheatheal.Commands.Settings;
-import net.lotrcraft.wheatheal.Commands.Version;
+import net.lotrcraft.wheatheal.commands.Reload;
+import net.lotrcraft.wheatheal.commands.Restore;
+import net.lotrcraft.wheatheal.commands.Settings;
+import net.lotrcraft.wheatheal.commands.Version;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,4 +1,4 @@
-package net.lotrcraft.wheatheal.Commands;
+package net.lotrcraft.wheatheal.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
