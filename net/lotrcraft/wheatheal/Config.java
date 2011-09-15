@@ -148,14 +148,14 @@ public class Config {
 	}
 
 	public static boolean confEditAmount (String item, int amount){
-		if(!amounts.containsKey(item.substring(item.indexOf(".") + 1))) return false;
+		if(!amounts.containsKey(item)) return false;
 		amounts.put(item, amount);
 		confSave(item, amount);
 		return true;
 	}
 
 	public static boolean confEditUse (String item, Boolean allowed){
-		if (!use.containsKey(item.substring(item.indexOf(".") + 1))) return false;
+		if (!use.containsKey(item)) return false;
 		use.put(item, allowed);
 		confSave(item, allowed);
 		return true;
