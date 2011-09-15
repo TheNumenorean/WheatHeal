@@ -22,6 +22,7 @@ public class Config {
 	public static boolean useBukkitPerms;
 	public static boolean useSelfHeal;
 	public static int maxHealth;
+	public static boolean oldHeal = false;
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -112,9 +113,13 @@ public class Config {
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
+		
+		oldHeal = getBoolean("DirectHeal", false);
 		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
 		config.save();
 		config.load();
+		
+		
 	}
 
 	public static void confSave(Configuration config){
@@ -188,6 +193,7 @@ public class Config {
 		config.setProperty("Foods.Sugarcane.enable", true);
 		config.setProperty("Foods.Sugarcane.healValue", 2);
 		config.setProperty("Permissions.useBukkit", false);
+		config.setProperty("DirectHeal", false);
 		config.save();
 	}
 
