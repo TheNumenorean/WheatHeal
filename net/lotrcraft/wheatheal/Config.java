@@ -2,6 +2,8 @@
  *
  * Loading/Creating Config file.
  * Refactored code by: Lathanael
+ * 
+ * TODO: Marked for revisit
  *
  *******************/
 

@@ -67,8 +67,7 @@ Foods:
         enable: true
         
 # Decides how much health a player can be healed (yes, in such a way people can get more than 20 health)
-Player:
-    mxHealth: 20
+MaxHealth: 20
 
 # Whether to heal people directly or fill the food bar. False designates food bar filling. 
 DirectHeal: false
@@ -81,24 +80,30 @@ Permissions:
 # NOT YET IMPLEMENTED:
 # 
 # Custom Tools:
+# Here you can define special tools to heal that WhatHeal will recognize.
 # 
+# Example tool:
 # 
+# Tools:
+#     Wool:
+#        id: 
+#        Type: 1
+#        healValue: 5
+#        damageTaken: 4
 # 
+# The first number is the id number of the item
 # 
+# The second number is the type. This can either be one or two.
+# One will make one of each of the item dissappear when used to heal.
+# Two will make the tool take damage, eventually being destroyed.
 # 
+# The third is the heal value, same as before.
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
+# Fourth is the amount of damage a tool of type 2 will take.
 
 Tools:
-    Wool:
-       Type: 1
-       healValue: 5
-       
-    
+
+
+
+
+

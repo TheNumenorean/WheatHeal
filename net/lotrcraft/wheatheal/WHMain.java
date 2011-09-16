@@ -58,7 +58,7 @@ public class WHMain extends JavaPlugin {
 		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
 		
 		if (!confFile.exists()){
-			
+			//TODO: Write config.yml to plugin folder.
 		}
 	}
 
