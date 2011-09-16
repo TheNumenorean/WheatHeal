@@ -155,7 +155,7 @@ public class Config {
 	}
 
 	public static boolean confEditUse (String item, Boolean allowed){
-		if (!use.containsKey(item)) return false;
+		//if (!use.containsKey(item)) return false;
 		use.put(item, allowed);
 		confSave(item, allowed);
 		return true;

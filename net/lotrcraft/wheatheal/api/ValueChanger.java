@@ -6,10 +6,10 @@ import net.lotrcraft.wheatheal.WHMain;
 public class ValueChanger {
 
 	public boolean setEnabled(String food, boolean value){
-		return Config.confEditUse(food, value);
+		return Config.confEditUse(food + ".enable", value);
 	}
 	public boolean setHealvalue(String food, int value){
-		return Config.confEditAmount(food, value);
+		return Config.confEditAmount(food + ".healValue", value);
 	}
 	public void reset(){
 		Config.confRestore(WHMain.config);

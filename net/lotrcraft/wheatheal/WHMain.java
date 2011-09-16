@@ -11,6 +11,7 @@
  *************************/
 
 package net.lotrcraft.wheatheal;
+import java.io.File;
 import java.util.logging.Logger;
 
 import org.bukkit.event.Event.Priority;
@@ -34,6 +35,7 @@ public class WHMain extends JavaPlugin {
 	public static PermissionManager permissionsEx; // t3hk0d3's PermissionsEx Plugin
 	public static PluginManager pm;
 	public static Heroes heroes = null;
+	public static File confFile = new File("/WheatHeal/config.yml");
 
 	public void onDisable() {
 		Config.confSave(config);
@@ -54,6 +56,10 @@ public class WHMain extends JavaPlugin {
 		}
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
+		
+		if (!confFile.exists()){
+			
+		}
 	}
 
 }
