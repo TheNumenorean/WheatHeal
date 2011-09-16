@@ -1,0 +1,104 @@
+# WheatHeal Configuration File
+# 
+# Foods each have two values: healValue and enable
+# healValue decides how much a person is healed by (yes it can be negative...)
+# and enable is whether it will trigger the healing event. 
+# If set to false, it can be used like normal, hitting people to do damage.
+# 
+# All heal values are in half hearts, therefore 10 equals five hearts.
+# 
+# Remember, YAML rules apply; Do not use Tabs!
+# 
+# 
+
+
+Foods:
+    Sugar:
+        healValue: 3
+        enable: true
+    Bread:
+        healValue: 3
+        enable: true
+    Cake:
+        healValue: 10
+        enable: true
+    Milk:
+        healValue: 7
+        enable: true
+    Cookie:
+        healValue: 7
+        enable: true
+    Sugarcane:
+        healValue: 2
+        enable: true
+    Apple:
+        healValue: 5
+        enable: true
+    RawPork:
+        healValue: 3
+        enable: true
+    RawFish:
+        healValue: 4
+        enable: true
+    GoldenApple:
+        healValue: 20
+        enable: true
+    Egg:
+        healValue: 4
+        enable: true
+    MushroomStew:
+        healValue: 10
+        enable: true
+    CookedFish:
+        healValue: 8
+        enable: true
+    BrownMushroom:
+        healValue: 6
+        enable: true
+    RedMushroom:
+        healValue: 7
+        enable: true
+    Wheat:
+        healValue: 1
+        selfHeal: true
+        enable: true
+    CookedPork:
+        healValue: 8
+        enable: true
+        
+# Decides how much health a player can be healed (yes, in such a way people can get more than 20 health)
+Player:
+    mxHealth: 20
+
+# Whether to heal people directly or fill the food bar. False designates food bar filling. 
+DirectHeal: false
+
+# Which permissions to use. Uses Permissions by default, set to true for bukkitPermissions
+Permissions:
+    useBukkit: false
+
+
+# NOT YET IMPLEMENTED:
+# 
+# Custom Tools:
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+
+Tools:
+    Wool:
+       Type: 1
+       healValue: 5
+       
+    
