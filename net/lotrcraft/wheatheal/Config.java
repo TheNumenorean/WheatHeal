@@ -38,6 +38,7 @@ public class Config {
 
 		//Get the maximum Health a player can have.
 		maxHealth = getInt("Player.mxHealth", 20);
+		
 		//Get heal amounts for each item
 		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts.put("Wheat",getInt("Foods.Wheat.healValue", 1));
@@ -116,12 +117,8 @@ public class Config {
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
 		
+		//Use old healing method?
 		oldHeal = getBoolean("DirectHeal", false);
-		//WHMain.log.info(String.valueOf(use.get("useBukkit").booleanValue()));
-		config.save();
-		config.load();
-		
-		
 	}
 
 	public static void confSave(Configuration config){
@@ -137,30 +134,6 @@ public class Config {
 			}
 		}
 		config.save();
-	}
-
-	public static void confSave (String node, Boolean value){
-		WHMain.config.setProperty(node, value);
-		WHMain.config.save();
-	}
-
-	public static void confSave (String node, int value){
-		WHMain.config.setProperty(node, value);
-		WHMain.config.save();
-	}
-
-	public static boolean confEditAmount (String item, int amount){
-		if(!amounts.containsKey(item)) return false;
-		amounts.put(item, amount);
-		confSave(item, amount);
-		return true;
-	}
-
-	public static boolean confEditUse (String item, Boolean allowed){
-		//if (!use.containsKey(item)) return false;
-		use.put(item, allowed);
-		confSave(item, allowed);
-		return true;
 	}
 
 	public static void confRestore(Configuration config){
@@ -198,40 +171,58 @@ public class Config {
 		config.setProperty("Foods.Sugar.healValue", 3);
 		config.setProperty("Foods.Sugarcane.enable", true);
 		config.setProperty("Foods.Sugarcane.healValue", 2);
-		config.setProperty("Permissions.useBukkit", false);
-		config.setProperty("DirectHeal", false);
+		//config.setProperty("Permissions.useBukkit", false);
+		//config.setProperty("DirectHeal", false); People in-game probably wont want to change these
 		config.save();
-		config.load();
+		loadConf(config);
 	}
 
-	public static int confGetHealValue (String value){
-		return amounts.get(value);
+	//Functions for getting values
+	public static boolean setFoodHealVal(String food, int healVal){
+		String foodNode = "Foods." + food + ".healValue";
+		if(isNull(foodNode)) return false;
+		setProperty(foodNode, healVal);
+		amounts.put(food, healVal);
+		return true;
 	}
 
-	public static boolean confGetEnabled (String value){
-		return use.get(value).booleanValue();
+	public static int getFoodHealVal(String food){
+		return amounts.get(food);
+		
+	}
+	
+	public static boolean setFoodEnabled(String food, boolean enabled){
+		String foodNode = "Foods." + food + ".healValue";
+		if(isNull(foodNode)) return false;
+		setProperty(foodNode, enabled);
+		use.put(food, enabled);
+		return true;
+	}
+	
+	public static boolean getFoodEnabled(String food){
+		return use.get(food);
 	}
 
 	// Functions for AutoUpdating the Config.yml
 	public Object getProperty(String path, Object def) {
 		if(isNull(path))
-			return addProperty(path, def);
+			return setProperty(path, def);
 		return WHMain.config.getProperty(path);
 	}
 
 	public static int getInt(String path, Integer def) {
 		if(isNull(path))
-			return (Integer) addProperty(path, def);
+			return (Integer) setProperty(path, def);
 		return WHMain.config.getInt(path, def);
 	}
 
 	public static Boolean getBoolean(String path, Boolean def) {
 		if(isNull(path))
-			return (Boolean) addProperty(path, def);
+			return (Boolean) setProperty(path, def);
 		return WHMain.config.getBoolean(path, def);
 	}
 
-	private static Object addProperty(String path, Object val) {
+	private static Object setProperty(String path, Object val) {
 		WHMain.config.setProperty(path, val);
 		return val;
 	}
@@ -239,4 +230,6 @@ public class Config {
 	private static boolean isNull(String path) {
 		return WHMain.config.getProperty(path) == null;
 	}
+	
+	
 }

@@ -19,13 +19,13 @@ public class Settings extends WHCommand{
 		int amount = 0;
 		Boolean use = false;
 		if (sender instanceof ConsoleCommandSender){
-			use = Config.confGetEnabled(item);
+			use = Config.getFoodEnabled(item);
 			if (item.equalsIgnoreCase("usebukkit")){
 				WHMain.log.info("[WheatHeal] Using BukkitPermissions is set to: " + String.valueOf(use));
 				return;
 			}
 			if (use){
-				amount = Config.confGetHealValue(item);
+				amount = Config.getFoodHealVal(item);
 				WHMain.log.info("[WheatHeal] Healing set to true and " + item + " heals for: " + String.valueOf(amount));
 			}
 			else {
@@ -34,13 +34,13 @@ public class Settings extends WHCommand{
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.get")){
-			use = Config.confGetEnabled(item);
+			use = Config.getFoodEnabled(item);
 			if (item.equalsIgnoreCase("usebukkit")){
 				sender.sendMessage(ChatColor.GREEN+ "Using BukkitPermissions is set to: " + String.valueOf(use));
 				return;
 			}
 			if (use){
-				amount = Config.confGetHealValue(item);
+				amount = Config.getFoodHealVal(item);
 				sender.sendMessage(ChatColor.GREEN + "Healing set to true and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
 			}
 			else {
@@ -56,12 +56,12 @@ public class Settings extends WHCommand{
 
 	public static void editAmount (CommandSender sender, String item, int value){
 		if (sender instanceof ConsoleCommandSender){
-			Config.confEditAmount(item, value);
+			Config.setFoodHealVal(item, value);
 			WHMain.log.info("[WheatHeal] Healing amount of " + item + " changed to: " + value);
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
-			Config.confEditAmount(item, value);
+			Config.setFoodHealVal(item, value);
 			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to: " + value);
 			return;
 		}
@@ -74,7 +74,7 @@ public class Settings extends WHCommand{
 	public static void editUse (CommandSender sender, String item, boolean use){
 		if (sender instanceof ConsoleCommandSender){
 			if (use){
-				Config.confEditUse(item, use);
+				Config.setFoodEnabled(item, use);
 				if (item.equalsIgnoreCase("usebukkit")){
 					WHMain.log.info("[WheatHeal] Enabled the use of BukkitPermissions.");
 				}
@@ -83,7 +83,7 @@ public class Settings extends WHCommand{
 				}
 			}
 			else{
-				Config.confEditUse(item, use);
+				Config.setFoodEnabled(item, use);
 				if (item.equalsIgnoreCase("usebukkit")){
 					WHMain.log.info("[WheatHeal] Disabled the use of BukkitPermissions.");
 				}
@@ -95,11 +95,11 @@ public class Settings extends WHCommand{
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
 			if (use){
-				Config.confEditUse(item, use);
+				Config.setFoodEnabled(item, use);
 				sender.sendMessage(ChatColor.GREEN + "Enabled healing with " + item + ".");
 			}
 			else{
-				Config.confEditUse(item, use);
+				Config.setFoodEnabled(item, use);
 				if (item.equalsIgnoreCase("usebukkit")){
 					sender.sendMessage(ChatColor.RED + "Disabled the use of BukkitPermissions.");
 				}
