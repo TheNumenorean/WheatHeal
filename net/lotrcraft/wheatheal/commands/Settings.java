@@ -16,17 +16,15 @@ public class Settings extends WHCommand{
 	}
 
 	public static void get (String item, CommandSender sender){
-		int amount = 0;
 		Boolean use = false;
 		if (sender instanceof ConsoleCommandSender){
-			use = Config.getFoodEnabled(item);
 			if (item.equalsIgnoreCase("usebukkit")){
-				WHMain.log.info("[WheatHeal] Using BukkitPermissions is set to: " + String.valueOf(use));
+				WHMain.log.info("[WheatHeal] Using BukkitPermissions is set to: " + Config.useBukkitPerms);
 				return;
 			}
+			use = Config.getFoodEnabled(item);
 			if (use){
-				amount = Config.getFoodHealVal(item);
-				WHMain.log.info("[WheatHeal] Healing set to true and " + item + " heals for: " + String.valueOf(amount));
+				WHMain.log.info("[WheatHeal] Healing set to true and " + item + " heals for: " + Config.getFoodHealVal(item));
 			}
 			else {
 				WHMain.log.info("[WheatHeal] Healing with " + item + " is disabled.");
@@ -34,24 +32,21 @@ public class Settings extends WHCommand{
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.get")){
-			use = Config.getFoodEnabled(item);
 			if (item.equalsIgnoreCase("usebukkit")){
-				sender.sendMessage(ChatColor.GREEN+ "Using BukkitPermissions is set to: " + String.valueOf(use));
+				sender.sendMessage(ChatColor.GREEN+ "Using BukkitPermissions is set to: " + Config.useBukkitPerms);
 				return;
 			}
+			use = Config.getFoodEnabled(item);
 			if (use){
-				amount = Config.getFoodHealVal(item);
-				sender.sendMessage(ChatColor.GREEN + "Healing set to true and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + String.valueOf(amount));
+				sender.sendMessage(ChatColor.GREEN + "Healing set to true and " + ChatColor.RED + item + ChatColor.GREEN + " heals for: " + Config.getFoodHealVal(item));
 			}
 			else {
 				sender.sendMessage(ChatColor.GREEN + "Healing with " + ChatColor.RED + item + ChatColor.GREEN + " is disabled.");
 			}
 			return;
 		}
-		else {
-			sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
-			return;
-		}
+		sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
+		return;
 	}
 
 	public static void editAmount (CommandSender sender, String item, int value){
@@ -65,10 +60,8 @@ public class Settings extends WHCommand{
 			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to: " + value);
 			return;
 		}
-		else {
-			sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
-			return;
-		}
+		sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
+		return;
 	}
 
 	public static void editUse (CommandSender sender, String item, boolean use){
@@ -109,9 +102,7 @@ public class Settings extends WHCommand{
 			}
 			return;
 		}
-		else {
-			sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
-			return;
-		}
+		sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
+		return;
 	}
 }
