@@ -12,6 +12,9 @@
 
 package net.lotrcraft.wheatheal;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Logger;
 
 import org.bukkit.event.Event.Priority;
@@ -35,7 +38,9 @@ public class WHMain extends JavaPlugin {
 	public static PermissionManager permissionsEx; // t3hk0d3's PermissionsEx Plugin
 	public static PluginManager pm;
 	public static Heroes heroes = null;
-	public static File confFile = new File("/WheatHeal/config.yml");
+	public static File confFile = new File("plugins/WheatHeal/config.yml");
+	public static File confDir = new File("plugins/WheatHeal");
+	//public static File confCopy = new File("config.yml");
 
 	public void onDisable() {
 		Config.confSave(config);
@@ -57,9 +62,48 @@ public class WHMain extends JavaPlugin {
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
 		
+		log.info("" + confFile.getAbsolutePath());
+		
 		if (!confFile.exists()){
-			//TODO: Write config.yml to plugin folder.
+			try {
+				confDir.mkdirs();
+				if (confFile.createNewFile() && !confFile.canWrite()) {
+					log.warning("[WheatHeal] Can't write to file! You will not have a fully annotated conf.");
+					return;
+				}
+				newConf();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+
+	private void newConf() throws IOException {
+		InputStream from = null;
+	    FileOutputStream to = null;
+	    try {
+	      from = getClass().getClassLoader().getResourceAsStream("config.yml");
+	      to = new FileOutputStream(confFile);
+	      byte[] buffer = new byte[4096];
+	      int bytesRead;
+
+	      while ((bytesRead = from.read(buffer)) != -1)
+	        to.write(buffer, 0, bytesRead); // write
+	    } finally {
+	      if (from != null)
+	        try {
+	          from.close();
+	        } catch (IOException e) {
+	          ;
+	        }
+	      if (to != null)
+	        try {
+	          to.close();
+	        } catch (IOException e) {
+	          ;
+	        }
+	    }
+		
 	}
 
 }
