@@ -196,6 +196,7 @@ public class Config {
 	}
 
 	public static int getFoodHealVal(String food){
+		if(!amounts.containsKey(food)) return (Integer) null;
 		return amounts.get(food);
 		
 	}
@@ -209,6 +210,7 @@ public class Config {
 	}
 	
 	public static boolean getFoodEnabled(String food){
+		if(!use.containsKey(food)) return false;
 		return use.get(food);
 	}
 

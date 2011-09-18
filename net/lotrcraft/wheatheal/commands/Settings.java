@@ -51,13 +51,17 @@ public class Settings extends WHCommand{
 
 	public static void editAmount (CommandSender sender, String item, int value){
 		if (sender instanceof ConsoleCommandSender){
-			Config.setFoodHealVal(item, value);
-			WHMain.log.info("[WheatHeal] Healing amount of " + item + " changed to: " + value);
+			if (Config.setFoodHealVal(item, value))
+				WHMain.log.info("[WheatHeal] Healing amount of " + item + " changed to: " + value);
+			else 
+				WHMain.log.info("[WheatHeal] " + item + " doesn't exist!");
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
-			Config.setFoodHealVal(item, value);
-			sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to: " + value);
+			if (Config.setFoodHealVal(item, value))
+				sender.sendMessage(ChatColor.GREEN + "Healingamount of " + ChatColor.RED + item + ChatColor.GREEN + " changed to: " + value);
+			else 
+				sender.sendMessage(ChatColor.DARK_RED + item + " doesn't exist!");
 			return;
 		}
 		sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
@@ -66,40 +70,24 @@ public class Settings extends WHCommand{
 
 	public static void editUse (CommandSender sender, String item, boolean use){
 		if (sender instanceof ConsoleCommandSender){
-			if (use){
-				Config.setFoodEnabled(item, use);
-				if (item.equalsIgnoreCase("usebukkit")){
-					WHMain.log.info("[WheatHeal] Enabled the use of BukkitPermissions.");
-				}
-				else{
-					WHMain.log.info("[WheatHeal] Enabled healing with " + item + ".");
-				}
-			}
-			else{
-				Config.setFoodEnabled(item, use);
-				if (item.equalsIgnoreCase("usebukkit")){
-					WHMain.log.info("[WheatHeal] Disabled the use of BukkitPermissions.");
-				}
-				else{
+			
+			if (Config.setFoodEnabled(item, use)){
+				if (use)
+						WHMain.log.info("[WheatHeal] Enabled healing with " + item + ".");
+				else
 					WHMain.log.info("[WheatHeal] Disabled healing with " + item + ".");
-				}
-			}
+			} else 
+				WHMain.log.info("[WheatHeal] " + item + " doesn't exist!");
 			return;
 		}
 		if (permissionsCheck.check(sender, "wheatheal.commands.edit")){
-			if (use){
-				Config.setFoodEnabled(item, use);
-				sender.sendMessage(ChatColor.GREEN + "Enabled healing with " + item + ".");
-			}
-			else{
-				Config.setFoodEnabled(item, use);
-				if (item.equalsIgnoreCase("usebukkit")){
-					sender.sendMessage(ChatColor.RED + "Disabled the use of BukkitPermissions.");
-				}
-				else{
-					sender.sendMessage(ChatColor.RED + "Disabled healing with " + item + ".");;
-				}
-			}
+			if (Config.setFoodEnabled(item, use)){
+				if (use)
+					sender.sendMessage(ChatColor.GREEN + "Enabled healing with " + item + ".");
+				else
+					sender.sendMessage(ChatColor.RED + "Disabled healing with " + item + ".");
+			} else
+				sender.sendMessage(ChatColor.DARK_RED + item + " doesn't exist!");
 			return;
 		}
 		sender.sendMessage(ChatColor.RED + "You don't have permission to do this!");
