@@ -60,27 +60,29 @@ public class WHMain extends JavaPlugin {
 			pm.registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Priority.Highest, this);
 		}
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
-		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
-		
-		log.info("" + confFile.getAbsolutePath());
 		
 		if (!confFile.exists()){
+			log.info("[WheatHeal] Config nonexistant! Creating...");
 			try {
-				confDir.mkdirs();
-				if (confFile.createNewFile() && !confFile.canWrite()) {
-					log.warning("[WheatHeal] Can't write to file! You will not have a fully annotated conf.");
-					return;
-				}
 				newConf();
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.warning("[WheatHeal] Couldn't annotate conf! To get fully annotated configuration file, download it from the WheatHeal Bukkit thread.");
 			}
 		}
+		
+		log.info("WheatHeal Version " + this.getDescription().getVersion() + " enabled");
 	}
 
 	private void newConf() throws IOException {
 		InputStream from = null;
 	    FileOutputStream to = null;
+	    
+	    confDir.mkdirs();
+		if (confFile.createNewFile() && !confFile.canWrite()) {
+			log.warning("[WheatHeal] Can't write to file! You will not have a fully annotated conf.");
+			return;
+		}
+	    
 	    try {
 	      from = getClass().getClassLoader().getResourceAsStream("config.yml");
 	      to = new FileOutputStream(confFile);
