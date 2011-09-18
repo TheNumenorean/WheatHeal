@@ -11,9 +11,11 @@
 package net.lotrcraft.wheatheal;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.util.config.Configuration;
+import org.bukkit.util.config.ConfigurationNode;
 
 public class Config {
 
@@ -25,6 +27,7 @@ public class Config {
 	public static boolean useSelfHeal;
 	public static int maxHealth;
 	public static boolean oldHeal = false;
+	static List<ConfigurationNode> toolList;
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -119,6 +122,10 @@ public class Config {
 		
 		//Use old healing method?
 		oldHeal = getBoolean("DirectHeal", false);
+		
+		
+		//Starting check for tools
+		config.getNodeList("Tools", toolList);
 	}
 
 	public static void confSave(Configuration config){
@@ -176,6 +183,8 @@ public class Config {
 		config.save();
 		loadConf(config);
 	}
+	
+	
 
 	//Functions for getting values
 	public static boolean setFoodHealVal(String food, int healVal){
