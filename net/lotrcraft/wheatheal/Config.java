@@ -131,17 +131,7 @@ public class Config {
 		config.save();
 	}
 
-	// Configuration Saving Functions
-	public static void confSave (String node, Boolean value) {
-		WHMain.config.setProperty(node, value);
-		WHMain.config.save();
-	}
-
-	public static void confSave (String node, int value){
-		WHMain.config.setProperty(node, value);
-		WHMain.config.save();
-	}
-
+	// Configuration Saving Function
 	public static void confSave(Configuration config){
 		for (Map.Entry<String, Integer> entry : amounts.entrySet()){
 			config.setProperty("Foods." + entry.getKey() + ".healValue", entry.getValue());
@@ -200,7 +190,7 @@ public class Config {
 		if(isNull(foodNode)) return false;
 		setProperty(foodNode, healVal);
 		amounts.put(food, healVal);
-		confSave(foodNode, healVal);
+		WHMain.config.save();
 		return true;
 	}
 
@@ -215,7 +205,7 @@ public class Config {
 		if(isNull(foodNode)) return false;
 		setProperty(foodNode, enabled);
 		use.put(food, enabled);
-		confSave(foodNode, enabled);
+		WHMain.config.save();
 		return true;
 	}
 
