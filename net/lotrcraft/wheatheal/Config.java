@@ -2,7 +2,7 @@
  *
  * Loading/Creating Config file.
  * Refactored code by: Lathanael
- * 
+ *
  * TODO: Marked for revisit
  *
  *******************/
@@ -41,7 +41,7 @@ public class Config {
 
 		//Get the maximum Health a player can have.
 		maxHealth = getInt("Player.mxHealth", 20);
-		
+
 		//Get heal amounts for each item
 		//amounts[0] = config.getInt("Foods.Wheat.healValue", 1);
 		amounts.put("Wheat",getInt("Foods.Wheat.healValue", 1));
@@ -119,27 +119,25 @@ public class Config {
 
 		// Get whether Bukkit's Official Permissions should be used or if Nijikokun's should be used
 		useBukkitPerms = getBoolean("Permissions.useBukkit", false);
-		
+
 		//Use old healing method?
 		oldHeal = getBoolean("DirectHeal", false);
-		
-		
+
+
 		//Starting check for tools
 		config.getNodeList("Tools", toolList);
+
+		//In case the user has deleted some part of the file and it was recreated while loading
+		config.save();
 	}
 
 	public static void confSave(Configuration config){
 		for (Map.Entry<String, Integer> entry : amounts.entrySet()){
 			config.setProperty("Foods." + entry.getKey() + ".healValue", entry.getValue());
 		}
-		for (Map.Entry<String, Boolean> entry : use.entrySet()){
-			if (!entry.getKey().equalsIgnoreCase("usebukkit")){
-				config.setProperty("Foods." + entry.getKey() + ".enable", entry.getValue().booleanValue());
-			}
-			else {
-				config.setProperty("Permissions.useBukkit", entry.getValue().booleanValue());
-			}
-		}
+		config.setProperty("Permissions.useBukkit", useBukkitPerms);
+		config.setProperty("DirectHeal", oldHeal);
+
 		config.save();
 	}
 
@@ -183,8 +181,8 @@ public class Config {
 		config.save();
 		loadConf(config);
 	}
-	
-	
+
+
 
 	//Functions for getting values
 	public static boolean setFoodHealVal(String food, int healVal){
@@ -198,9 +196,9 @@ public class Config {
 	public static int getFoodHealVal(String food){
 		if(!amounts.containsKey(food)) return (Integer) null;
 		return amounts.get(food);
-		
+
 	}
-	
+
 	public static boolean setFoodEnabled(String food, boolean enabled){
 		String foodNode = "Foods." + food + ".healValue";
 		if(isNull(foodNode)) return false;
@@ -208,7 +206,7 @@ public class Config {
 		use.put(food, enabled);
 		return true;
 	}
-	
+
 	public static boolean getFoodEnabled(String food){
 		if(!use.containsKey(food)) return false;
 		return use.get(food);
@@ -241,6 +239,6 @@ public class Config {
 	private static boolean isNull(String path) {
 		return WHMain.config.getProperty(path) == null;
 	}
-	
-	
+
+
 }
