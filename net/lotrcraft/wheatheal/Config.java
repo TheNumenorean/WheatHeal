@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.lotrcraft.wheatheal.tools.Tool;
+
 import org.bukkit.util.config.Configuration;
 import org.bukkit.util.config.ConfigurationNode;
 
@@ -27,7 +29,10 @@ public class Config {
 	public static boolean useSelfHeal;
 	public static int maxHealth;
 	public static boolean oldHeal = false;
+	public static boolean useTools = false;
 	static List<ConfigurationNode> toolList;
+	static List<Tool> tools;
+	static Tool tmpTool = new Tool();
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -123,9 +128,18 @@ public class Config {
 		//Use old healing method?
 		oldHeal = getBoolean("DirectHeal", false);
 
-
+		useTools = getBoolean("ToolsEnabled", false);
+		
 		//Starting check for tools
 		config.getNodeList("Tools", toolList);
+		for (int y = 0; y < toolList.size(); y++){
+			tmpTool.setName(toolList.get(y).toString());
+			tmpTool.setId(toolList.get(y).getInt("id", -1));
+			tmpTool.setHealValue(toolList.get(y).getInt("healValue", 1));
+			tmpTool.setType(toolList.get(y).getInt("type", 1));
+			tmpTool.setDamageOnUse(toolList.get(y).getInt("damageTaken", 4));
+			tools.add(tmpTool);
+		}
 
 		//In case the user has deleted some part of the file and it was recreated while loading
 		config.save();
