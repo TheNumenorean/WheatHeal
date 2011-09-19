@@ -131,6 +131,17 @@ public class Config {
 		config.save();
 	}
 
+	// Configuration Saving Functions
+	public static void confSave (String node, Boolean value) {
+		WHMain.config.setProperty(node, value);
+		WHMain.config.save();
+	}
+
+	public static void confSave (String node, int value){
+		WHMain.config.setProperty(node, value);
+		WHMain.config.save();
+	}
+
 	public static void confSave(Configuration config){
 		for (Map.Entry<String, Integer> entry : amounts.entrySet()){
 			config.setProperty("Foods." + entry.getKey() + ".healValue", entry.getValue());
@@ -141,6 +152,7 @@ public class Config {
 		config.save();
 	}
 
+	// Configuration restoring function
 	public static void confRestore(Configuration config){
 		config.setProperty("Foods.Wheat.enable", true);
 		config.setProperty("Foods.Wheat.healValue", 1);
@@ -182,14 +194,13 @@ public class Config {
 		loadConf(config);
 	}
 
-
-
-	//Functions for getting values
+	//Functions for getting and setting values
 	public static boolean setFoodHealVal(String food, int healVal){
 		String foodNode = "Foods." + food + ".healValue";
 		if(isNull(foodNode)) return false;
 		setProperty(foodNode, healVal);
 		amounts.put(food, healVal);
+		confSave(foodNode, healVal);
 		return true;
 	}
 
@@ -204,6 +215,7 @@ public class Config {
 		if(isNull(foodNode)) return false;
 		setProperty(foodNode, enabled);
 		use.put(food, enabled);
+		confSave(foodNode, enabled);
 		return true;
 	}
 
