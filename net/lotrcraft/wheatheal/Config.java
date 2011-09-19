@@ -32,7 +32,6 @@ public class Config {
 	public static boolean useTools = false;
 	static List<ConfigurationNode> toolList;
 	static List<Tool> tools;
-	static Tool tmpTool = new Tool();
 
 	@SuppressWarnings("unused")
 	private static WHMain plugin;
@@ -128,9 +127,11 @@ public class Config {
 		//Use old healing method?
 		oldHeal = getBoolean("DirectHeal", false);
 
+		//Enable tools?
 		useTools = getBoolean("ToolsEnabled", false);
 		
 		//Starting check for tools
+		Tool tmpTool = new Tool();
 		config.getNodeList("Tools", toolList);
 		for (int y = 0; y < toolList.size(); y++){
 			tmpTool.setName(toolList.get(y).toString());
@@ -226,6 +227,27 @@ public class Config {
 	public static boolean getFoodEnabled(String food){
 		if(!use.containsKey(food)) return false;
 		return use.get(food);
+	}
+	
+	//Functions regarding Tools
+	public static List<Tool> getToolList(){
+		return tools;
+	}
+	
+	public static Tool getTool(String name){
+		return tools.get(tools.indexOf(name));
+	}
+	
+	public static boolean addTool(String name, int id, int healValue, int type, int damageOnUse){
+		Tool tmpTool = new Tool();
+		tmpTool.setName(name);
+		tmpTool.setId(id);
+		tmpTool.setHealValue(healValue);
+		tmpTool.setType(type);
+		tmpTool.setDamageOnUse(damageOnUse);
+		//TODO: finish
+		
+		return true;
 	}
 
 	// Functions for AutoUpdating the Config.yml
