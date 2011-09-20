@@ -239,14 +239,14 @@ public class Config {
 	}
 	
 	public static boolean addTool(String name, int id, int healValue, int type, int damageOnUse){
-		if (isNull("Tools." + name)) return false;
+		if (WHMain.config.getNode("Tools." + name) != null) return false;
 		Tool tmpTool = new Tool();
 		tmpTool.setName(name);
 		tmpTool.setId(id);
 		tmpTool.setHealValue(healValue);
 		tmpTool.setType(type);
 		tmpTool.setDamageOnUse(damageOnUse);
-		
+		tools.add(tmpTool);
 		
 		return true;
 	}
