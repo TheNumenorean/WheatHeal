@@ -54,12 +54,6 @@ public class WHMain extends JavaPlugin {
 		pm.registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Priority.Monitor, this);
 		PluginListener.hookInit(pm);
 		config = this.getConfiguration();
-		Config.loadConf(config); // Loading configuration
-		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
-		if(Config.useSelfHeal){
-			pm.registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Priority.Highest, this);
-		}
-		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		
 		if (!confFile.exists()){
 			log.info("[WheatHeal] Config nonexistant! Creating...");
@@ -69,6 +63,13 @@ public class WHMain extends JavaPlugin {
 				log.warning("[WheatHeal] Couldn't annotate conf! To get fully annotated configuration file, download it from the WheatHeal Bukkit thread.");
 			}
 		}
+		
+		Config.loadConf(config); // Loading configuration
+		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
+		if(Config.useSelfHeal){
+			pm.registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Priority.Highest, this);
+		}
+		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
 		
 		log.info("WheatHeal Version " + this.getDescription().getVersion() + " enabled");
 	}
