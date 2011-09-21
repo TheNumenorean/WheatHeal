@@ -69,6 +69,7 @@ Foods:
 # Decides how much health a player can be healed (yes, in such a way people can get more than 20 health)
 MaxHealth: 20
 
+#NOT IMPLEMENTED
 # Whether to heal people directly or fill the food bar. False designates food bar filling. 
 DirectHeal: false
 

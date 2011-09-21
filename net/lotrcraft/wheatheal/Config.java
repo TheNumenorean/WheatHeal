@@ -257,6 +257,14 @@ public class Config {
 		WHMain.config.setProperty("Tools." + tool.getName() + ".healValue", tool.getHealValue());
 		WHMain.config.setProperty("Tools." + tool.getName() + ".damageTaken", tool.getDamageOnUse());
 	}
+	
+	public static boolean removeTool(Tool tool){
+		if (WHMain.config.getNode("Tools." + tool.getName()) != null) return false;
+		//TODO: Finish
+		
+		
+		return true;
+	}
 
 	// Functions for AutoUpdating the Config.yml
 	public Object getProperty(String path, Object def) {
