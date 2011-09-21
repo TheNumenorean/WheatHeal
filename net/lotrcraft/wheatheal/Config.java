@@ -259,10 +259,9 @@ public class Config {
 	}
 	
 	public static boolean removeTool(Tool tool){
-		if (WHMain.config.getNode("Tools." + tool.getName()) != null) return false;
-		//TODO: Finish
-		
-		
+		if (WHMain.config.getNode("Tools." + tool.getName()) == null) return false;
+		tools.remove(tool);
+		WHMain.config.removeProperty("Tools." + tool.getName());
 		return true;
 	}
 
