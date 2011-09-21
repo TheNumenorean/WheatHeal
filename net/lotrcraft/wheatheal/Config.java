@@ -212,7 +212,6 @@ public class Config {
 	public static int getFoodHealVal(String food){
 		if(!amounts.containsKey(food)) return (Integer) null;
 		return amounts.get(food);
-
 	}
 
 	public static boolean setFoodEnabled(String food, boolean enabled){
@@ -247,8 +246,16 @@ public class Config {
 		tmpTool.setType(type);
 		tmpTool.setDamageOnUse(damageOnUse);
 		tools.add(tmpTool);
+		saveTool(tmpTool);
 		
 		return true;
+	}
+	
+	private static void saveTool(Tool tool){
+		WHMain.config.setProperty("Tools." + tool.getName() + ".id", tool.getId());
+		WHMain.config.setProperty("Tools." + tool.getName() + ".type", tool.getType());
+		WHMain.config.setProperty("Tools." + tool.getName() + ".healValue", tool.getHealValue());
+		WHMain.config.setProperty("Tools." + tool.getName() + ".damageTaken", tool.getDamageOnUse());
 	}
 
 	// Functions for AutoUpdating the Config.yml
