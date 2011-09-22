@@ -97,7 +97,7 @@ public class WHMain extends JavaPlugin {
 	    FileOutputStream to = null;
 
 	    confDir.mkdirs();
-		if (confFile.createNewFile() && !confFile.canWrite()) {
+		if (!confFile.createNewFile() || !confFile.canWrite()) {
 			log.warning("[WheatHeal] Can't write to file! You will not have a fully annotated conf.");
 			return;
 		}
