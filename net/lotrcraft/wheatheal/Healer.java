@@ -1,7 +1,6 @@
 package net.lotrcraft.wheatheal;
 
 import org.bukkit.entity.Player;
-
 import com.herocraftonline.dev.heroes.persistence.Hero;
 
 public class Healer {
@@ -27,8 +26,6 @@ public class Healer {
 		case 344: player.setHealth(health + Config.amounts.get("Egg")); break; // Egg
 		case 353: player.setHealth(health + Config.amounts.get("Sugar")); break; // Sugar
 		case 338: player.setHealth(health + Config.amounts.get("Sugarcane")); break; // Sugar Cane
-		default:
-			
 		}
 		if (health > Config.maxHealth){
 			player.setHealth(Config.maxHealth);
@@ -61,8 +58,9 @@ public class Healer {
 			hero.setHealth(maxHealth);
 		}
 	}
-
 }
+
+
 /**************************
 *Foods still to be added:
 *chicken

@@ -7,6 +7,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.inventory.ItemStack;
 
+import net.lotrcraft.wheatheal.tools.Tool;
+
 import com.herocraftonline.dev.heroes.persistence.Hero;
 
 public class WHListener extends EntityListener{
@@ -14,6 +16,7 @@ public class WHListener extends EntityListener{
 	// Create a new instance of our Healer class
 	private Healer healer = WHMain.healer;
 	private UseChecker checker = WHMain.checker;
+	private Tool tool = new Tool();
 
 	public void onEntityDamage(EntityDamageEvent event) {
 			if (event instanceof EntityDamageByEntityEvent){
@@ -81,6 +84,26 @@ public class WHListener extends EntityListener{
 						//else {
 						//	  puncher.sendMessage(ChatColor.RED + "You do not have permission to do this");
 						//}
+					}
+					
+					if ((tool = ToolChecker.checkTool(itemID)) != null){
+						if (tool.getType() == 1){
+							if (puncher.getItemInHand().getAmount() == 1){
+								puncher.setItemInHand(null);
+							} else {
+								puncher.getItemInHand().setAmount(puncher.getItemInHand().getAmount() - 1);
+							}
+						} else {
+							puncher.getItemInHand().setDurability((short) (puncher.getItemInHand().getDurability() - tool.getDamageOnUse()));
+						}
+						
+						if (hero == null)
+							punchee.setHealth(punchee.getHealth() + tool.getHealValue());
+						else {
+							hero.setHealth(hero.getHealth() + tool.getHealValue());
+							if (hero.getHealth() > hero.getMaxHealth())
+								hero.setHealth(hero.getMaxHealth());
+						}
 					}
 				}
 
