@@ -53,7 +53,6 @@ public class WHMain extends JavaPlugin {
 		pm.registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Priority.Monitor, this);
 		pm.registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Priority.Monitor, this);
 		PluginListener.hookInit(pm);
-		config = this.getConfiguration();
 		
 		if (!confFile.exists()){
 			log.info("[WheatHeal] Config nonexistant! Creating...");
@@ -64,6 +63,7 @@ public class WHMain extends JavaPlugin {
 			}
 		}
 		
+		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
 		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
 		if(Config.useSelfHeal){
