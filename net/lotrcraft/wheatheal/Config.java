@@ -237,17 +237,20 @@ public class Config {
 		return tools.get(tools.indexOf(name));
 	}
 	
-	public static boolean addTool(String name, int id, int healValue, int type, int damageOnUse){
-		if (WHMain.config.getNode("Tools." + name) != null) return false;
+	public static Tool makeTool(String name, int id, int healValue, int type, int damageOnUse){
 		Tool tmpTool = new Tool();
 		tmpTool.setName(name);
 		tmpTool.setId(id);
 		tmpTool.setHealValue(healValue);
 		tmpTool.setType(type);
 		tmpTool.setDamageOnUse(damageOnUse);
-		tools.add(tmpTool);
-		saveTool(tmpTool);
-		
+		return tmpTool;
+	}
+	
+	public static boolean addTool(Tool tool){
+		if (WHMain.config.getNode("Tools." + tool.getName()) != null) return false;
+		tools.add(tool);
+		saveTool(tool);
 		return true;
 	}
 	
