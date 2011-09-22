@@ -7,32 +7,33 @@ import com.herocraftonline.dev.heroes.persistence.Hero;
 public class Feeder {
 
 	public void feedPlayer(Player player, int itemID) {
-		int health = player.getHealth();
+		int foodLevel = player.getFoodLevel();
 		switch (itemID) {
 		// Use the itemID passed to determine what the heal amount is
-		case 296: player.setHealth(health + Config.amounts.get("Wheat")); break;  // WHEAT
-		case 319: player.setHealth(health + Config.amounts.get("RawPork")); break;  // RAW_PORKCHOP
-		case 320: player.setHealth(health + Config.amounts.get("CookedPork")); break;  // COOKED_PORKCHOP
-		case 349: player.setHealth(health + Config.amounts.get("RawFish")); break;  // RAW_FISH
-		case 350: player.setHealth(health + Config.amounts.get("CookedFish")); break;  // COOKED_FISH
-		case 297: player.setHealth(health + Config.amounts.get("Bread")); break;  // BREAD
-		case 357: player.setHealth(health + Config.amounts.get("Cookie")); break;  // COOKIE
-		case 260: player.setHealth(health + Config.amounts.get("Apple")); break;  // APPLE
-		case 322: player.setHealth(health + Config.amounts.get("GoldenApple")); break;  // GOLDEN APPLE
-		case 282: player.setHealth(health + Config.amounts.get("MushroomStew")); break;  // MUSHROOM SOUP/STEW
-		case 354: player.setHealth(health + Config.amounts.get("Cake")); break; // Cake
-		case 39:  player.setHealth(health + Config.amounts.get("BrownMushroom")); break; // MUSHROOM (Brown)
-		case 40:  player.setHealth(health + Config.amounts.get("RedMushroom")); break; // MUSHROOM (Red)
-		case 335: player.setHealth(health + Config.amounts.get("Milk")); break; // Milk
-		case 344: player.setHealth(health + Config.amounts.get("Egg")); break; // Egg
-		case 353: player.setHealth(health + Config.amounts.get("Sugar")); break; // Sugar
-		case 338: player.setHealth(health + Config.amounts.get("Sugarcane")); break; // Sugar Cane
+		case 296: player.setFoodLevel(foodLevel + Config.amounts.get("Wheat")); break;  // WHEAT
+		case 319: player.setHealth(foodLevel + Config.amounts.get("RawPork")); break;  // RAW_PORKCHOP
+		case 320: player.setHealth(foodLevel + Config.amounts.get("CookedPork")); break;  // COOKED_PORKCHOP
+		case 349: player.setHealth(foodLevel + Config.amounts.get("RawFish")); break;  // RAW_FISH
+		case 350: player.setHealth(foodLevel + Config.amounts.get("CookedFish")); break;  // COOKED_FISH
+		case 297: player.setHealth(foodLevel + Config.amounts.get("Bread")); break;  // BREAD
+		case 357: player.setHealth(foodLevel + Config.amounts.get("Cookie")); break;  // COOKIE
+		case 260: player.setHealth(foodLevel + Config.amounts.get("Apple")); break;  // APPLE
+		case 322: player.setHealth(foodLevel + Config.amounts.get("GoldenApple")); break;  // GOLDEN APPLE
+		case 282: player.setHealth(foodLevel + Config.amounts.get("MushroomStew")); break;  // MUSHROOM SOUP/STEW
+		case 354: player.setHealth(foodLevel + Config.amounts.get("Cake")); break; // Cake
+		case 39:  player.setHealth(foodLevel + Config.amounts.get("BrownMushroom")); break; // MUSHROOM (Brown)
+		case 40:  player.setHealth(foodLevel + Config.amounts.get("RedMushroom")); break; // MUSHROOM (Red)
+		case 335: player.setHealth(foodLevel + Config.amounts.get("Milk")); break; // Milk
+		case 344: player.setHealth(foodLevel + Config.amounts.get("Egg")); break; // Egg
+		case 353: player.setHealth(foodLevel + Config.amounts.get("Sugar")); break; // Sugar
+		case 338: player.setHealth(foodLevel + Config.amounts.get("Sugarcane")); break; // Sugar Cane
 		}
-		if (health > Config.maxHealth){
-			player.setHealth(Config.maxHealth);
+		if (foodLevel > 20){
+			player.setFoodLevel(20);
 		}
 	}
 
+	// TODO: Change for food, need to see how Heroes handles it.
 	public void feedPlayer(Hero hero, int itemID, double maxHealth){
 		double health = hero.getHealth();
 		switch (itemID) {

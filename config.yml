@@ -1,15 +1,15 @@
 # WheatHeal Configuration File
-# 
+#
 # Foods each have two values: healValue and enable
 # healValue decides how much a person is healed by (yes it can be negative...)
-# and enable is whether it will trigger the healing event. 
+# and enable is whether it will trigger the healing event.
 # If set to false, it can be used like normal, hitting people to do damage.
-# 
+#
 # All heal values are in half hearts, therefore 10 equals five hearts.
-# 
+#
 # Remember, YAML rules apply; Do not use Tabs!
-# 
-# 
+#
+#
 
 
 Foods:
@@ -65,12 +65,12 @@ Foods:
     CookedPork:
         healValue: 8
         enable: true
-        
+
 # Decides how much health a player can be healed (yes, in such a way people can get more than 20 health)
 MaxHealth: 20
 
 #NOT IMPLEMENTED
-# Whether to heal people directly or fill the food bar. False designates food bar filling. 
+# Whether to heal people directly(disabling food/hunger) or fill the food bar. False designates food bar filling.
 DirectHeal: false
 
 # Which permissions to use. Uses Permissions by default, set to true for bukkitPermissions
@@ -79,27 +79,27 @@ Permissions:
 
 
 # NOT YET IMPLEMENTED:
-# 
+#
 # Custom Tools:
 # Here you can define special tools to heal that WhatHeal will recognize.
-# 
+#
 # Example tool:
-# 
+#
 # Tools:
 #     Wool:
-#        id: 
+#        id:
 #        type: 1
 #        healValue: 5
 #        damageTaken: 4
-# 
+#
 # The first number is the id number of the item
-# 
+#
 # The second number is the type. This can either be one or two.
 # One will make one of each of the item dissappear when used to heal.
 # Two will make the tool take damage, eventually being destroyed.
-# 
+#
 # The third is the heal value, same as before.
-# 
+#
 # Fourth is the amount of damage a tool of type 2 will take.
 
 Tools:

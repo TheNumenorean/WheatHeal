@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import net.lotrcraft.wheatheal.tools.Tool;
@@ -15,6 +17,7 @@ public class WHListener extends EntityListener{
 
 	// Create a new instance of our Healer class
 	private Healer healer = WHMain.healer;
+	private Feeder feeder = WHMain.feeder;
 	private UseChecker checker = WHMain.checker;
 	private Tool tool = new Tool();
 
@@ -75,9 +78,13 @@ public class WHListener extends EntityListener{
 
 						// Finally call healPlayer in our healer class and pass in the punchee and the itemID
 						if (hero == null){
-							healer.healPlayer(punchee, itemID);
+							if (Config.oldHeal)
+								healer.healPlayer(punchee, itemID);
+							else
+								feeder.feedPlayer(punchee, itemID);
 						}
 						else {
+							// TODO: Heroes and Hunger/Food!
 							healer.healPlayer(hero, itemID, hero.getMaxHealth());
 						}
 
@@ -85,7 +92,7 @@ public class WHListener extends EntityListener{
 						//	  puncher.sendMessage(ChatColor.RED + "You do not have permission to do this");
 						//}
 					}
-					
+
 					if ((tool = ToolChecker.checkTool(itemID)) != null){
 						if (tool.getType() == 1){
 							if (puncher.getItemInHand().getAmount() == 1){
@@ -96,7 +103,7 @@ public class WHListener extends EntityListener{
 						} else {
 							puncher.getItemInHand().setDurability((short) (puncher.getItemInHand().getDurability() - tool.getDamageOnUse()));
 						}
-						
+
 						if (hero == null)
 							punchee.setHealth(punchee.getHealth() + tool.getHealValue());
 						else {
@@ -114,7 +121,10 @@ public class WHListener extends EntityListener{
 					if (!Config.use.get("Egg").booleanValue()){
 						return;
 					}
-
+					Hero hero = null;
+					if (WHMain.heroes != null){
+						hero = WHMain.heroes.getHeroManager().getHero((Player)e.getEntity());
+					}
 					event.setCancelled(true);
 					Egg egg = (Egg) e.getDamager();
 					Player puncher = (Player) egg.getShooter();
@@ -128,11 +138,42 @@ public class WHListener extends EntityListener{
 					}
 
 					// Finally call healPlayer in our healer class and pass in the punchee and the itemID
-					healer.healPlayer(punchee, 344);
+					if (hero == null){
+						if (Config.oldHeal)
+							healer.healPlayer(punchee, 344);
+						else
+							feeder.feedPlayer(punchee, 344);
+					}
+					else {
+						// TODO: Heroes and Hunger/Food!
+						healer.healPlayer(hero, 344, hero.getMaxHealth());
+					}
 
 					// DEBUG LINE
 					//puncher.sendMessage("You did hit and heal with an egg!");
 				}
 			}
+	}
+
+	@Override
+	public void onFoodLevelChange(FoodLevelChangeEvent event) {
+		if (event.isCancelled())
+			return;
+		if (!(event.getEntity() instanceof Player))
+			return;
+		// Disabling dropping of the FoodBar
+		if (Config.oldHeal)
+			event.setCancelled(true);
+	}
+
+	@Override
+	public void onEntityRegainHealth (EntityRegainHealthEvent event) {
+		if (event.isCancelled())
+			return;
+		if (!(event.getEntity() instanceof Player))
+			return;
+		// Disabling regaining health with a full FoodBar
+		if (Config.oldHeal && event.getRegainReason().equals("SATIATED"))
+			event.setCancelled(true);
 	}
 }

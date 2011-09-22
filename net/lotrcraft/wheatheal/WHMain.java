@@ -32,6 +32,7 @@ public class WHMain extends JavaPlugin {
 
 	public static Configuration config;
 	public static Healer healer = new Healer();
+	public static Feeder feeder = new Feeder();
 	public static UseChecker checker = new UseChecker();
 	public static Logger log = Logger.getLogger("Minecraft");
 	public static PermissionHandler nijikoPermissions; // Nijikokun's Permissions Plugin
@@ -40,6 +41,9 @@ public class WHMain extends JavaPlugin {
 	public static Heroes heroes = null;
 	public static File confFile = new File("plugins/WheatHeal/config.yml");
 	public static File confDir = new File("plugins/WheatHeal");
+	public static WHListener whList = new WHListener();
+	public static WHPlayerListener playerList = new WHPlayerListener();
+	public static PluginListener pluginList = new PluginListener();
 	//public static File confCopy = new File("config.yml");
 
 	public void onDisable() {
@@ -49,11 +53,12 @@ public class WHMain extends JavaPlugin {
 
 	public void onEnable() {
 		pm = this.getServer().getPluginManager();
-		pm.registerEvent(Type.ENTITY_DAMAGE, new WHListener(), Priority.Highest, this);
-		pm.registerEvent(Type.PLUGIN_DISABLE, new PluginListener(), Priority.Monitor, this);
-		pm.registerEvent(Type.PLUGIN_ENABLE, new PluginListener(), Priority.Monitor, this);
+		pm.registerEvent(Type.ENTITY_DAMAGE, whList, Priority.Highest, this);
+		pm.registerEvent(Type.PLUGIN_DISABLE, pluginList, Priority.Monitor, this);
+		pm.registerEvent(Type.PLUGIN_ENABLE, pluginList, Priority.Monitor, this);
+
 		PluginListener.hookInit(pm);
-		
+
 		if (!confFile.exists()){
 			log.info("[WheatHeal] Config nonexistant! Creating...");
 			try {
@@ -62,28 +67,41 @@ public class WHMain extends JavaPlugin {
 				log.warning("[WheatHeal] Couldn't annotate conf! To get fully annotated configuration file, download it from the WheatHeal Bukkit thread.");
 			}
 		}
-		
+
 		config = this.getConfiguration();
 		Config.loadConf(config); // Loading configuration
 		// For selfhealing with Wheat, no need to register the Listener if healing is not enabled!
 		if(Config.useSelfHeal){
-			pm.registerEvent(Type.PLAYER_INTERACT, new WHPlayerListener(), Priority.Highest, this);
+			pm.registerEvent(Type.PLAYER_INTERACT, playerList, Priority.Highest, this);
 		}
+		//If direct heal is enabled we need to disable the food/hunger system!
+		if (Config.oldHeal) {
+			try {
+				pm.registerEvent(Type.FOOD_LEVEL_CHANGE, whList, Priority.Monitor, this);
+				pm.registerEvent(Type.ENTITY_REGAIN_HEALTH, whList, Priority.Monitor, this);
+			}
+			catch (Throwable e) {
+				log.warning("[WheatHeal] Food functions require bukkit RB 1185 or higher! Disabling them!");
+				Config.oldHeal = false;
+				Config.confSave(config);
+			}
+		}
+
 		getCommand("wh").setExecutor(new WHCommand(this));  // 'rerouting' to the new command class
-		
-		log.info("WheatHeal Version " + this.getDescription().getVersion() + " enabled");
+
+		log.info("[WheatHeal] Version " + this.getDescription().getVersion() + " enabled");
 	}
 
 	private void newConf() throws IOException {
 		InputStream from = null;
 	    FileOutputStream to = null;
-	    
+
 	    confDir.mkdirs();
 		if (confFile.createNewFile() && !confFile.canWrite()) {
 			log.warning("[WheatHeal] Can't write to file! You will not have a fully annotated conf.");
 			return;
 		}
-	    
+
 	    try {
 	      from = getClass().getClassLoader().getResourceAsStream("config.yml");
 	      to = new FileOutputStream(confFile);
@@ -106,7 +124,7 @@ public class WHMain extends JavaPlugin {
 	          ;
 	        }
 	    }
-		
+
 	}
 
 }
