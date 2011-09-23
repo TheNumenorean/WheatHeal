@@ -13,6 +13,7 @@ package net.lotrcraft.wheatheal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import net.lotrcraft.wheatheal.tools.Tool;
 
@@ -30,7 +31,7 @@ public class Config {
 	public static int maxHealth;
 	public static boolean oldHeal = false;
 	public static boolean useTools = false;
-	static List<ConfigurationNode> toolList;
+	static Map<String, ConfigurationNode> toolList = new TreeMap<String, ConfigurationNode>();
 	static List<Tool> tools;
 
 	@SuppressWarnings("unused")
@@ -129,17 +130,20 @@ public class Config {
 
 		//Enable tools?
 		useTools = getBoolean("ToolsEnabled", false);
-		
+
 		//Starting check for tools
 		Tool tmpTool = new Tool();
-		config.getNodeList("Tools", toolList);
-		for (int y = 0; y < toolList.size(); y++){
-			tmpTool.setName(toolList.get(y).toString());
-			tmpTool.setId(toolList.get(y).getInt("id", -1));
-			tmpTool.setHealValue(toolList.get(y).getInt("healValue", 1));
-			tmpTool.setType(toolList.get(y).getInt("type", 1));
-			tmpTool.setDamageOnUse(toolList.get(y).getInt("damageTaken", 4));
-			tools.add(tmpTool);
+		toolList = config.getNodes("Tools");
+		if (toolList != null) {
+			for (Map.Entry<String, ConfigurationNode> map : toolList.entrySet()){
+				WHMain.log.info("[WheatHeal] Tool added, key: " + String.valueOf(map.getKey()));
+				tmpTool.setName(String.valueOf(map.getKey()));
+				tmpTool.setId(map.getValue().getInt("id", -1));
+				tmpTool.setHealValue(map.getValue().getInt("healValue", 1));
+				tmpTool.setType(map.getValue().getInt("type", 1));
+				tmpTool.setDamageOnUse(map.getValue().getInt("damageTaken", 4));
+				tools.add(tmpTool);
+			}
 		}
 
 		//In case the user has deleted some part of the file and it was recreated while loading
@@ -227,16 +231,16 @@ public class Config {
 		if(!use.containsKey(food)) return false;
 		return use.get(food);
 	}
-	
+
 	//Functions regarding Tools
 	public static List<Tool> getToolList(){
 		return tools;
 	}
-	
+
 	public static Tool getTool(String name){
 		return tools.get(tools.indexOf(name));
 	}
-	
+
 	public static Tool makeTool(String name, int id, int healValue, int type, int damageOnUse){
 		Tool tmpTool = new Tool();
 		tmpTool.setName(name);
@@ -246,21 +250,21 @@ public class Config {
 		tmpTool.setDamageOnUse(damageOnUse);
 		return tmpTool;
 	}
-	
+
 	public static boolean addTool(Tool tool){
 		if (WHMain.config.getNode("Tools." + tool.getName()) != null) return false;
 		tools.add(tool);
 		saveTool(tool);
 		return true;
 	}
-	
+
 	private static void saveTool(Tool tool){
 		WHMain.config.setProperty("Tools." + tool.getName() + ".id", tool.getId());
 		WHMain.config.setProperty("Tools." + tool.getName() + ".type", tool.getType());
 		WHMain.config.setProperty("Tools." + tool.getName() + ".healValue", tool.getHealValue());
 		WHMain.config.setProperty("Tools." + tool.getName() + ".damageTaken", tool.getDamageOnUse());
 	}
-	
+
 	public static boolean removeTool(Tool tool){
 		if (WHMain.config.getNode("Tools." + tool.getName()) == null) return false;
 		tools.remove(tool);
