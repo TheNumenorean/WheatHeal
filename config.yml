@@ -69,7 +69,6 @@ Foods:
 # Decides how much health a player can be healed (yes, in such a way people can get more than 20 health)
 MaxHealth: 20
 
-#NOT IMPLEMENTED
 # Whether to heal people directly(disabling food/hunger) or fill the food bar. False designates food bar filling.
 DirectHeal: false
 
@@ -77,9 +76,6 @@ DirectHeal: false
 Permissions:
     useBukkit: false
 
-
-# NOT YET IMPLEMENTED:
-#
 # Custom Tools:
 # Here you can define special tools to heal that WhatHeal will recognize.
 #
