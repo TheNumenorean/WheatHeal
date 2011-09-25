@@ -83,7 +83,7 @@ Permissions:
 #
 # Tools:
 #     Wool:
-#        id:
+#        id: 35
 #        type: 1
 #        healValue: 5
 #        damageTaken: 4
